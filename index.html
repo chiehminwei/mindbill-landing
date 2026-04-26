@@ -170,13 +170,13 @@
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center max-w-3xl mx-auto mb-16">
         <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Features</h2>
-        <p class="mt-4 text-lg text-ink/60">MindBill is a better way to handle billing and patient calls for mental health practices.</p>
+        <p class="mt-4 text-lg text-ink/60">MindBill is a better way to handle billing and patient calls for psychiatric, TMS, and Spravato practices.</p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-6">
 
-        <!-- Card 1 — Full-Cycle RCM (billing dashboard mock) -->
-        <div class="border border-ink/10 rounded-2xl p-7 bg-white">
+        <!-- Card 1 — Full-Cycle RCM at 2% (full-width billing dashboard) -->
+        <div class="border border-ink/10 rounded-2xl p-7 bg-white md:col-span-2">
           <div class="rounded-2xl bg-gradient-to-br from-acc-soft to-brand-soft p-5 min-h-[280px]">
             <div class="bg-white rounded-xl shadow-sm border border-ink/5 p-5">
               <div class="flex items-center justify-between mb-4">
@@ -217,160 +217,125 @@
             </div>
           </div>
           <h3 class="mt-6 text-xl font-bold">Full-Cycle RCM at 2%</h3>
-          <p class="mt-2 text-ink/60 text-sm leading-relaxed">PA, claims, ERA posting, denials, AR follow-up, patient statements. Replaces your billing company — at one-third their price.</p>
+          <p class="mt-2 text-ink/60 text-sm leading-relaxed">PA, claims, ERA posting, denials, AR, patient statements — <strong class="text-ink">including TMS prior auths, Spravato pharmacy-vs-medical logic, and live insurance verification during booking calls.</strong> Replaces your billing company at one-third the price.</p>
         </div>
 
-        <!-- Card 2 — 24/7 Receptionist (calendar + booking sidebar) -->
+        <!-- Card 2 — 24/7 Call Coverage (revenue + calls dashboard, patientdesk-style) -->
         <div class="border border-ink/10 rounded-2xl p-7 bg-white">
-          <div class="rounded-2xl bg-gradient-to-br from-brand-soft to-acc-soft p-5 min-h-[280px]">
+          <div class="rounded-2xl bg-gradient-to-br from-emerald-50 via-white to-emerald-50/30 p-5 min-h-[280px] relative">
+            <span class="absolute top-3 right-3 text-[9px] font-bold uppercase tracking-wider text-ink/30 bg-white/70 px-1.5 py-0.5 rounded">Example UI</span>
+
             <div class="bg-white rounded-xl shadow-sm border border-ink/5 p-5">
-              <div class="flex items-center justify-between mb-4">
-                <div class="flex items-center gap-2">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="text-blue-600"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                  <span class="font-bold text-sm">April 2026</span>
+              <div class="flex items-start justify-between mb-4 gap-3">
+                <div>
+                  <div class="text-xs text-ink/50 font-medium mb-1">Additional Revenue</div>
+                  <div class="flex items-baseline gap-2">
+                    <span class="text-3xl font-black tracking-tight">$24,800</span>
+                    <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">+34%</span>
+                  </div>
                 </div>
-                <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">✓ Synced</span>
+                <div class="border border-ink/10 rounded-lg px-3 py-2 text-[11px] flex-shrink-0">
+                  <div class="grid grid-cols-2 gap-3">
+                    <div>
+                      <div class="text-ink/40 mb-0.5">Calls answered</div>
+                      <div class="font-bold text-ink text-sm">1,247</div>
+                    </div>
+                    <div>
+                      <div class="text-ink/40 mb-0.5">Missed calls</div>
+                      <div class="font-bold text-emerald-600 text-sm">0</div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="grid grid-cols-7 gap-1 text-center text-[10px] text-ink/40 font-bold mb-1">
-                <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
+              <!-- Chart with floating tooltip -->
+              <div class="relative">
+                <svg viewBox="0 0 320 100" class="w-full h-24" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="callsChart" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#10B981" stop-opacity="0.25"/>
+                      <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <line x1="0" y1="55" x2="320" y2="55" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="3,3"/>
+                  <path d="M0,80 L40,75 L80,72 L120,55 L160,50 L200,30 L240,25 L320,8" stroke="#10B981" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M0,80 L40,75 L80,72 L120,55 L160,50 L200,30 L240,25 L320,8 L320,100 L0,100 Z" fill="url(#callsChart)"/>
+                  <circle cx="120" cy="55" r="4" fill="#fff" stroke="#10B981" stroke-width="2"/>
+                  <circle cx="240" cy="25" r="5" fill="#10B981"/>
+                </svg>
+                <div class="absolute right-12 top-2 bg-white shadow-md border border-ink/10 rounded-lg px-2.5 py-1 text-xs font-bold text-emerald-600">$6.2k</div>
               </div>
-
-              <div class="grid grid-cols-7 gap-1 text-center text-xs">
-                <div class="py-1.5 text-ink/30">29</div>
-                <div class="py-1.5 text-ink/30">30</div>
-                <div class="py-1.5 text-ink/30">31</div>
-                <div class="py-1.5 text-ink/70">1</div>
-                <div class="py-1.5 text-ink/70">2</div>
-                <div class="py-1.5 text-ink/70">3</div>
-                <div class="py-1.5 text-ink/70">4</div>
-                <div class="py-1.5 text-ink/70">5</div>
-                <div class="py-1.5 bg-blue-50 text-blue-600 font-bold rounded-md">6</div>
-                <div class="py-1.5 text-ink/70">7</div>
-                <div class="py-1.5 text-ink/70">8</div>
-                <div class="py-1.5 bg-blue-50 text-blue-600 font-bold rounded-md">9</div>
-                <div class="py-1.5 text-ink/70">10</div>
-                <div class="py-1.5 text-ink/70">11</div>
-                <div class="py-1.5 text-ink/70">12</div>
-                <div class="py-1.5 text-ink/70">13</div>
-                <div class="py-1.5 bg-blue-600 text-white font-bold rounded-md ring-2 ring-blue-600/30">14</div>
-                <div class="py-1.5 text-ink/70">15</div>
-                <div class="py-1.5 text-ink/70">16</div>
-                <div class="py-1.5 bg-blue-50 text-blue-600 font-bold rounded-md">17</div>
-                <div class="py-1.5 text-ink/70">18</div>
-              </div>
-            </div>
-
-            <div class="mt-3 bg-white rounded-xl shadow-sm border border-ink/5 p-3 flex items-center gap-3">
-              <div class="w-9 h-9 rounded-lg bg-blue-600 text-white grid place-items-center font-bold text-xs">📞</div>
-              <div class="flex-1 min-w-0">
-                <div class="text-[10px] uppercase tracking-wider text-blue-600 font-bold">New booking · Apr 14</div>
-                <div class="text-sm font-semibold truncate">TMS consultation · 2:30 PM</div>
-                <div class="text-xs text-ink/50">BCBS verified live during call</div>
-              </div>
-            </div>
-
-            <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-white rounded-full border border-ink/10 text-xs">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-emerald-600"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span class="text-ink/70">Synced to <strong class="text-ink">AdvancedMD</strong></span>
             </div>
           </div>
-          <h3 class="mt-6 text-xl font-bold">24/7 AI Receptionist</h3>
-          <p class="mt-2 text-ink/60 text-sm leading-relaxed">Picks up every call. Books appointments straight into your calendar. Routes crisis calls to your on-call clinician in &lt; 3 sec.</p>
+          <h3 class="mt-6 text-xl font-bold">24/7 Call Coverage</h3>
+          <p class="mt-2 text-ink/60 text-sm leading-relaxed">Never miss a call. Every answered call is potential revenue. AI picks up the moment the phone rings — including nights, weekends, and the lunch-hour gap.</p>
         </div>
 
-        <!-- Card 3 — Live Insurance Verification (insurance card + result) -->
+        <!-- Card 3 — Outbound Lead Calling (lead queue + active call, patientdesk-style) -->
         <div class="border border-ink/10 rounded-2xl p-7 bg-white">
-          <div class="rounded-2xl bg-gradient-to-br from-brand-soft to-acc-soft p-5 min-h-[280px]">
-            <!-- Insurance card mock -->
-            <div class="bg-gradient-to-br from-brand to-brand-dark rounded-xl p-4 text-white shadow-lg shadow-brand/30 mb-4">
-              <div class="flex items-start justify-between mb-6">
-                <div class="text-[10px] uppercase tracking-widest font-bold text-white/70">Health Plan</div>
-                <div class="font-black text-sm tracking-tight">BCBS</div>
-              </div>
-              <div class="text-[10px] uppercase tracking-wider text-white/60 font-bold">Member ID</div>
-              <div class="font-mono font-bold text-sm tracking-wider">8273 •••• •••• ••42</div>
-            </div>
+          <div class="rounded-2xl bg-gradient-to-br from-blue-50 via-white to-blue-50/30 p-5 min-h-[280px] relative">
+            <span class="absolute top-3 right-3 text-[9px] font-bold uppercase tracking-wider text-ink/30 bg-white/70 px-1.5 py-0.5 rounded">Example UI</span>
 
-            <!-- Verification result -->
-            <div class="bg-white rounded-xl shadow-sm border border-emerald-200 p-4 mb-3">
-              <div class="flex items-start justify-between mb-2">
-                <div class="flex items-center gap-2">
-                  <div class="w-6 h-6 rounded-full bg-emerald-500 text-white grid place-items-center">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>
-                  <span class="font-bold text-sm">Spravato covered</span>
+            <div class="grid grid-cols-3 gap-3">
+              <!-- Lead Queue -->
+              <div class="col-span-2 bg-white rounded-xl shadow-sm border border-ink/5 p-4">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-bold text-sm">Lead Queue</span>
+                  <span class="text-[10px] font-medium text-ink/50 bg-ink-soft/[0.06] px-2 py-0.5 rounded-full">12 pending</span>
                 </div>
-                <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">2.1s</span>
+                <div class="space-y-1.5">
+                  <!-- Active row -->
+                  <div class="flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-lg p-2">
+                    <div class="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 text-white grid place-items-center text-[10px] font-bold flex-shrink-0">JM</div>
+                    <div class="flex-1 min-w-0">
+                      <div class="text-xs font-bold truncate">James Miller</div>
+                      <div class="text-[10px] text-ink/50 truncate">New lead · TMS consult</div>
+                    </div>
+                    <div class="w-7 h-7 rounded-full bg-blue-600 text-white grid place-items-center flex-shrink-0">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5c0-1.1.9-2 2-2h2.3a1 1 0 0 1 1 .76l1.2 4.79a1 1 0 0 1-.5 1.13l-1.6.93a13 13 0 0 0 5.99 5.99l.93-1.6a1 1 0 0 1 1.13-.5l4.79 1.2a1 1 0 0 1 .76 1V19a2 2 0 0 1-2 2h-1C8.61 21 3 15.39 3 8V5z"/></svg>
+                    </div>
+                  </div>
+                  <!-- Pending rows -->
+                  <div class="flex items-center gap-2 rounded-lg p-2">
+                    <div class="w-7 h-7 rounded-full bg-gradient-to-br from-ink to-ink/60 text-white grid place-items-center text-[10px] font-bold flex-shrink-0">LP</div>
+                    <div class="flex-1 min-w-0">
+                      <div class="text-xs font-bold truncate">Lisa Park</div>
+                      <div class="text-[10px] text-ink/50 truncate">Follow-up · Spravato refresher</div>
+                    </div>
+                    <div class="w-7 h-7 rounded-full bg-ink/5 text-ink/40 grid place-items-center flex-shrink-0">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5c0-1.1.9-2 2-2h2.3a1 1 0 0 1 1 .76l1.2 4.79a1 1 0 0 1-.5 1.13l-1.6.93a13 13 0 0 0 5.99 5.99l.93-1.6a1 1 0 0 1 1.13-.5l4.79 1.2a1 1 0 0 1 .76 1V19a2 2 0 0 1-2 2h-1C8.61 21 3 15.39 3 8V5z"/></svg>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2 rounded-lg p-2">
+                    <div class="w-7 h-7 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 text-white grid place-items-center text-[10px] font-bold flex-shrink-0">RK</div>
+                    <div class="flex-1 min-w-0">
+                      <div class="text-xs font-bold truncate">Robert Kim</div>
+                      <div class="text-[10px] text-ink/50 truncate">Missed call · Callback</div>
+                    </div>
+                    <div class="w-7 h-7 rounded-full bg-ink/5 text-ink/40 grid place-items-center flex-shrink-0">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5c0-1.1.9-2 2-2h2.3a1 1 0 0 1 1 .76l1.2 4.79a1 1 0 0 1-.5 1.13l-1.6.93a13 13 0 0 0 5.99 5.99l.93-1.6a1 1 0 0 1 1.13-.5l4.79 1.2a1 1 0 0 1 .76 1V19a2 2 0 0 1-2 2h-1C8.61 21 3 15.39 3 8V5z"/></svg>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="text-xs text-ink/60 ml-8 space-y-0.5">
-                <div>✓ Medical benefit (not pharmacy)</div>
-                <div>✓ Prior auth required — submitting now</div>
-                <div>✓ $40 copay per session</div>
+              <!-- Calling now -->
+              <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl text-white p-3 flex flex-col items-center justify-center text-center shadow-lg shadow-blue-600/20">
+                <div class="w-10 h-10 rounded-full bg-white/15 grid place-items-center mb-2">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5c0-1.1.9-2 2-2h2.3a1 1 0 0 1 1 .76l1.2 4.79a1 1 0 0 1-.5 1.13l-1.6.93a13 13 0 0 0 5.99 5.99l.93-1.6a1 1 0 0 1 1.13-.5l4.79 1.2a1 1 0 0 1 .76 1V19a2 2 0 0 1-2 2h-1C8.61 21 3 15.39 3 8V5z"/></svg>
+                </div>
+                <div class="text-[9px] uppercase tracking-wider text-white/70 font-bold">Calling now</div>
+                <div class="text-xs font-bold mt-0.5 truncate w-full">James Miller</div>
+                <div class="font-mono text-[10px] text-white/80 mt-0.5">0:12</div>
               </div>
             </div>
 
-            <div class="flex items-center justify-center gap-2 text-xs text-ink/60">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 4v12m0 0l-4-4m4 4l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span>Pushed to <strong class="text-ink">AdvancedMD</strong> patient chart</span>
+            <div class="mt-3 inline-flex items-center gap-2 bg-white rounded-lg border border-ink/5 px-3 py-1.5 text-xs shadow-sm">
+              <span class="font-black text-emerald-600 text-base">47</span>
+              <span class="text-ink/60">Calls today</span>
             </div>
           </div>
-          <h3 class="mt-6 text-xl font-bold">Live Insurance Verification</h3>
-          <p class="mt-2 text-ink/60 text-sm leading-relaxed">Reads the insurance card during the booking call, runs benefits in real time, writes the result straight into your EHR. No manual handoff, no morning-of surprises.</p>
-        </div>
-
-        <!-- Card 4 — TMS / Spravato PA (payer portal mock) -->
-        <div class="border border-ink/10 rounded-2xl p-7 bg-white">
-          <div class="rounded-2xl bg-gradient-to-br from-acc-soft to-brand-soft p-5 min-h-[280px]">
-            <div class="bg-white rounded-xl shadow-sm border border-ink/5 overflow-hidden">
-              <!-- Mock browser chrome -->
-              <div class="bg-ink-soft/[0.04] px-4 py-2 flex items-center gap-2 border-b border-ink/5">
-                <div class="flex gap-1.5">
-                  <span class="w-2.5 h-2.5 rounded-full bg-warn/40"></span>
-                  <span class="w-2.5 h-2.5 rounded-full bg-acc/30"></span>
-                  <span class="w-2.5 h-2.5 rounded-full bg-brand/30"></span>
-                </div>
-                <div class="flex-1 bg-white rounded text-[10px] text-ink/50 px-2 py-0.5 font-mono">aetna · provider portal · TMS prior auth</div>
-              </div>
-
-              <!-- Form -->
-              <div class="p-5">
-                <div class="text-[10px] font-bold uppercase tracking-widest text-ink/50 mb-3">Pre-submission checks</div>
-                <div class="space-y-2 mb-4">
-                  <div class="flex items-center gap-2 text-sm">
-                    <div class="w-5 h-5 rounded-md bg-emerald-100 grid place-items-center">
-                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" class="text-emerald-600"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </div>
-                    <span class="text-ink/80">8 weeks of medication history</span>
-                  </div>
-                  <div class="flex items-center gap-2 text-sm">
-                    <div class="w-5 h-5 rounded-md bg-emerald-100 grid place-items-center">
-                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" class="text-emerald-600"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </div>
-                    <span class="text-ink/80">4 antidepressant trials documented</span>
-                  </div>
-                  <div class="flex items-center gap-2 text-sm">
-                    <div class="w-5 h-5 rounded-md bg-emerald-100 grid place-items-center">
-                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" class="text-emerald-600"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </div>
-                    <span class="text-ink/80">Psychotherapy notes attached</span>
-                  </div>
-                </div>
-
-                <div class="bg-emerald-500 text-white rounded-lg px-3 py-2.5 flex items-center justify-between text-sm">
-                  <span class="font-bold">✓ Submitted</span>
-                  <span class="text-xs text-white/85">62 sec · vs 30+ min manual</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-white rounded-full border border-ink/10 text-xs">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-emerald-600"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span class="text-ink/70">PA status auto-tracked in <strong class="text-ink">AdvancedMD</strong></span>
-            </div>
-          </div>
-          <h3 class="mt-6 text-xl font-bold">TMS &amp; Spravato Automation</h3>
-          <p class="mt-2 text-ink/60 text-sm leading-relaxed">PA submissions with pre-denial checks baked in. REMS workflows, payer-specific pharmacy-vs-medical-benefit logic, peer-to-peer scheduling.</p>
+          <h3 class="mt-6 text-xl font-bold">Outbound Lead Calling</h3>
+          <p class="mt-2 text-ink/60 text-sm leading-relaxed">AI calls every web-form lead within 60 seconds and follows up until they book. Plus no-show recovery and Spravato/TMS recall campaigns.</p>
         </div>
       </div>
 
