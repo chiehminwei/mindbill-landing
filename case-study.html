@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Case Study — MindBill · 9-Month Audit of a Real Psychiatric Practice</title>
+  <meta name="description" content="We audited 9 months of inbound calls at a real psychiatric practice. Found $31,000+ in directly recoverable new-patient revenue. Here's the math." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','serif'] },
+      colors: {
+        ink:   { DEFAULT: '#0A1430', soft: '#0E1B40', muted: '#5C6478' },
+        brand: { DEFAULT: '#3357FF', dark: '#2342DD', soft: '#EEF2FF' },
+        acc:   { DEFAULT: '#10B981', soft: '#ECFDF5' },
+        warn:  { DEFAULT: '#F97316' },
+      }
+    }}}
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #0A1430; }
+    .serif-h { font-family: 'Fraunces', serif; font-weight: 800; letter-spacing: -0.02em; }
+    .serif-it { font-family: 'Fraunces', serif; font-style: italic; font-weight: 600; }
+  </style>
+</head>
+<body class="bg-white">
+
+  <div class="bg-brand text-white text-center text-sm py-2.5 px-4">
+    <span class="font-semibold">★ Backed by Y Combinator</span>
+    <span class="opacity-60 mx-2">·</span>
+    HIPAA-compliant, BAA included
+    <span class="opacity-60 mx-2">·</span>
+    Built for psychiatric, TMS &amp; Spravato practices
+  </div>
+
+  <header class="sticky top-0 z-30 backdrop-blur bg-white/85 border-b border-ink/5">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <span class="w-8 h-8 rounded-lg bg-brand text-white grid place-items-center font-bold">M</span>
+        <span class="font-bold text-lg tracking-tight">MindBill</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-ink/70">
+        <a href="/#features" class="hover:text-ink">Features</a>
+        <a href="/#workflows" class="hover:text-ink">Workflows</a>
+        <a href="/case-study" class="text-ink font-semibold">Case Study</a>
+        <a href="/#pricing" class="hover:text-ink">Pricing</a>
+      </nav>
+      <a href="/#demo" class="inline-flex items-center bg-brand text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-brand-dark transition">Book a Demo</a>
+    </div>
+  </header>
+
+  <!-- HERO — single defensible number -->
+  <section class="bg-gradient-to-b from-brand-soft/30 to-white pt-20 pb-16">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand bg-white border border-brand/20 px-3 py-1.5 rounded-full mb-6">9-month audit · Anonymized</span>
+      <h1 class="serif-h text-5xl md:text-6xl leading-[1.05] text-ink">
+        We audited their phone.<br/>
+        Found <span class="serif-it text-brand">$31,000</span> falling on the floor.
+      </h1>
+      <p class="mt-6 text-lg text-ink/65 max-w-2xl mx-auto leading-relaxed">
+        Real psychiatric practice in the Northeast — TMS, Spravato, medication management. Identity withheld at their request. Conservative floor estimate, verified caller-by-caller against their EHR.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3 text-xs text-ink/50">
+        <span class="px-3 py-1 rounded-full bg-white border border-ink/10">Tebra EHR</span>
+        <span class="px-3 py-1 rounded-full bg-white border border-ink/10">Weave VoIP</span>
+        <span class="px-3 py-1 rounded-full bg-white border border-ink/10">Aug 2025 → Apr 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE / AFTER -->
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <div class="bg-warn/5 rounded-2xl border border-warn/20 p-8">
+          <div class="text-xs font-bold uppercase tracking-widest text-warn mb-3">Before · what we found</div>
+          <h3 class="serif-h text-2xl mb-5">Their phone is leaking new patients.</h3>
+          <ul class="space-y-3 text-ink/80">
+            <li class="flex gap-3"><span class="text-warn font-bold">→</span><span><strong>2,982 of 4,720 calls (63%)</strong> went unanswered over 9 months.</span></li>
+            <li class="flex gap-3"><span class="text-warn font-bold">→</span><span><strong>30 callers</strong> explicitly asked to schedule a first appointment, never appeared in the EHR.</span></li>
+            <li class="flex gap-3"><span class="text-warn font-bold">→</span><span><strong>20 callers</strong> were Optum/Anthem opening 24-hour PA peer-review windows. Miss the window — auth auto-denies.</span></li>
+            <li class="flex gap-3"><span class="text-warn font-bold">→</span><span><strong>17 callers</strong> were referring providers (highest-LTV lead class). Most went to voicemail; many were never returned.</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-acc/5 rounded-2xl border border-acc/20 p-8">
+          <div class="text-xs font-bold uppercase tracking-widest text-acc mb-3">After · what AI would change</div>
+          <h3 class="serif-h text-2xl mb-5">Every call answered. Every window caught.</h3>
+          <ul class="space-y-3 text-ink/80">
+            <li class="flex gap-3"><span class="text-acc font-bold">✓</span><span>AI picks up every inbound call 24/7. New patients get booked into Tebra during the call with live VOB.</span></li>
+            <li class="flex gap-3"><span class="text-acc font-bold">✓</span><span>Provider referrals get auto-parsed: patient chart created in EHR, then AI calls the referred patient to schedule.</span></li>
+            <li class="flex gap-3"><span class="text-acc font-bold">✓</span><span>Time-sensitive payer callbacks get pages your clinician inside the 24-hour window.</span></li>
+            <li class="flex gap-3"><span class="text-acc font-bold">✓</span><span>Admin (FSA cards, refills, reschedules) handled directly. Crisis calls warm-transferred to on-call (~3 sec).</span></li>
+          </ul>
+          <p class="mt-5 text-xs text-ink/50 italic">We haven't deployed this at scale yet — MindBill is early. This is what the audit data says is recoverable, not what we've already recovered.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- THE NUMBER, EXPLAINED -->
+  <section class="py-16 bg-ink-soft/[0.03]">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-10">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand">The math</span>
+        <h2 class="serif-h text-3xl md:text-4xl mt-3">How we got to $31,000.</h2>
+        <p class="mt-3 text-ink/60">Floor number — only counts patients we can verify by name in the voicemail.</p>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-ink/10 p-8">
+        <div class="grid md:grid-cols-3 gap-6 mb-6">
+          <div class="text-center">
+            <div class="text-4xl font-black text-ink">5</div>
+            <div class="mt-1 text-xs text-ink/60 leading-snug">callers asked about TMS / Spravato / ketamine</div>
+            <div class="mt-2 text-xs text-acc font-bold">$10,000 LTV each</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-black text-ink">23</div>
+            <div class="mt-1 text-xs text-ink/60 leading-snug">callers asked about medication management or psych intake</div>
+            <div class="mt-2 text-xs text-acc font-bold">$2,000 LTV each</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-black text-ink/40">2</div>
+            <div class="mt-1 text-xs text-ink/40 leading-snug">therapy-only / referred-out</div>
+            <div class="mt-2 text-xs text-ink/40 font-bold">$0 (not a fit)</div>
+          </div>
+        </div>
+
+        <div class="border-t border-ink/10 pt-6 font-mono text-sm text-ink/80 space-y-1.5">
+          <div class="flex justify-between"><span>5 high-LTV × 25% conversion × $10,000</span><span class="font-bold">$12,500</span></div>
+          <div class="flex justify-between"><span>23 mid-LTV × 25% conversion × $2,000</span><span class="font-bold">$11,500</span></div>
+          <div class="flex justify-between text-ink/40"><span>2 referred-out</span><span>$0</span></div>
+          <div class="flex justify-between border-t border-ink/10 pt-2 mt-2"><span>9-month subtotal</span><span class="font-bold">$24,000</span></div>
+          <div class="flex justify-between text-acc text-base"><span class="font-bold">Annualized</span><span class="font-black">$31,000+</span></div>
+        </div>
+
+        <p class="mt-6 text-xs text-ink/50 leading-relaxed">
+          <strong>Why "+":</strong> This counts only callers who left a voicemail explicitly asking for a first appointment. It excludes the <strong>462 silent hang-ups</strong> (some unknown fraction are real new patients), <strong>after-hours leads</strong> (analysis was business hours only), <strong>existing-patient retention damage</strong>, and <strong>auto-denied PAs</strong>. The real number is meaningfully higher; we're showing the floor we can prove.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- METHODOLOGY -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-10">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand">Methodology</span>
+        <h2 class="serif-h text-3xl md:text-4xl mt-3">How we did the audit.</h2>
+      </div>
+
+      <div class="space-y-5">
+        <div class="bg-white border border-ink/10 rounded-xl p-6">
+          <div class="flex items-start gap-4">
+            <div class="w-9 h-9 rounded-lg bg-brand-soft text-brand grid place-items-center font-bold flex-shrink-0">1</div>
+            <div>
+              <h3 class="font-bold text-lg">Pulled 9 months of call logs.</h3>
+              <p class="mt-1 text-sm text-ink/60 leading-relaxed">4,720 inbound calls + 1,099 voicemail transcripts from their Weave system, Aug 2025 – Apr 2026.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-ink/10 rounded-xl p-6">
+          <div class="flex items-start gap-4">
+            <div class="w-9 h-9 rounded-lg bg-brand-soft text-brand grid place-items-center font-bold flex-shrink-0">2</div>
+            <div>
+              <h3 class="font-bold text-lg">Cross-referenced every unanswered caller against the EHR.</h3>
+              <p class="mt-1 text-sm text-ink/60 leading-relaxed">For each of the 1,142 unique unanswered phone numbers: searched Tebra by name (when known) and by phone. If matched, pulled their full encounter history and checked whether any visit happened on or after the missed call.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-ink/10 rounded-xl p-6">
+          <div class="flex items-start gap-4">
+            <div class="w-9 h-9 rounded-lg bg-brand-soft text-brand grid place-items-center font-bold flex-shrink-0">3</div>
+            <div>
+              <h3 class="font-bold text-lg">Read every voicemail, by hand.</h3>
+              <p class="mt-1 text-sm text-ink/60 leading-relaxed">Classified intent for each one — new-patient inquiry, existing-patient concern, pharmacy callback, insurance/PA, care coordination, vendor sales. Manually reviewed by a clinical operations analyst. The 30 confirmed-lost-leads count is verified caller-by-caller.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-ink/10 rounded-xl p-6">
+          <div class="flex items-start gap-4">
+            <div class="w-9 h-9 rounded-lg bg-brand-soft text-brand grid place-items-center font-bold flex-shrink-0">4</div>
+            <div>
+              <h3 class="font-bold text-lg">Computed the floor.</h3>
+              <p class="mt-1 text-sm text-ink/60 leading-relaxed">Conservative LTV assumptions ($10K TMS/Spravato, $2K medication management). 25% conversion rate (industry-conservative; recovered-call data suggests actual is ~47%). Annualized 9 months → 12.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATIENT VOICES -->
+  <section class="py-16 bg-ink-soft/[0.03]">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-10">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand">In their own words</span>
+        <h2 class="serif-h text-3xl md:text-4xl mt-3">The voicemails behind the 30.</h2>
+        <p class="mt-3 text-ink/60">Real callers. All identifiers redacted.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white rounded-2xl border-l-4 border-acc p-6">
+          <div class="text-xs uppercase tracking-wider text-acc font-bold mb-3">High-revenue lost lead</div>
+          <p class="italic text-ink/85 leading-relaxed">"I had called a few months ago for my daughter. We canceled it back then, but we're ready to try Spravato and possibly TMS as well."</p>
+          <div class="mt-3 text-xs text-ink/50">Returning prospect, ready-to-buy. Never re-engaged.</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border-l-4 border-warn p-6">
+          <div class="text-xs uppercase tracking-wider text-warn font-bold mb-3">The future 1-star review</div>
+          <p class="italic text-ink/85 leading-relaxed">"I've called you guys several times… I have clinical depression, anxiety, and PTSD. I need a new doctor."</p>
+          <div class="mt-3 text-xs text-ink/50">Multiple ignored calls + texts. Never matched.</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border-l-4 border-brand p-6">
+          <div class="text-xs uppercase tracking-wider text-brand font-bold mb-3">Provider-driven referral</div>
+          <p class="italic text-ink/85 leading-relaxed">"My psychiatrist asked me to find a different psychiatrist…"</p>
+          <div class="mt-3 text-xs text-ink/50">Highest-converting class. Called 3× over multiple days. Never matched.</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border-l-4 border-acc p-6">
+          <div class="text-xs uppercase tracking-wider text-acc font-bold mb-3">Time-sensitive TMS</div>
+          <p class="italic text-ink/85 leading-relaxed">"I'm looking for TMS treatment for my son… he's home from London for a month, we're looking at the accelerated treatment."</p>
+          <div class="mt-3 text-xs text-ink/50">UnitedHealthcare PPO. Called 2× in 2 days. Never reached.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKFLOWS -->
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-10">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand">What AI handles</span>
+        <h2 class="serif-h text-3xl md:text-4xl mt-3">5 call types. 5 workflows.</h2>
+        <p class="mt-3 text-ink/60">From the same audit data — every call type the practice gets, and what AI does with it.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-5">
+
+        <div class="bg-white rounded-2xl border border-acc/30 p-7">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-3xl">🤝</span>
+            <span class="text-xs font-bold text-acc bg-acc-soft px-2.5 py-1 rounded-full">Revenue · 20%</span>
+          </div>
+          <h3 class="text-lg font-bold mt-2">Provider referrals → booked patient</h3>
+          <p class="mt-2 text-sm text-ink/60 leading-relaxed">AI parses the referral voicemail, auto-creates the patient chart in your EHR, then auto-calls the referred patient to schedule.</p>
+          <div class="mt-3 text-xs text-warn"><strong>Human:</strong> Active clinical concern → triage queue.</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-acc/30 p-7">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-3xl">📞</span>
+            <span class="text-xs font-bold text-acc bg-acc-soft px-2.5 py-1 rounded-full">Revenue · 15%</span>
+          </div>
+          <h3 class="text-lg font-bold mt-2">New patient intake</h3>
+          <p class="mt-2 text-sm text-ink/60 leading-relaxed">Captures name, DOB, insurance card. Runs live VOB during the call. Books straight into AdvancedMD or Tebra.</p>
+          <div class="mt-3 text-xs text-warn"><strong>Human:</strong> Self-harm or active crisis → on-call clinician (~3s).</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-warn/30 p-7">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-3xl">⚡</span>
+            <span class="text-xs font-bold text-warn bg-warn/10 px-2.5 py-1 rounded-full">Revenue · 16%</span>
+          </div>
+          <h3 class="text-lg font-bold mt-2">Insurance PA callbacks</h3>
+          <p class="mt-2 text-sm text-ink/60 leading-relaxed">Captures payer + reference number. Resolves status checks and routine clarifications.</p>
+          <div class="mt-3 text-xs text-warn"><strong>Human:</strong> Optum/Anthem 24-hr peer-review windows → pages clinician immediately.</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink/10 p-7">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-3xl">💊</span>
+            <span class="text-xs font-bold text-ink/50 bg-ink-soft/[0.05] px-2.5 py-1 rounded-full">Admin time · 9%</span>
+          </div>
+          <h3 class="text-lg font-bold mt-2">Pharmacy callbacks</h3>
+          <p class="mt-2 text-sm text-ink/60 leading-relaxed">CVS Specialty, Acaredo, dose confirmations. AI confirms patient + medication against your EHR and resolves directly.</p>
+          <div class="mt-3 text-xs text-warn"><strong>Human:</strong> Clinical issue (allergic reaction, sub) → prescribing nurse.</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink/10 p-7 md:col-span-2">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-3xl">📅</span>
+            <span class="text-xs font-bold text-ink/50 bg-ink-soft/[0.05] px-2.5 py-1 rounded-full">Admin time · 7%</span>
+          </div>
+          <h3 class="text-lg font-bold mt-2">Existing patient admin: billing, FSA, refills, reschedules, records</h3>
+          <p class="mt-2 text-sm text-ink/60 leading-relaxed">FSA card updates → forwarded to billing. Reschedules → updates the calendar. Refills → routed to pharmacy. Records request from another provider → AI drafts the packet from your EHR, loads it for human review + 1-click send.</p>
+          <div class="mt-3 text-xs text-warn"><strong>Human:</strong> Billing dispute requires judgment OR clinical question → routes to right person (biller or nurse).</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE COULDN'T MEASURE -->
+  <section class="py-16 bg-ink-soft/[0.03]">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-8">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand">Honest limits</span>
+        <h2 class="serif-h text-3xl md:text-4xl mt-3">What the audit can't see.</h2>
+      </div>
+      <div class="bg-white border border-ink/10 rounded-2xl p-7 space-y-4 text-sm text-ink/75 leading-relaxed">
+        <div class="flex gap-3">
+          <span class="text-warn font-bold flex-shrink-0">·</span>
+          <div><strong>Silent hang-ups (462 callers).</strong> No voicemail, no Tebra match. Some unknown fraction are real new patients — could push the lost-revenue number significantly higher. Not in our floor estimate.</div>
+        </div>
+        <div class="flex gap-3">
+          <span class="text-warn font-bold flex-shrink-0">·</span>
+          <div><strong>After-hours calls.</strong> This audit only covered business hours. Nights and weekends are unmeasured.</div>
+        </div>
+        <div class="flex gap-3">
+          <span class="text-warn font-bold flex-shrink-0">·</span>
+          <div><strong>Existing-patient retention damage.</strong> Spravato billing disputes, urgent psych concerns going unaddressed — operational drag we didn't quantify.</div>
+        </div>
+        <div class="flex gap-3">
+          <span class="text-warn font-bold flex-shrink-0">·</span>
+          <div><strong>Auto-denied PAs.</strong> Optum's 24-hour peer-to-peer windows. Missing one costs the entire TMS authorization. Not in the $31K.</div>
+        </div>
+        <div class="flex gap-3">
+          <span class="text-warn font-bold flex-shrink-0">·</span>
+          <div><strong>Clinical liability.</strong> One voicemail in our dataset was a patient leaving 6 messages about Spravato termination — board-complaint-class situation if mishandled.</div>
+        </div>
+        <div class="flex gap-3">
+          <span class="text-warn font-bold flex-shrink-0">·</span>
+          <div><strong>Phone-number matching is imperfect.</strong> Patients sometimes call from a different number than the one in the EHR. Up to ~17% of "no_match" callers may already be in the EHR. The 30 lost-leads count is conservative on this dimension too.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-brand text-white">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="serif-h text-3xl md:text-5xl">Want this audit on your practice?</h2>
+      <p class="mt-5 text-lg text-white/85">Any phone system, any EHR. Send us your last 9 months of call logs and we'll run the same audit on your data. 24-48 hours. Free, no commitment.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="mailto:jimmy@mindbill.org?subject=Audit%20my%20practice" class="inline-flex items-center bg-white text-brand font-semibold px-7 py-3.5 rounded-full hover:bg-white/90 transition">Request the audit</a>
+        <a href="/" class="inline-flex items-center border border-white/30 text-white font-semibold px-7 py-3.5 rounded-full hover:bg-white/10 transition">← Back to home</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-ink text-white/60 py-14">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-10">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="w-8 h-8 rounded-lg bg-brand text-white grid place-items-center font-bold">M</span>
+          <span class="text-white font-bold text-lg">MindBill</span>
+        </div>
+        <p class="text-sm leading-relaxed">AI-powered revenue cycle for psychiatric, TMS, and Spravato practices.</p>
+      </div>
+      <div>
+        <div class="text-white font-bold mb-4">Product</div>
+        <div class="space-y-3 text-sm">
+          <div><a href="/#features" class="hover:text-white">Features</a></div>
+          <div><a href="/#workflows" class="hover:text-white">Workflows</a></div>
+          <div><a href="/case-study" class="hover:text-white">Case Study</a></div>
+          <div><a href="/#calculator" class="hover:text-white">ROI Calculator</a></div>
+          <div><a href="/#pricing" class="hover:text-white">Pricing</a></div>
+        </div>
+      </div>
+      <div>
+        <div class="text-white font-bold mb-4">Company</div>
+        <div class="space-y-3 text-sm">
+          <div><a href="mailto:jimmy@mindbill.org" class="hover:text-white">Email jimmy@mindbill.org</a></div>
+          <div><a href="tel:+15707687496" class="hover:text-white">(570) 768-7496</a></div>
+          <div><a href="/#demo" class="hover:text-white">Book a Demo</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-white/10 text-xs text-white/40">
+      © 2026 MindBill, Inc. · Backed by Y Combinator
+    </div>
+  </footer>
+</body>
+</html>

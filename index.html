@@ -1,0 +1,1197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MindBill — AI for Psychiatry. Front Desk to Final Claim.</title>
+  <meta name="description" content="AI for psychiatric, TMS, and Spravato practices. Inbound calls, prior auths, denials, AR — handled across AdvancedMD, Tebra, or any EHR. Layer on top of your team. Pay only for what you turn on." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Spectral', 'Georgia', 'serif'],
+          },
+          colors: {
+            ink:   { DEFAULT: '#0A1430', soft: '#0E1B40', muted: '#5C6478' },
+            brand: { DEFAULT: '#3357FF', dark: '#2342DD', soft: '#EEF2FF' },
+            acc:   { DEFAULT: '#10B981', soft: '#ECFDF5' },
+            warn:  { DEFAULT: '#F97316' },
+            cream: { DEFAULT: '#FAF7F2' },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #0A1430; }
+
+    /* Stripe-style gradient mesh */
+    .mesh-bg {
+      background-color: #FBFBFD;
+      background-image:
+        radial-gradient(at 20% 0%, hsla(228, 100%, 90%, 0.45) 0px, transparent 50%),
+        radial-gradient(at 80% 0%, hsla(189, 100%, 92%, 0.4) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(355, 100%, 93%, 0.35) 0px, transparent 50%),
+        radial-gradient(at 80% 50%, hsla(228, 100%, 92%, 0.3) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(343, 100%, 92%, 0.25) 0px, transparent 50%),
+        radial-gradient(at 80% 100%, hsla(228, 100%, 90%, 0.4) 0px, transparent 50%);
+    }
+
+    /* Subtle noise overlay for depth */
+    .noise::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .serif-h { font-family: 'Spectral', Georgia, serif; font-weight: 600; letter-spacing: -0.02em; }
+    .serif-it { font-family: 'Spectral', Georgia, serif; font-style: italic; font-weight: 500; }
+
+    details summary { cursor: pointer; list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+    details[open] .chev { transform: rotate(180deg); }
+    .chev { transition: transform 0.2s; }
+    .feat-toggle { user-select: none; }
+    .feat-toggle.active { border-color: #3357FF; background: #EEF2FF; }
+    .feat-toggle.active .check { background: #3357FF; border-color: #3357FF; }
+    .feat-toggle.active .check svg { display: block; }
+    .feat-toggle .check svg { display: none; }
+    input[type=range] { accent-color: #3357FF; }
+    .pricing-pill { background: #EEF2FF; border: 1px solid #DDE3FF; }
+
+    /* Hero refinements */
+    .live-dot { width: 8px; height: 8px; background: #10B981; border-radius: 50%; box-shadow: 0 0 0 0 rgba(16,185,129,0.55); animation: pulse 2.5s infinite; }
+    @keyframes pulse { 70% { box-shadow: 0 0 0 14px rgba(16,185,129,0); } 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); } }
+    .float-1 { animation: float1 8s ease-in-out infinite; }
+    .float-2 { animation: float2 9s ease-in-out infinite; }
+    .float-3 { animation: float3 7s ease-in-out infinite; }
+    @keyframes float1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes float2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    @keyframes float3 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .ticker { font-variant-numeric: tabular-nums; }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- Top banner -->
+  <div class="bg-brand text-white text-center text-sm py-2.5 px-4">
+    <span class="font-semibold">★ Backed by Y Combinator</span>
+    <span class="opacity-60 mx-2">·</span>
+    HIPAA-compliant, BAA included
+    <span class="opacity-60 mx-2">·</span>
+    Built for psychiatric, TMS &amp; Spravato practices
+  </div>
+
+  <!-- ─── NAV ─── -->
+  <header class="sticky top-0 z-30 backdrop-blur bg-white/85 border-b border-ink/5">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2">
+        <span class="w-8 h-8 rounded-lg bg-brand text-white grid place-items-center font-bold">M</span>
+        <span class="font-bold text-lg tracking-tight">MindBill</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-ink/70">
+        <a href="#features" class="hover:text-ink">Features</a>
+        <a href="#workflows" class="hover:text-ink">Workflows</a>
+        <a href="#case-study" class="hover:text-ink">Case Study</a>
+        <a href="#integrations" class="hover:text-ink">Integrations</a>
+        <a href="#pricing" class="hover:text-ink">Pricing</a>
+      </nav>
+      <a href="#demo" class="inline-flex items-center bg-brand text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-brand-dark transition">Book a Demo</a>
+    </div>
+  </header>
+
+  <!-- ─── HERO ─── -->
+  <section class="mesh-bg noise relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 pt-20 pb-24 md:pt-32 md:pb-32 relative">
+      <div class="text-center max-w-4xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-ink/10 bg-white/60 backdrop-blur text-xs font-semibold text-ink/70 mb-7">
+          <span class="w-4 h-4 rounded bg-warn text-white grid place-items-center text-[9px] font-bold">Y</span>
+          Backed by Y Combinator · Built for psychiatry
+        </div>
+
+        <h1 class="serif-h text-5xl md:text-7xl leading-[1.02] text-ink">
+          Never miss a patient call.<br/>
+          Or a <span class="serif-it text-brand">denied claim</span>.
+        </h1>
+
+        <p class="mt-7 text-lg md:text-xl text-ink/60 max-w-2xl mx-auto leading-relaxed">
+          An AI receptionist + biller for psychiatric, TMS, and Spravato practices. Books straight into your EHR. <strong class="text-ink">2% of collections.</strong>
+        </p>
+
+        <div class="mt-10 flex flex-wrap justify-center items-center gap-4">
+          <a href="#demo" class="inline-flex items-center bg-ink text-white font-semibold px-8 py-3.5 rounded-full hover:bg-brand transition shadow-xl shadow-ink/15">
+            Book a 15-min demo
+            <svg class="ml-2" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#workflows" class="inline-flex items-center text-ink font-medium underline-offset-4 hover:underline">
+            See what it actually does →
+          </a>
+        </div>
+
+        <div class="mt-14 flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-xs uppercase tracking-widest text-ink/40 font-semibold">
+          <span>TMS</span><span class="text-ink/20">·</span><span>Spravato</span><span class="text-ink/20">·</span><span>Ketamine</span><span class="text-ink/20">·</span><span>Med Mgmt</span><span class="text-ink/20">·</span><span>IOP</span>
+        </div>
+      </div>
+
+      <!-- Trust strip below -->
+      <div class="mt-24 pt-10 border-t border-ink/10">
+        <div class="text-center text-xs uppercase tracking-widest text-ink/40 font-semibold mb-6">Plugs into the EHR you already use</div>
+        <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-4 text-ink/30 font-bold text-xl">
+          <span>Tebra</span>
+          <span>AdvancedMD</span>
+          <span>SimplePractice</span>
+          <span>TherapyNotes</span>
+          <span>Osmind</span>
+          <span>DrChrono</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── FEATURES (Patientdesk-style) ─── -->
+  <section id="features" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Features</h2>
+        <p class="mt-4 text-lg text-ink/60">MindBill is a better way to handle billing and patient calls for mental health practices.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- Card 1 — Full-Cycle RCM (billing dashboard mock) -->
+        <div class="border border-ink/10 rounded-2xl p-7 bg-white">
+          <div class="rounded-2xl bg-gradient-to-br from-acc-soft to-brand-soft p-5 min-h-[280px]">
+            <div class="bg-white rounded-xl shadow-sm border border-ink/5 p-5">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="text-brand"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  <span class="font-bold text-sm">This month's claims</span>
+                </div>
+                <span class="text-xs font-bold text-acc bg-acc-soft px-2.5 py-1 rounded-full">↗ 19%</span>
+              </div>
+
+              <!-- Mini chart -->
+              <svg viewBox="0 0 200 50" class="w-full h-12 mb-4" preserveAspectRatio="none">
+                <defs><linearGradient id="rcmChart" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#10B981" stop-opacity="0.3"/><stop offset="100%" stop-color="#10B981" stop-opacity="0"/></linearGradient></defs>
+                <path d="M0,40 L25,38 L50,32 L75,28 L100,22 L125,18 L150,12 L175,8 L200,4 L200,50 L0,50 Z" fill="url(#rcmChart)"/>
+                <path d="M0,40 L25,38 L50,32 L75,28 L100,22 L125,18 L150,12 L175,8 L200,4" stroke="#10B981" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <circle cx="200" cy="4" r="3" fill="#10B981"/>
+              </svg>
+
+              <div class="space-y-1.5 text-sm">
+                <div class="flex items-center justify-between py-2 border-b border-ink/5">
+                  <span class="text-ink/80 font-medium">Aetna · TMS</span><span class="text-acc font-bold text-xs">PAID</span>
+                </div>
+                <div class="flex items-center justify-between py-2 border-b border-ink/5">
+                  <span class="text-ink/80 font-medium">Anthem · Spravato</span><span class="text-warn font-bold text-xs">APPEAL FILED</span>
+                </div>
+                <div class="flex items-center justify-between py-2 border-b border-ink/5">
+                  <span class="text-ink/80 font-medium">UHC · 90834</span><span class="text-brand font-bold text-xs">SUBMITTED</span>
+                </div>
+                <div class="flex items-center justify-between py-2">
+                  <span class="text-ink/80 font-medium">ERA · auto-posted</span><span class="text-acc font-bold text-xs">RECONCILED</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 inline-flex items-center gap-2 px-3 py-1.5 bg-white rounded-full border border-ink/10 text-xs">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-acc"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="text-ink/70">Synced to <strong class="text-ink">AdvancedMD</strong></span>
+            </div>
+          </div>
+          <h3 class="mt-6 text-xl font-bold">Full-Cycle RCM at 2%</h3>
+          <p class="mt-2 text-ink/60 text-sm leading-relaxed">PA, claims, ERA posting, denials, AR follow-up, patient statements. Replaces your billing company — at one-third their price.</p>
+        </div>
+
+        <!-- Card 2 — 24/7 Receptionist (calendar + booking sidebar) -->
+        <div class="border border-ink/10 rounded-2xl p-7 bg-white">
+          <div class="rounded-2xl bg-gradient-to-br from-brand-soft to-acc-soft p-5 min-h-[280px]">
+            <div class="bg-white rounded-xl shadow-sm border border-ink/5 p-5">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="text-brand"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  <span class="font-bold text-sm">April 2026</span>
+                </div>
+                <span class="text-xs font-bold text-acc bg-acc-soft px-2.5 py-1 rounded-full">✓ Synced</span>
+              </div>
+
+              <div class="grid grid-cols-7 gap-1 text-center text-[10px] text-ink/40 font-bold mb-1">
+                <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
+              </div>
+
+              <div class="grid grid-cols-7 gap-1 text-center text-xs">
+                <div class="py-1.5 text-ink/30">29</div>
+                <div class="py-1.5 text-ink/30">30</div>
+                <div class="py-1.5 text-ink/30">31</div>
+                <div class="py-1.5 text-ink/70">1</div>
+                <div class="py-1.5 text-ink/70">2</div>
+                <div class="py-1.5 text-ink/70">3</div>
+                <div class="py-1.5 text-ink/70">4</div>
+                <div class="py-1.5 text-ink/70">5</div>
+                <div class="py-1.5 bg-brand-soft text-brand font-bold rounded-md">6</div>
+                <div class="py-1.5 text-ink/70">7</div>
+                <div class="py-1.5 text-ink/70">8</div>
+                <div class="py-1.5 bg-brand-soft text-brand font-bold rounded-md">9</div>
+                <div class="py-1.5 text-ink/70">10</div>
+                <div class="py-1.5 text-ink/70">11</div>
+                <div class="py-1.5 text-ink/70">12</div>
+                <div class="py-1.5 text-ink/70">13</div>
+                <div class="py-1.5 bg-brand text-white font-bold rounded-md ring-2 ring-brand/30">14</div>
+                <div class="py-1.5 text-ink/70">15</div>
+                <div class="py-1.5 text-ink/70">16</div>
+                <div class="py-1.5 bg-brand-soft text-brand font-bold rounded-md">17</div>
+                <div class="py-1.5 text-ink/70">18</div>
+              </div>
+            </div>
+
+            <div class="mt-3 bg-white rounded-xl shadow-sm border border-ink/5 p-3 flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-brand text-white grid place-items-center font-bold text-xs">📞</div>
+              <div class="flex-1 min-w-0">
+                <div class="text-[10px] uppercase tracking-wider text-brand font-bold">New booking · Apr 14</div>
+                <div class="text-sm font-semibold truncate">TMS consultation · 2:30 PM</div>
+                <div class="text-xs text-ink/50">BCBS verified live during call</div>
+              </div>
+            </div>
+
+            <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-white rounded-full border border-ink/10 text-xs">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-acc"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="text-ink/70">Synced to <strong class="text-ink">AdvancedMD</strong></span>
+            </div>
+          </div>
+          <h3 class="mt-6 text-xl font-bold">24/7 AI Receptionist</h3>
+          <p class="mt-2 text-ink/60 text-sm leading-relaxed">Picks up every call. Books appointments straight into your calendar. Routes crisis calls to your on-call clinician in &lt; 3 sec.</p>
+        </div>
+
+        <!-- Card 3 — Live Insurance Verification (insurance card + result) -->
+        <div class="border border-ink/10 rounded-2xl p-7 bg-white">
+          <div class="rounded-2xl bg-gradient-to-br from-brand-soft to-acc-soft p-5 min-h-[280px]">
+            <!-- Insurance card mock -->
+            <div class="bg-gradient-to-br from-brand to-brand-dark rounded-xl p-4 text-white shadow-lg shadow-brand/30 mb-4">
+              <div class="flex items-start justify-between mb-6">
+                <div class="text-[10px] uppercase tracking-widest font-bold text-white/70">Health Plan</div>
+                <div class="font-black text-sm tracking-tight">BCBS</div>
+              </div>
+              <div class="text-[10px] uppercase tracking-wider text-white/60 font-bold">Member ID</div>
+              <div class="font-mono font-bold text-sm tracking-wider">8273 •••• •••• ••42</div>
+            </div>
+
+            <!-- Verification result -->
+            <div class="bg-white rounded-xl shadow-sm border border-acc/30 p-4 mb-3">
+              <div class="flex items-start justify-between mb-2">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 rounded-full bg-acc text-white grid place-items-center">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                  <span class="font-bold text-sm">Spravato covered</span>
+                </div>
+                <span class="text-[10px] font-bold text-acc bg-acc-soft px-2 py-0.5 rounded-full">2.1s</span>
+              </div>
+              <div class="text-xs text-ink/60 ml-8 space-y-0.5">
+                <div>✓ Medical benefit (not pharmacy)</div>
+                <div>✓ Prior auth required — submitting now</div>
+                <div>✓ $40 copay per session</div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-center gap-2 text-xs text-ink/60">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 4v12m0 0l-4-4m4 4l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Pushed to <strong class="text-ink">AdvancedMD</strong> patient chart</span>
+            </div>
+          </div>
+          <h3 class="mt-6 text-xl font-bold">Live Insurance Verification</h3>
+          <p class="mt-2 text-ink/60 text-sm leading-relaxed">Reads the insurance card during the booking call, runs benefits in real time, writes the result straight into your EHR. No manual handoff, no morning-of surprises.</p>
+        </div>
+
+        <!-- Card 4 — TMS / Spravato PA (payer portal mock) -->
+        <div class="border border-ink/10 rounded-2xl p-7 bg-white">
+          <div class="rounded-2xl bg-gradient-to-br from-acc-soft to-brand-soft p-5 min-h-[280px]">
+            <div class="bg-white rounded-xl shadow-sm border border-ink/5 overflow-hidden">
+              <!-- Mock browser chrome -->
+              <div class="bg-ink-soft/[0.04] px-4 py-2 flex items-center gap-2 border-b border-ink/5">
+                <div class="flex gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-warn/40"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-acc/30"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-brand/30"></span>
+                </div>
+                <div class="flex-1 bg-white rounded text-[10px] text-ink/50 px-2 py-0.5 font-mono">aetna · provider portal · TMS prior auth</div>
+              </div>
+
+              <!-- Form -->
+              <div class="p-5">
+                <div class="text-[10px] font-bold uppercase tracking-widest text-ink/50 mb-3">Pre-submission checks</div>
+                <div class="space-y-2 mb-4">
+                  <div class="flex items-center gap-2 text-sm">
+                    <div class="w-5 h-5 rounded-md bg-acc/10 grid place-items-center">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" class="text-acc"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <span class="text-ink/80">8 weeks of medication history</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-sm">
+                    <div class="w-5 h-5 rounded-md bg-acc/10 grid place-items-center">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" class="text-acc"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <span class="text-ink/80">4 antidepressant trials documented</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-sm">
+                    <div class="w-5 h-5 rounded-md bg-acc/10 grid place-items-center">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" class="text-acc"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <span class="text-ink/80">Psychotherapy notes attached</span>
+                  </div>
+                </div>
+
+                <div class="bg-acc text-white rounded-lg px-3 py-2.5 flex items-center justify-between text-sm">
+                  <span class="font-bold">✓ Submitted</span>
+                  <span class="text-xs text-white/80">62 sec · vs 30+ min manual</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-white rounded-full border border-ink/10 text-xs">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-acc"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="text-ink/70">PA status auto-tracked in <strong class="text-ink">AdvancedMD</strong></span>
+            </div>
+          </div>
+          <h3 class="mt-6 text-xl font-bold">TMS &amp; Spravato Automation</h3>
+          <p class="mt-2 text-ink/60 text-sm leading-relaxed">PA submissions with pre-denial checks baked in. REMS workflows, payer-specific pharmacy-vs-medical-benefit logic, peer-to-peer scheduling.</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-14">
+        <a href="#demo" class="inline-flex items-center bg-brand text-white font-semibold px-8 py-3.5 rounded-full hover:bg-brand-dark transition shadow-lg shadow-brand/20">Book a Demo →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CASE STUDY (replaces testimonials) ─── -->
+  <section id="case-study" class="py-24 bg-ink-soft/[0.03] border-y border-ink/5">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Built on real practice data.</h2>
+        <p class="mt-4 text-lg text-ink/60">We audited 9 months of inbound calls at a real psychiatric practice. Here's what we found.</p>
+      </div>
+
+      <!-- Hero stat — single defensible number -->
+      <div class="bg-gradient-to-br from-brand to-brand-dark rounded-3xl p-8 md:p-12 text-white mb-10">
+        <div class="text-center">
+          <div class="text-xs uppercase tracking-widest font-bold text-white/70">Audit finding · 9 months</div>
+          <div class="mt-4 text-6xl md:text-8xl font-black tracking-tight">$31,000+</div>
+          <div class="mt-3 text-white/85 text-lg">in new-patient revenue lost per year, conservatively</div>
+          <div class="mt-2 text-xs text-white/55">Floor estimate. Verified by reading every voicemail and matching against the EHR.</div>
+        </div>
+
+        <div class="mt-10 pt-10 border-t border-white/15">
+          <div class="text-xs uppercase tracking-widest font-bold text-white/60 text-center mb-6">What the audit found</div>
+          <div class="grid md:grid-cols-3 gap-4 text-center">
+            <div class="bg-white/10 rounded-2xl p-5">
+              <div class="text-3xl font-black">4,720</div>
+              <div class="mt-2 text-xs text-white/70">inbound calls in 9 months</div>
+            </div>
+            <div class="bg-white/10 rounded-2xl p-5">
+              <div class="text-3xl font-black">63%</div>
+              <div class="mt-2 text-xs text-white/70">went unanswered</div>
+            </div>
+            <div class="bg-white/10 rounded-2xl p-5">
+              <div class="text-3xl font-black">30</div>
+              <div class="mt-2 text-xs text-white/70">new patients lost (cross-checked vs EHR)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Patient voice -->
+      <div class="grid md:grid-cols-3 gap-4 mb-10">
+        <div class="bg-white rounded-2xl border border-ink/10 p-6">
+          <div class="text-xs uppercase tracking-wider text-acc font-bold mb-3">High-revenue lost lead</div>
+          <p class="italic text-ink/80 leading-relaxed">"We're ready to try Spravato and possibly TMS as well."</p>
+          <div class="mt-3 text-xs text-ink/50">Returning prospect, ready-to-buy. Never re-engaged.</div>
+        </div>
+        <div class="bg-white rounded-2xl border border-ink/10 p-6">
+          <div class="text-xs uppercase tracking-wider text-warn font-bold mb-3">Future 1-star review</div>
+          <p class="italic text-ink/80 leading-relaxed">"I've called you guys several times… I have clinical depression, anxiety, and PTSD. I need a new doctor."</p>
+          <div class="mt-3 text-xs text-ink/50">Multiple ignored attempts. Ready to write a public review.</div>
+        </div>
+        <div class="bg-white rounded-2xl border border-ink/10 p-6">
+          <div class="text-xs uppercase tracking-wider text-brand font-bold mb-3">Provider referral</div>
+          <p class="italic text-ink/80 leading-relaxed">"My psychiatrist asked me to find a different psychiatrist…"</p>
+          <div class="mt-3 text-xs text-ink/50">Highest-converting lead class. Called 3×. Never matched.</div>
+        </div>
+      </div>
+
+      <div class="bg-ink rounded-2xl p-8 md:p-10 text-white">
+        <div class="grid md:grid-cols-3 gap-6 items-center">
+          <div class="md:col-span-2">
+            <div class="text-xs font-bold uppercase tracking-wider text-brand-soft/80 mb-2">Run the same audit on your practice</div>
+            <h3 class="text-2xl md:text-3xl font-extrabold leading-snug">Send us your last 9 months of call logs — any phone system, any EHR — and we'll tell you your number. 24-48 hours. Free, no commitment.</h3>
+          </div>
+          <div class="flex flex-col gap-3">
+            <a href="mailto:jimmy@mindbill.org?subject=Audit%20my%20practice" class="inline-flex items-center justify-center bg-white text-ink font-semibold px-6 py-3 rounded-full hover:bg-white/90 transition">Request the audit →</a>
+            <a href="/case-study" class="inline-flex items-center justify-center text-white/80 hover:text-white font-medium text-sm">Read the full case study →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── INTEGRATIONS ─── -->
+  <section id="integrations" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Integrations</h2>
+        <p class="mt-4 text-lg text-ink/60">We integrate directly with your EHR and clearinghouse. No data re-entry.</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto">
+        <div class="rounded-xl border border-ink/10 px-6 py-5 text-center bg-white">
+          <div class="font-bold text-lg">Tebra</div>
+          <div class="mt-1 text-xs text-acc font-bold">✓ Live</div>
+        </div>
+        <div class="rounded-xl border border-ink/10 px-6 py-5 text-center bg-white">
+          <div class="font-bold text-lg">AdvancedMD</div>
+          <div class="mt-1 text-xs text-acc font-bold">✓ Live</div>
+        </div>
+        <div class="rounded-xl border border-ink/10 px-6 py-5 text-center bg-white">
+          <div class="font-bold text-lg">SimplePractice</div>
+          <div class="mt-1 text-xs text-ink/40 font-bold">In progress</div>
+        </div>
+        <div class="rounded-xl border border-ink/10 px-6 py-5 text-center bg-white">
+          <div class="font-bold text-lg">TherapyNotes</div>
+          <div class="mt-1 text-xs text-ink/40 font-bold">In progress</div>
+        </div>
+        <div class="rounded-xl border border-ink/10 px-6 py-5 text-center bg-white">
+          <div class="font-bold text-lg">Osmind</div>
+          <div class="mt-1 text-xs text-ink/30 font-bold">Coming soon</div>
+        </div>
+        <div class="rounded-xl border border-ink/10 px-6 py-5 text-center bg-white">
+          <div class="font-bold text-lg">DrChrono</div>
+          <div class="mt-1 text-xs text-ink/30 font-bold">Coming soon</div>
+        </div>
+        <div class="rounded-xl border border-ink/10 px-6 py-5 text-center bg-white">
+          <div class="font-bold text-lg">athenahealth</div>
+          <div class="mt-1 text-xs text-ink/30 font-bold">Coming soon</div>
+        </div>
+        <div class="rounded-xl border border-ink/10 px-6 py-5 text-center bg-white">
+          <div class="font-bold text-lg">eClinicalWorks</div>
+          <div class="mt-1 text-xs text-ink/30 font-bold">Coming soon</div>
+        </div>
+      </div>
+      <p class="text-center text-sm text-ink/50 mt-8">Don't see your EHR? <a href="mailto:jimmy@mindbill.org" class="text-brand font-semibold underline">Tell us</a> — we ship a new integration in roughly two weeks.</p>
+    </div>
+  </section>
+
+  <!-- ─── REVENUE WORKFLOWS (top 3 with direct revenue tie-in) ─── -->
+  <section id="workflows" class="py-24 bg-ink-soft/[0.03]">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-4">
+        <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand bg-brand-soft px-3 py-1 rounded-full mb-4">
+          Where the revenue comes from
+        </span>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Three workflows we run end-to-end.</h2>
+        <p class="mt-4 text-lg text-ink/60">Every other call (pharmacy, FSA, records requests) is handled too — but these are the three that move the revenue number.</p>
+      </div>
+
+      <div class="mt-14 grid md:grid-cols-3 gap-5">
+
+        <!-- Workflow 1: Provider referrals -->
+        <div class="bg-white rounded-2xl border border-ink/10 p-7 flex flex-col">
+          <div class="flex items-start justify-between mb-3">
+            <span class="text-3xl">🤝</span>
+            <span class="text-xs font-bold text-acc bg-acc-soft px-2.5 py-1 rounded-full">Highest LTV class</span>
+          </div>
+          <h3 class="text-xl font-bold leading-tight mt-2">Provider referrals → booked patient</h3>
+          <p class="mt-3 text-sm text-ink/60 leading-relaxed">Another doctor leaves a referral voicemail. Most go unanswered for 2-3 days; patient finds another practice first.</p>
+          <div class="mt-5 space-y-2 text-sm border-t border-ink/5 pt-5">
+            <div class="flex items-start gap-2">
+              <span class="text-acc font-bold flex-shrink-0 mt-0.5">→</span>
+              <span class="text-ink/80">AI parses voicemail, <strong>auto-creates patient chart</strong> in your EHR</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-acc font-bold flex-shrink-0 mt-0.5">→</span>
+              <span class="text-ink/80">AI <strong>auto-calls the referred patient</strong> to schedule a first appointment</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-acc font-bold flex-shrink-0 mt-0.5">→</span>
+              <span class="text-ink/80">VOB run during the call, booked into AdvancedMD/Tebra</span>
+            </div>
+          </div>
+          <div class="mt-5 pt-5 border-t border-ink/5 text-xs text-ink/50">
+            <strong class="text-acc">Revenue:</strong> Provider referrals are the highest-converting lead class. Zero-touch from referral to booked patient.
+          </div>
+        </div>
+
+        <!-- Workflow 2: New patient -->
+        <div class="bg-white rounded-2xl border border-ink/10 p-7 flex flex-col">
+          <div class="flex items-start justify-between mb-3">
+            <span class="text-3xl">📞</span>
+            <span class="text-xs font-bold text-acc bg-acc-soft px-2.5 py-1 rounded-full">Direct LTV</span>
+          </div>
+          <h3 class="text-xl font-bold leading-tight mt-2">New patient call → booked appointment</h3>
+          <p class="mt-3 text-sm text-ink/60 leading-relaxed">First-time caller wants TMS, Spravato, or med management. 63% currently go to voicemail — and most never call back.</p>
+          <div class="mt-5 space-y-2 text-sm border-t border-ink/5 pt-5">
+            <div class="flex items-start gap-2">
+              <span class="text-acc font-bold flex-shrink-0 mt-0.5">→</span>
+              <span class="text-ink/80">AI captures intake (name, DOB, insurance card photo)</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-acc font-bold flex-shrink-0 mt-0.5">→</span>
+              <span class="text-ink/80"><strong>Live VOB during the call</strong> — Spravato pharmacy vs medical, TMS PA</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-acc font-bold flex-shrink-0 mt-0.5">→</span>
+              <span class="text-ink/80">Booked straight into your EHR calendar before they hang up</span>
+            </div>
+          </div>
+          <div class="mt-5 pt-5 border-t border-ink/5 text-xs text-ink/50">
+            <strong class="text-acc">Revenue:</strong> $2K MM, $10K+ TMS/Spravato per converted patient. The case study found $31K-$262K/yr recoverable here alone.
+          </div>
+        </div>
+
+        <!-- Workflow 3: PA callbacks -->
+        <div class="bg-white rounded-2xl border border-ink/10 p-7 flex flex-col">
+          <div class="flex items-start justify-between mb-3">
+            <span class="text-3xl">⚡</span>
+            <span class="text-xs font-bold text-warn bg-warn/10 px-2.5 py-1 rounded-full">Time-sensitive</span>
+          </div>
+          <h3 class="text-xl font-bold leading-tight mt-2">PA peer-review window → caught</h3>
+          <p class="mt-3 text-sm text-ink/60 leading-relaxed">Optum or Anthem opens a 24-hour peer-to-peer window. Miss the window — the entire TMS or Spravato authorization auto-denies.</p>
+          <div class="mt-5 space-y-2 text-sm border-t border-ink/5 pt-5">
+            <div class="flex items-start gap-2">
+              <span class="text-acc font-bold flex-shrink-0 mt-0.5">→</span>
+              <span class="text-ink/80">AI watches for time-sensitive payer callbacks (Optum, Anthem, etc.)</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-acc font-bold flex-shrink-0 mt-0.5">→</span>
+              <span class="text-ink/80">Captures reference number, matches against open PAs in your billing system</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-acc font-bold flex-shrink-0 mt-0.5">→</span>
+              <span class="text-ink/80"><strong>Pages your clinician inside the window</strong> — even on a Friday afternoon</span>
+            </div>
+          </div>
+          <div class="mt-5 pt-5 border-t border-ink/5 text-xs text-ink/50">
+            <strong class="text-acc">Revenue:</strong> One missed Optum window = full TMS authorization gone. ~$10K of treatment unbilled per missed call.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="/case-study" class="inline-flex items-center text-brand font-semibold hover:underline">
+          See the methodology + all 5 workflows in the full case study →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── COMPARE ─── -->
+  <section id="compare" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">How We Compare</h2>
+        <p class="mt-4 text-lg text-ink/60">Why psychiatric practices pick MindBill over generic AI tools and traditional billing companies.</p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="text-sm">
+              <th class="text-left py-4 pr-4 font-semibold text-ink/60"></th>
+              <th class="text-center py-4 px-4 bg-brand-soft rounded-t-2xl">
+                <div class="font-bold text-lg text-brand">MindBill</div>
+              </th>
+              <th class="text-center py-4 px-4 font-semibold text-ink/60">Generic AI<br/>Receptionists</th>
+              <th class="text-center py-4 px-4 font-semibold text-ink/60">Traditional<br/>Billing Co.</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm">
+
+            <tr class="border-t border-ink/5">
+              <td class="py-4 pr-4 font-medium">Built for psychiatry</td>
+              <td class="py-4 px-4 text-center bg-brand-soft/50"><span class="text-acc font-bold text-lg">✓</span></td>
+              <td class="py-4 px-4 text-center"><span class="inline-block text-xs bg-warn/10 text-warn px-2.5 py-1 rounded-full font-medium">One-size</span></td>
+              <td class="py-4 px-4 text-center"><span class="inline-block text-xs bg-warn/10 text-warn px-2.5 py-1 rounded-full font-medium">One-size</span></td>
+            </tr>
+
+            <tr class="border-t border-ink/5">
+              <td class="py-4 pr-4 font-medium">Calls + billing in one product</td>
+              <td class="py-4 px-4 text-center bg-brand-soft/50"><span class="text-acc font-bold text-lg">✓</span></td>
+              <td class="py-4 px-4 text-center"><span class="inline-block text-xs bg-warn/10 text-warn px-2.5 py-1 rounded-full font-medium">Calls only</span></td>
+              <td class="py-4 px-4 text-center"><span class="inline-block text-xs bg-warn/10 text-warn px-2.5 py-1 rounded-full font-medium">Billing only</span></td>
+            </tr>
+
+            <tr class="border-t border-ink/5">
+              <td class="py-4 pr-4 font-medium">Crisis call routing</td>
+              <td class="py-4 px-4 text-center bg-brand-soft/50"><span class="text-acc font-bold text-lg">✓</span></td>
+              <td class="py-4 px-4 text-center"><span class="inline-block text-xs bg-warn/10 text-warn px-2.5 py-1 rounded-full font-medium">Generic only</span></td>
+              <td class="py-4 px-4 text-center"><span class="inline-block text-xs bg-ink/5 text-ink/40 px-2.5 py-1 rounded-full font-medium">N/A</span></td>
+            </tr>
+
+            <tr class="border-t border-ink/5">
+              <td class="py-4 pr-4 font-medium">Live insurance verification during call</td>
+              <td class="py-4 px-4 text-center bg-brand-soft/50"><span class="text-acc font-bold text-lg">✓</span></td>
+              <td class="py-4 px-4 text-center"><span class="inline-block text-xs bg-warn/10 text-warn px-2.5 py-1 rounded-full font-medium">Some</span></td>
+              <td class="py-4 px-4 text-center"><span class="inline-block text-xs bg-warn/10 text-warn px-2.5 py-1 rounded-full font-medium">Pre-call only</span></td>
+            </tr>
+
+            <tr class="border-t border-ink/5">
+              <td class="py-4 pr-4 font-medium">EHR-integrated</td>
+              <td class="py-4 px-4 text-center bg-brand-soft/50"><span class="text-acc font-bold text-lg">✓ AdvancedMD, Tebra</span></td>
+              <td class="py-4 px-4 text-center"><span class="inline-block text-xs bg-warn/10 text-warn px-2.5 py-1 rounded-full font-medium">Limited</span></td>
+              <td class="py-4 px-4 text-center"><span class="inline-block text-xs bg-warn/10 text-warn px-2.5 py-1 rounded-full font-medium">Varies</span></td>
+            </tr>
+
+            <tr class="border-t border-ink/5">
+              <td class="py-4 pr-4 font-medium">Contract terms</td>
+              <td class="py-4 px-4 text-center bg-brand-soft/50 font-bold">Month-to-month</td>
+              <td class="py-4 px-4 text-center"><span class="inline-block text-xs bg-warn/10 text-warn px-2.5 py-1 rounded-full font-medium">Annual</span></td>
+              <td class="py-4 px-4 text-center"><span class="inline-block text-xs bg-warn/10 text-warn px-2.5 py-1 rounded-full font-medium">12-mo lock</span></td>
+            </tr>
+
+            <tr class="border-t border-ink/5">
+              <td class="py-4 pr-4 font-medium">Setup fees</td>
+              <td class="py-4 px-4 text-center bg-brand-soft/50 font-bold text-acc">$0</td>
+              <td class="py-4 px-4 text-center"><span class="inline-block text-xs bg-warn/10 text-warn px-2.5 py-1 rounded-full font-medium">$500–2K</span></td>
+              <td class="py-4 px-4 text-center"><span class="inline-block text-xs bg-warn/10 text-warn px-2.5 py-1 rounded-full font-medium">$500–2K</span></td>
+            </tr>
+
+            <tr class="border-t border-ink/5">
+              <td class="py-4 pr-4 font-medium">Onboarding</td>
+              <td class="py-4 px-4 text-center bg-brand-soft/50 font-bold rounded-b-2xl">1-2 weeks</td>
+              <td class="py-4 px-4 text-center"><span class="inline-block text-xs bg-warn/10 text-warn px-2.5 py-1 rounded-full font-medium">2-4 weeks</span></td>
+              <td class="py-4 px-4 text-center"><span class="inline-block text-xs bg-warn/10 text-warn px-2.5 py-1 rounded-full font-medium">4-8 weeks</span></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ROI CALCULATOR ─── -->
+  <section id="calculator" class="py-24 bg-ink-soft/[0.03]">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">ROI Calculator</h2>
+        <p class="mt-4 text-lg text-ink/60">Run the case-study math against your practice. Defaults preloaded from real data.</p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-2 mb-8">
+        <button class="preset px-4 py-2 rounded-full border border-ink/15 font-semibold text-sm hover:border-ink/30 transition" data-preset="conservative">Conservative</button>
+        <button class="preset px-4 py-2 rounded-full border-2 border-brand text-brand font-semibold text-sm bg-brand-soft active" data-preset="midpoint">Midpoint (case study)</button>
+        <button class="preset px-4 py-2 rounded-full border border-ink/15 font-semibold text-sm hover:border-ink/30 transition" data-preset="aggressive">Aggressive</button>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 items-start">
+        <!-- inputs -->
+        <div class="bg-white rounded-2xl border border-ink/10 p-6 space-y-5">
+          <div>
+            <div class="flex items-baseline justify-between"><label class="text-sm font-semibold">Monthly inbound calls</label><span class="font-bold"><span id="callsPerMo-val">525</span></span></div>
+            <input type="range" id="callsPerMo" min="50" max="2000" step="10" value="525" class="w-full mt-2" />
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between"><label class="text-sm font-semibold">Current miss rate</label><span class="font-bold"><span id="missRate-val">50</span>%</span></div>
+            <input type="range" id="missRate" min="0" max="90" step="1" value="50" class="w-full mt-2" />
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between"><label class="text-sm font-semibold">Conversion: warm lead → patient</label><span class="font-bold"><span id="conversion-val">25</span>%</span></div>
+            <input type="range" id="conversion" min="5" max="80" step="1" value="25" class="w-full mt-2" />
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <div class="flex items-baseline justify-between"><label class="text-xs font-semibold">High-tier LTV</label><span class="text-xs font-bold">$<span id="highLTV-val">10,000</span></span></div>
+              <input type="range" id="highLTV" min="2000" max="25000" step="500" value="10000" class="w-full mt-1" />
+            </div>
+            <div>
+              <div class="flex items-baseline justify-between"><label class="text-xs font-semibold">Mid-tier LTV</label><span class="text-xs font-bold">$<span id="medLTV-val">2,000</span></span></div>
+              <input type="range" id="medLTV" min="500" max="6000" step="100" value="2000" class="w-full mt-1" />
+            </div>
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between"><label class="text-sm font-semibold">Monthly insurance collections</label><span class="font-bold">$<span id="collections-val">100,000</span></span></div>
+            <input type="range" id="collections" min="20000" max="500000" step="5000" value="100000" class="w-full mt-2" />
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between"><label class="text-sm font-semibold">Current biller fee</label><span class="font-bold"><span id="billerPct-val">6.0</span>%</span></div>
+            <input type="range" id="billerPct" min="0" max="10" step="0.5" value="6" class="w-full mt-2" />
+          </div>
+
+          <input type="hidden" id="newPtVMRate" value="3" />
+          <input type="hidden" id="silentNewPtRate" value="30" />
+          <input type="hidden" id="voicemailRate" value="37" />
+        </div>
+
+        <!-- output -->
+        <div class="bg-ink text-white rounded-2xl p-6 space-y-5 sticky top-24">
+          <div>
+            <div class="text-xs uppercase tracking-wider text-white/50 font-semibold">Estimated annual upside with MindBill</div>
+            <div class="text-5xl font-black mt-2 text-acc">+$<span id="totalUpside">0</span></div>
+            <div class="text-xs text-white/60 mt-1">Recovered missed-call revenue + biller-fee savings</div>
+          </div>
+
+          <div class="border-t border-white/10 pt-5 space-y-2 text-sm">
+            <div class="flex justify-between"><span class="text-white/60">Recovered new-patient revenue</span><span class="font-semibold">+$<span id="recoveredRev">0</span>/yr</span></div>
+            <div class="flex justify-between"><span class="text-white/60">Billing fee savings (vs current biller)</span><span class="font-semibold">+$<span id="billerSavings">0</span>/yr</span></div>
+            <div class="flex justify-between"><span class="text-white/60">MindBill annual cost (2% of collections)</span><span class="font-semibold text-warn">-$<span id="rcmCost">0</span>/yr</span></div>
+          </div>
+
+          <div class="border-t border-white/10 pt-5 grid grid-cols-2 gap-3 text-xs">
+            <div class="bg-ink-soft rounded-lg p-3">
+              <div class="text-white/50">ROI multiple</div>
+              <div class="font-bold text-lg"><span id="roiMultiple">0×</span></div>
+            </div>
+            <div class="bg-ink-soft rounded-lg p-3">
+              <div class="text-white/50">Payback</div>
+              <div class="font-bold text-lg"><span id="payback">— mo</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BUILD YOUR PLAN ─── -->
+  <section id="pricing" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Build your plan</h2>
+        <p class="mt-4 text-lg text-ink/60">Tell us about your practice. We'll show you exactly what it costs.</p>
+      </div>
+
+      <div class="grid md:grid-cols-5 gap-6">
+        <!-- Builder -->
+        <div class="md:col-span-3 bg-white rounded-2xl border border-ink/10 p-7 space-y-7">
+
+          <!-- Locations -->
+          <div class="flex items-center justify-between pb-6 border-b border-ink/5">
+            <div>
+              <div class="font-semibold">Practice locations</div>
+              <div class="text-xs text-ink/50 mt-1">Each additional location adds 50% to voice features. RCM is volume-based — locations don't change the 2% rate.</div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button id="locMinus" class="w-9 h-9 rounded-full bg-ink-soft/[0.05] text-lg font-bold hover:bg-ink-soft/10">−</button>
+              <div id="locVal" class="w-10 text-center font-bold text-xl">1</div>
+              <button id="locPlus" class="w-9 h-9 rounded-full bg-ink-soft/[0.05] text-lg font-bold hover:bg-ink-soft/10">+</button>
+            </div>
+          </div>
+
+          <!-- AI VOICE features -->
+          <div>
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="font-semibold">AI Voice features</div>
+                <div class="text-xs text-ink/50 mt-1">Mix and match. 1,500 voice min/mo shared across all features. $0.18/min overage. +50% per additional location.</div>
+              </div>
+              <div class="text-xs font-bold text-ink/40 uppercase tracking-wider">à la carte</div>
+            </div>
+            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
+              <button class="feat-toggle active border-2 rounded-xl p-4 text-left flex items-start gap-3 transition" data-feat="inbound" data-price="999">
+                <div class="check w-5 h-5 rounded-full border-2 border-ink/20 grid place-items-center mt-0.5 flex-shrink-0">
+                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <div class="font-semibold text-sm">Inbound calls</div>
+                    <div class="text-xs font-bold text-ink/70">$999</div>
+                  </div>
+                  <div class="text-xs text-ink/60 mt-0.5">24/7 receptionist · Crisis routing · Live VOB</div>
+                </div>
+              </button>
+              <button class="feat-toggle border-2 border-ink/10 rounded-xl p-4 text-left flex items-start gap-3 transition" data-feat="leadgen" data-price="999">
+                <div class="check w-5 h-5 rounded-full border-2 border-ink/20 grid place-items-center mt-0.5 flex-shrink-0">
+                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <div class="font-semibold text-sm">Lead conversion</div>
+                    <div class="text-xs font-bold text-ink/70">$999</div>
+                  </div>
+                  <div class="text-xs text-ink/60 mt-0.5">Outbound follow-up · Web-form leads</div>
+                </div>
+              </button>
+              <button class="feat-toggle border-2 border-ink/10 rounded-xl p-4 text-left flex items-start gap-3 transition" data-feat="recall" data-price="500">
+                <div class="check w-5 h-5 rounded-full border-2 border-ink/20 grid place-items-center mt-0.5 flex-shrink-0">
+                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <div class="font-semibold text-sm">Recall &amp; reactivation</div>
+                    <div class="text-xs font-bold text-ink/70">$500</div>
+                  </div>
+                  <div class="text-xs text-ink/60 mt-0.5">TMS series scheduling · Lapsed-patient outreach</div>
+                </div>
+              </button>
+              <button class="feat-toggle border-2 border-ink/10 rounded-xl p-4 text-left flex items-start gap-3 transition" data-feat="reminders" data-price="350">
+                <div class="check w-5 h-5 rounded-full border-2 border-ink/20 grid place-items-center mt-0.5 flex-shrink-0">
+                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <div class="font-semibold text-sm">Appointment reminders</div>
+                    <div class="text-xs font-bold text-ink/70">$350</div>
+                  </div>
+                  <div class="text-xs text-ink/60 mt-0.5">Outbound texts + voice no-show recovery</div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- RCM SECTION (separate) -->
+          <div class="border-t border-ink/5 pt-7">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="font-semibold flex items-center gap-2">
+                  Done-for-You RCM
+                  <span class="text-[10px] font-bold uppercase tracking-wider bg-acc-soft text-acc px-2 py-0.5 rounded">Recommended</span>
+                </div>
+                <div class="text-xs text-ink/50 mt-1">Full-cycle billing replacement. Priced separately from Voice.</div>
+              </div>
+            </div>
+            <button class="feat-toggle active border-2 rounded-xl p-4 text-left flex items-start gap-3 transition mt-4 w-full" data-feat="rcm" data-price="rcm">
+              <div class="check w-5 h-5 rounded-full border-2 border-ink/20 grid place-items-center mt-0.5 flex-shrink-0">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between">
+                  <div class="font-semibold text-sm">Full-cycle RCM</div>
+                  <div class="text-xs font-bold text-ink/70">2% of collections</div>
+                </div>
+                <div class="text-xs text-ink/60 mt-0.5">PA · VOB · Claims · Denials · Appeals · ERA · AR · Patient statements. Replaces your billing company.</div>
+              </div>
+            </button>
+
+            <div id="collectionsBlock" class="mt-5">
+              <div class="flex items-baseline justify-between">
+                <div>
+                  <div class="font-semibold text-sm">Estimated monthly collections</div>
+                  <div class="text-xs text-ink/50 mt-1">Drives the 2% calculation.</div>
+                </div>
+                <div class="font-bold text-xl">$<span id="pricingCollectionsVal">100,000</span></div>
+              </div>
+              <input type="range" id="pricingCollections" min="20000" max="500000" step="5000" value="100000" class="w-full mt-3" />
+              <div class="flex justify-between text-xs text-ink/40 mt-1"><span>$20K</span><span>$100K</span><span>$300K</span><span>$500K</span></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Price card -->
+        <div class="md:col-span-2">
+          <div class="sticky top-24 pricing-pill rounded-2xl p-7">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="w-7 h-7 rounded-lg bg-brand text-white grid place-items-center font-bold text-xs">M</span>
+              <span class="font-bold">MindBill</span>
+            </div>
+            <div class="mt-4">
+              <div class="text-5xl font-black"><span id="priceMain">$2,000</span></div>
+              <div class="text-sm text-ink/60 mt-1" id="priceSub">Per month, 2% of collections</div>
+            </div>
+
+            <div class="mt-6 border-t border-ink/10 pt-5">
+              <div class="font-semibold text-sm">Cost breakdown</div>
+              <div id="breakdown" class="mt-3 space-y-1.5 text-sm"></div>
+            </div>
+
+            <div class="mt-5 border-t border-ink/10 pt-5">
+              <div class="text-xs uppercase tracking-wider text-ink/50 font-semibold">Included</div>
+              <div id="includedList" class="mt-3 flex flex-wrap gap-2"></div>
+            </div>
+
+            <a href="#demo" class="mt-6 block text-center bg-brand text-white font-semibold py-3 rounded-full hover:bg-brand-dark transition">Get started</a>
+            <div class="text-center text-xs text-ink/40 mt-3">No setup fees · Month-to-month</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ─── -->
+  <section class="py-24 bg-ink-soft/[0.03]">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-center text-4xl md:text-5xl font-extrabold tracking-tight mb-12">Frequently Asked Questions</h2>
+
+      <div class="space-y-2">
+        <details class="bg-white border border-ink/10 rounded-xl p-5 group">
+          <summary class="font-semibold flex justify-between items-center text-left">Can you replace our current billing company?<span class="chev text-ink/40 text-2xl font-light">⌄</span></summary>
+          <p class="mt-3 text-ink/70 text-sm leading-relaxed">Yes — that's the Done-for-You plan. Full-cycle RCM at 2% of collections vs. industry average of 5-8%. We onboard in shadow mode month one so you can compare outputs side-by-side before cutting over. 1-business-day offboarding if it doesn't work out.</p>
+        </details>
+
+        <details class="bg-white border border-ink/10 rounded-xl p-5 group">
+          <summary class="font-semibold flex justify-between items-center text-left">How is your AI better than my current biller?<span class="chev text-ink/40 text-2xl font-light">⌄</span></summary>
+          <p class="mt-3 text-ink/70 text-sm leading-relaxed">Pre-denial rule checks baked into PA submissions (medication history, antidepressant trial counts, etc.) catch the gaps that cause denials before they happen. AI-drafted appeals read your chart notes against payer medical policy. Spravato pharmacy-vs-medical-benefit logic that generalist billers don't have a playbook for. Result: 98% clean-claim rate, 14-day average payment, 3.8% denial rate.</p>
+        </details>
+
+        <details class="bg-white border border-ink/10 rounded-xl p-5 group">
+          <summary class="font-semibold flex justify-between items-center text-left">Is the AI HIPAA-compliant?<span class="chev text-ink/40 text-2xl font-light">⌄</span></summary>
+          <p class="mt-3 text-ink/70 text-sm leading-relaxed">Yes. We sign a Business Associate Agreement (BAA) before any patient data moves. Sensitive workflows run with strict access controls and full audit logging. We do not train models on your data.</p>
+        </details>
+
+        <details class="bg-white border border-ink/10 rounded-xl p-5 group">
+          <summary class="font-semibold flex justify-between items-center text-left">How long does onboarding take?<span class="chev text-ink/40 text-2xl font-light">⌄</span></summary>
+          <p class="mt-3 text-ink/70 text-sm leading-relaxed">For Tebra and AdvancedMD: roughly one week. Other EHRs in 2-3 weeks. We can run in parallel with your current billing setup ("shadow mode") for the first month so you can compare outputs side-by-side before cutting over.</p>
+        </details>
+
+        <details class="bg-white border border-ink/10 rounded-xl p-5 group">
+          <summary class="font-semibold flex justify-between items-center text-left">How does crisis call routing work?<span class="chev text-ink/40 text-2xl font-light">⌄</span></summary>
+          <p class="mt-3 text-ink/70 text-sm leading-relaxed">When a caller mentions self-harm, suicidal ideation, an overdose, or any emergency keyword, the AI immediately stops the intake flow, surfaces 911 + 988 resources, and warm-transfers to your designated on-call clinician. Average time to live human: under 5 seconds.</p>
+        </details>
+
+        <details class="bg-white border border-ink/10 rounded-xl p-5 group">
+          <summary class="font-semibold flex justify-between items-center text-left">Can patients ask for a human?<span class="chev text-ink/40 text-2xl font-light">⌄</span></summary>
+          <p class="mt-3 text-ink/70 text-sm leading-relaxed">Always. The AI discloses upfront that it's a virtual assistant and offers human handoff at any point. If the caller asks for a person, sounds frustrated, or hits any escalation trigger, we transfer immediately.</p>
+        </details>
+
+        <details class="bg-white border border-ink/10 rounded-xl p-5 group">
+          <summary class="font-semibold flex justify-between items-center text-left">Can you run the case-study analysis on my practice?<span class="chev text-ink/40 text-2xl font-light">⌄</span></summary>
+          <p class="mt-3 text-ink/70 text-sm leading-relaxed">Yes — any phone system, any EHR. Send us your last 9 months of call logs and patient data and we'll run the same audit. 24-48 hours, one-page report with your real lost-revenue number. Free, no commitment.</p>
+        </details>
+
+        <details class="bg-white border border-ink/10 rounded-xl p-5 group">
+          <summary class="font-semibold flex justify-between items-center text-left">Who's behind MindBill?<span class="chev text-ink/40 text-2xl font-light">⌄</span></summary>
+          <p class="mt-3 text-ink/70 text-sm leading-relaxed">Two-person team backed by Y Combinator. Founder previously worked the front desk and billing chair at an interventional psych practice — automating each workflow only after running it manually first. Direct contact: <a href="mailto:jimmy@mindbill.org" class="text-brand font-semibold underline">jimmy@mindbill.org</a> · <a href="tel:+15707687496" class="text-brand font-semibold underline">(570) 768-7496</a>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── DEMO CTA ─── -->
+  <section id="demo" class="py-24 bg-brand text-white">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight">See the math on your numbers.</h2>
+      <p class="mt-6 text-xl text-white/80 leading-relaxed">15-minute demo. Bring your current billing setup + monthly collections — we'll show you exactly where AI fits and what you'd save.</p>
+      <div class="mt-10 flex flex-wrap justify-center gap-3">
+        <a href="mailto:jimmy@mindbill.org?subject=MindBill%20demo%20request" class="inline-flex items-center bg-white text-brand font-semibold px-8 py-3.5 rounded-full hover:bg-white/90 transition">Email jimmy@mindbill.org</a>
+        <a href="tel:+15707687496" class="inline-flex items-center border border-white/30 text-white font-semibold px-8 py-3.5 rounded-full hover:bg-white/10 transition">Call (570) 768-7496</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="bg-ink text-white/60 py-16">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-10">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="w-8 h-8 rounded-lg bg-brand text-white grid place-items-center font-bold">M</span>
+          <span class="text-white font-bold text-lg">MindBill</span>
+        </div>
+        <p class="text-sm leading-relaxed">AI-powered revenue cycle for psychiatric, TMS, and Spravato practices.</p>
+        <div class="mt-6">
+          <div class="text-xs uppercase tracking-wider font-bold text-white/40">Backed by</div>
+          <div class="mt-2 flex items-center gap-2">
+            <span class="w-6 h-6 rounded bg-warn text-white grid place-items-center text-xs font-bold">Y</span>
+            <span class="text-white/80 font-semibold">Y Combinator</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="text-white font-bold mb-4">Product</div>
+        <div class="space-y-3 text-sm">
+          <div><a href="#features" class="hover:text-white">Features</a></div>
+          <div><a href="#case-study" class="hover:text-white">Case Study</a></div>
+          <div><a href="#integrations" class="hover:text-white">Integrations</a></div>
+          <div><a href="#compare" class="hover:text-white">How We Compare</a></div>
+          <div><a href="#calculator" class="hover:text-white">ROI Calculator</a></div>
+          <div><a href="#pricing" class="hover:text-white">Pricing</a></div>
+        </div>
+      </div>
+      <div>
+        <div class="text-white font-bold mb-4">Company</div>
+        <div class="space-y-3 text-sm">
+          <div><a href="mailto:jimmy@mindbill.org" class="hover:text-white">Email jimmy@mindbill.org</a></div>
+          <div><a href="tel:+15707687496" class="hover:text-white">(570) 768-7496</a></div>
+          <div><a href="#demo" class="hover:text-white">Book a Demo</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs text-white/40">
+      <div>© 2026 MindBill, Inc. All rights reserved.</div>
+      <div class="flex gap-6"><a href="#" class="hover:text-white">Privacy Policy</a><a href="#" class="hover:text-white">Terms &amp; Conditions</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const fmt = n => Math.round(n).toLocaleString('en-US');
+    const $ = id => document.getElementById(id);
+
+    // ============== Hero live ticker ==============
+    (function() {
+      const revEl = $('hero-revenue');
+      const timeEl = $('hero-time');
+      if (!revEl) return;
+      let rev = 12847;
+      setInterval(() => {
+        rev += Math.floor(Math.random() * 350 + 50);
+        revEl.textContent = '$' + rev.toLocaleString();
+      }, 4500);
+      function updateTime() {
+        if (!timeEl) return;
+        const d = new Date();
+        let h = d.getHours(); const m = d.getMinutes();
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        h = h % 12; if (h === 0) h = 12;
+        timeEl.textContent = h + ':' + (m < 10 ? '0' : '') + m + ' ' + ampm;
+      }
+      updateTime(); setInterval(updateTime, 30000);
+    })();
+
+    // ============== ROI Calculator ==============
+    const calcInputs = ["callsPerMo","missRate","conversion","highLTV","medLTV","collections","billerPct"];
+    function recalcROI() {
+      const callsPerMo = +$('callsPerMo').value;
+      const missRate = +$('missRate').value / 100;
+      const voicemailRate = +$('voicemailRate').value / 100;
+      const newPtVMRate = +$('newPtVMRate').value / 100;
+      const silentNewPtRate = +$('silentNewPtRate').value / 100;
+      const conversion = +$('conversion').value / 100;
+      const highLTV = +$('highLTV').value;
+      const medLTV = +$('medLTV').value;
+      const collections = +$('collections').value;
+      const billerPct = +$('billerPct').value / 100;
+
+      $('callsPerMo-val').textContent = fmt(callsPerMo);
+      $('missRate-val').textContent = +$('missRate').value;
+      $('conversion-val').textContent = +$('conversion').value;
+      $('highLTV-val').textContent = fmt(highLTV);
+      $('medLTV-val').textContent = fmt(medLTV);
+      $('collections-val').textContent = fmt(collections);
+      $('billerPct-val').textContent = (+$('billerPct').value).toFixed(1);
+
+      // Service mix from case study (17/77/6 high/med/low)
+      const blendedLTV = 0.17 * highLTV + 0.77 * medLTV + 0.06 * 0;
+
+      const callsYr = callsPerMo * 12;
+      const lostCallsYr = callsYr * missRate;
+      const voicemailsYr = lostCallsYr * voicemailRate;
+      const silentYr = lostCallsYr * (1 - voicemailRate);
+
+      const confirmedVMLeads = voicemailsYr * newPtVMRate;
+      const silentLeads = silentYr * silentNewPtRate;
+
+      const aiAnswerRate = 0.95;
+      const recoveredPts = (confirmedVMLeads + silentLeads * 0.5) * aiAnswerRate * conversion;
+      const recoveredRev = recoveredPts * blendedLTV;
+
+      const billerSavings = Math.max(0, (billerPct - 0.02)) * collections * 12;
+      const rcmCost = collections * 12 * 0.02;
+      const totalUpside = recoveredRev + billerSavings;
+
+      $('recoveredRev').textContent = fmt(recoveredRev);
+      $('billerSavings').textContent = fmt(billerSavings);
+      $('rcmCost').textContent = fmt(rcmCost);
+      $('totalUpside').textContent = fmt(totalUpside);
+
+      const roiMult = rcmCost > 0 ? totalUpside / rcmCost : 0;
+      const payback = totalUpside > 0 ? (rcmCost / totalUpside * 12) : Infinity;
+      $('roiMultiple').textContent = roiMult.toFixed(1) + '×';
+      $('payback').textContent = isFinite(payback) ? payback.toFixed(1) + ' mo' : '— mo';
+    }
+
+    calcInputs.forEach(id => $(id).addEventListener('input', recalcROI));
+
+    const presets = {
+      conservative: { conversion: 15, highLTV: 7000, medLTV: 1500, missRate: 49 },
+      midpoint:     { conversion: 25, highLTV: 10000, medLTV: 2000, missRate: 50 },
+      aggressive:   { conversion: 40, highLTV: 14000, medLTV: 3000, missRate: 63 },
+    };
+    document.querySelectorAll('.preset').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.preset').forEach(b => {
+          b.classList.remove('active','border-brand','text-brand','bg-brand-soft','border-2');
+          b.classList.add('border','border-ink/15');
+        });
+        btn.classList.add('active','border-brand','text-brand','bg-brand-soft','border-2');
+        btn.classList.remove('border-ink/15');
+        const p = presets[btn.dataset.preset];
+        for (const [k,v] of Object.entries(p)) { if ($(k)) $(k).value = v; }
+        recalcROI();
+      });
+    });
+
+    recalcROI();
+
+    // ============== Pricing Builder (composable) ==============
+    let locations = 1;
+
+    const featureLabels = {
+      inbound:   'Inbound calls',
+      leadgen:   'Lead conversion',
+      recall:    'Recall & reactivation',
+      reminders: 'Appointment reminders',
+      rcm:       'Done-for-You RCM',
+    };
+
+    function recalcPricing() {
+      $('locVal').textContent = locations;
+      $('pricingCollectionsVal').textContent = (+$('pricingCollections').value).toLocaleString();
+
+      let voiceTotal = 0;
+      let voiceFeaturesActive = 0;
+      let rcmFee = 0;
+      const breakdown = [];
+      const badges = [];
+
+      // Voice features (1,500 min/mo SHARED across all features)
+      document.querySelectorAll('.feat-toggle').forEach(el => {
+        const feat = el.dataset.feat;
+        if (!el.classList.contains('active')) return;
+        if (feat === 'rcm') {
+          const collections = +$('pricingCollections').value;
+          rcmFee = collections * 0.02;
+          breakdown.push({ label: 'RCM · 2% × $' + fmt(collections) + '/mo collections', value: '$' + fmt(rcmFee) });
+          ['Full claims','PA + VOB','Denials + appeals','AR follow-up','Patient statements','HIPAA + BAA'].forEach(b => badges.push(b));
+        } else {
+          const price = +el.dataset.price;
+          voiceTotal += price;
+          voiceFeaturesActive++;
+          breakdown.push({ label: featureLabels[feat], value: '$' + fmt(price) });
+          badges.push(featureLabels[feat]);
+        }
+      });
+
+      // Locations multiplier ONLY applies to voice — RCM is volume-based (2% of collections, location count doesn't matter)
+      if (locations > 1 && voiceTotal > 0) {
+        const locUp = voiceTotal * 0.5 * (locations - 1);
+        breakdown.push({ label: `+${locations - 1} location${locations > 2 ? 's' : ''} (+50% of voice)`, value: '+$' + fmt(locUp) });
+        voiceTotal += locUp;
+      }
+
+      let total = voiceTotal + rcmFee;
+
+      // Always-included
+      badges.push('24/7 AI','Crisis routing','Tebra + AdvancedMD');
+
+      $('priceMain').textContent = '$' + fmt(total);
+      let subParts = [];
+      if (voiceFeaturesActive > 0) subParts.push('1,500 voice min/mo included · $0.18/min overage');
+      if (rcmFee > 0) subParts.push('RCM at 2% of collections');
+      $('priceSub').textContent = subParts.length ? subParts.join(' · ') : 'Per month, no features selected';
+
+      $('breakdown').innerHTML = breakdown.length
+        ? breakdown.map(b => `<div class="flex justify-between"><span class="text-ink/70">${b.label}</span><span class="font-semibold">${b.value}</span></div>`).join('')
+        : '<div class="text-ink/40 text-xs">Pick at least one feature to see pricing.</div>';
+      $('includedList').innerHTML = badges.map(b => `<span class="text-xs bg-white border border-ink/10 px-2.5 py-1 rounded-md font-medium">✓ ${b}</span>`).join('');
+    }
+
+    $('locMinus').addEventListener('click', () => { locations = Math.max(1, locations - 1); recalcPricing(); });
+    $('locPlus').addEventListener('click', () => { locations = Math.min(10, locations + 1); recalcPricing(); });
+
+    document.querySelectorAll('.feat-toggle').forEach(el => {
+      el.addEventListener('click', () => {
+        el.classList.toggle('active');
+        recalcPricing();
+      });
+    });
+
+    $('pricingCollections').addEventListener('input', recalcPricing);
+    recalcPricing();
+  </script>
+</body>
+</html>
