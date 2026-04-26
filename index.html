@@ -107,9 +107,8 @@
       </a>
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-ink/70">
         <a href="#features" class="hover:text-ink">Features</a>
-        <a href="#workflows" class="hover:text-ink">Workflows</a>
         <a href="#case-study" class="hover:text-ink">Case Study</a>
-        <a href="#integrations" class="hover:text-ink">Integrations</a>
+        <a href="#calculator" class="hover:text-ink">ROI Calculator</a>
         <a href="#pricing" class="hover:text-ink">Pricing</a>
       </nav>
       <a href="https://calendly.com/jimmy-incidentfox/15-min-quick-chat-incidentfox" target="_blank" rel="noopener" class="inline-flex items-center bg-brand text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-brand-dark transition">Book a Demo</a>
@@ -139,7 +138,7 @@
             Book a 15-min demo
             <svg class="ml-2" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a href="#workflows" class="inline-flex items-center text-ink font-medium underline-offset-4 hover:underline">
+          <a href="#features" class="inline-flex items-center text-ink font-medium underline-offset-4 hover:underline">
             See what it actually does →
           </a>
         </div>
@@ -175,8 +174,11 @@
   <section id="features" class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Features</h2>
-        <p class="mt-4 text-lg text-ink/60">MindBill is a better way to handle billing and patient calls for psychiatric, TMS, and Spravato practices.</p>
+        <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand bg-brand-soft px-3 py-1 rounded-full mb-4">
+          What MindBill does
+        </span>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Three product surfaces. Every revenue-generating workflow.</h2>
+        <p class="mt-4 text-lg text-ink/60">Billing, inbound, outbound — covering everything from the first ring to the final claim. Pharmacy, FSA, refills, and records requests handled too.</p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-6">
@@ -223,15 +225,21 @@
             </div>
           </div>
           <h3 class="mt-6 text-xl font-bold">Full-Cycle RCM at 2%</h3>
-          <p class="mt-2 text-ink/60 text-sm leading-relaxed">PA, claims, ERA posting, denials, AR, patient statements — <strong class="text-ink">including TMS prior auths, Spravato pharmacy-vs-medical logic, and live insurance verification during booking calls.</strong> Replaces your billing company at one-third the price.</p>
+          <p class="mt-2 text-ink/60 text-sm leading-relaxed">Replaces your billing company at one-third the price. Onboards in shadow mode month one so you can compare side-by-side before cutting over.</p>
+          <ul class="mt-5 grid md:grid-cols-2 gap-x-6 gap-y-2 text-sm text-ink/75">
+            <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-shrink-0">✓</span><span>Live VOB during the booking call — Spravato pharmacy vs medical, TMS PA</span></li>
+            <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-shrink-0">✓</span><span>TMS prior auths (medical-benefit, REMS, peer-to-peer scheduling)</span></li>
+            <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-shrink-0">✓</span><span>Spravato pharmacy-vs-medical logic + REMS workflows</span></li>
+            <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-shrink-0">✓</span><span>Claims submission + ERA auto-posting</span></li>
+            <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-shrink-0">✓</span><span>Denials worked + appeals filed inside payer windows</span></li>
+            <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-shrink-0">✓</span><span>AR follow-up + patient statements</span></li>
+          </ul>
         </div>
 
         <!-- Card 2 — 24/7 Call Coverage (revenue + calls dashboard, patientdesk-style) -->
         <div class="border border-ink/10 rounded-2xl p-7 bg-white">
           <div class="rounded-2xl bg-gradient-to-br from-emerald-50 via-white to-emerald-50/30 p-5 min-h-[280px] relative">
-            <span class="absolute top-3 right-3 text-[9px] font-bold uppercase tracking-wider text-ink/30 bg-white/70 px-1.5 py-0.5 rounded">Example UI</span>
-
-            <div class="bg-white rounded-xl shadow-sm border border-ink/5 p-5">
+<div class="bg-white rounded-xl shadow-sm border border-ink/5 p-5">
               <div class="flex items-start justify-between mb-4 gap-3">
                 <div>
                   <div class="text-xs text-ink/50 font-medium mb-1">Additional Revenue</div>
@@ -274,14 +282,19 @@
             </div>
           </div>
           <h3 class="mt-6 text-xl font-bold">24/7 Call Coverage</h3>
-          <p class="mt-2 text-ink/60 text-sm leading-relaxed">Never miss a call. Every answered call is potential revenue. AI picks up the moment the phone rings — including nights, weekends, and the lunch-hour gap.</p>
+          <p class="mt-2 text-ink/60 text-sm leading-relaxed">Never miss a call. AI picks up on the first ring — nights, weekends, lunch hour, holidays. No voicemail, no callback queue.</p>
+          <ul class="mt-5 space-y-2 text-sm text-ink/75">
+            <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-shrink-0">✓</span><span>New patient intake → booked into your EHR before they hang up</span></li>
+            <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-shrink-0">✓</span><span>Provider referrals → live capture + chart created in your EHR</span></li>
+            <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-shrink-0">✓</span><span>Optum / Anthem peer-review windows → clinician paged inside the window</span></li>
+            <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-shrink-0">✓</span><span>Pharmacy + admin (FSA, refills, reschedules, records) handled directly</span></li>
+            <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-shrink-0">✓</span><span>Crisis calls warm-transferred to on-call clinician (~3 sec)</span></li>
+          </ul>
         </div>
 
         <!-- Card 3 — Outbound Lead Calling (lead queue + active call, patientdesk-style) -->
         <div class="border border-ink/10 rounded-2xl p-7 bg-white">
           <div class="rounded-2xl bg-gradient-to-br from-blue-50 via-white to-blue-50/30 p-5 min-h-[280px] relative">
-            <span class="absolute top-3 right-3 text-[9px] font-bold uppercase tracking-wider text-ink/30 bg-white/70 px-1.5 py-0.5 rounded">Example UI</span>
-
             <div class="grid grid-cols-3 gap-3">
               <!-- Lead Queue -->
               <div class="col-span-2 bg-white rounded-xl shadow-sm border border-ink/5 p-4">
@@ -341,7 +354,14 @@
             </div>
           </div>
           <h3 class="mt-6 text-xl font-bold">Outbound Lead Calling</h3>
-          <p class="mt-2 text-ink/60 text-sm leading-relaxed">AI calls every web-form lead within 60 seconds and follows up until they book. Plus no-show recovery and Spravato/TMS recall campaigns.</p>
+          <p class="mt-2 text-ink/60 text-sm leading-relaxed">Lead-to-booking response time is the #1 driver of conversion. Most practices take 24+ hours; we take 60 seconds.</p>
+          <ul class="mt-5 space-y-2 text-sm text-ink/75">
+            <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-shrink-0">✓</span><span>Web-form lead → AI call within 60 seconds (Psychology Today, Healthgrades, your site)</span></li>
+            <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-shrink-0">✓</span><span>Provider referrals: AI calls referred patients within minutes</span></li>
+            <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-shrink-0">✓</span><span>No-show voice + SMS recovery → rescheduled to next open slot</span></li>
+            <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-shrink-0">✓</span><span>Spravato / TMS recall campaigns for drop-offs</span></li>
+            <li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-shrink-0">✓</span><span>Insurance-verified live before they hit your calendar</span></li>
+          </ul>
         </div>
       </div>
 
@@ -351,169 +371,37 @@
     </div>
   </section>
 
-  <!-- ─── REVENUE WORKFLOWS (top 3 with direct revenue tie-in) ─── -->
-  <section id="workflows" class="py-24 bg-ink-soft/[0.03]">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center max-w-3xl mx-auto mb-4">
-        <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand bg-brand-soft px-3 py-1 rounded-full mb-4">
-          Where the revenue comes from
-        </span>
-        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Live inbound. Proactive outbound.</h2>
-        <p class="mt-4 text-lg text-ink/60">Every call answered the moment it rings — no voicemail, no callback queue. Plus outbound calling for web-form leads, no-shows, and recall campaigns. Pharmacy, FSA, refills, records requests are handled too.</p>
-      </div>
-
-      <div class="mt-14 grid md:grid-cols-2 gap-5">
-
-        <!-- Workflow 1: Provider referrals -->
-        <div class="bg-white rounded-2xl border border-ink/10 p-7 flex flex-col">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-3xl">🤝</span>
-            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">Highest LTV class</span>
-          </div>
-          <h3 class="text-xl font-bold leading-tight mt-2">Provider referrals → booked patient</h3>
-          <p class="mt-3 text-sm text-ink/60 leading-relaxed">The referring office calls your front desk. AI picks up <strong>on the first ring</strong>, takes the referral details and patient info live — no voicemail, no callback delay.</p>
-          <div class="mt-5 space-y-2 text-sm border-t border-ink/5 pt-5">
-            <div class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold flex-shrink-0 mt-0.5">→</span>
-              <span class="text-ink/80">AI captures the referral live, <strong>auto-creates the patient chart</strong> in your EHR</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold flex-shrink-0 mt-0.5">→</span>
-              <span class="text-ink/80">AI then <strong>calls the referred patient outbound</strong> within minutes — usually before they call themselves</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold flex-shrink-0 mt-0.5">→</span>
-              <span class="text-ink/80">Live VOB on that outbound call, booked into AdvancedMD/Tebra</span>
-            </div>
-          </div>
-          <div class="mt-5 pt-5 border-t border-ink/5 text-xs text-ink/50">
-            <strong class="text-emerald-600">Revenue:</strong> Provider referrals are the highest-converting lead class. Zero-touch from referral to booked patient.
-          </div>
-        </div>
-
-        <!-- Workflow 2: New patient -->
-        <div class="bg-white rounded-2xl border border-ink/10 p-7 flex flex-col">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-3xl">📞</span>
-            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">Direct LTV</span>
-          </div>
-          <h3 class="text-xl font-bold leading-tight mt-2">New patient call → booked appointment</h3>
-          <p class="mt-3 text-sm text-ink/60 leading-relaxed">First-time caller wants TMS, Spravato, or med management. AI answers <strong>24/7 on the first ring</strong> — no voicemail, no callback queue, no shopping the competitor while they wait.</p>
-          <div class="mt-5 space-y-2 text-sm border-t border-ink/5 pt-5">
-            <div class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold flex-shrink-0 mt-0.5">→</span>
-              <span class="text-ink/80">AI captures intake live (name, DOB, insurance card photo via SMS)</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold flex-shrink-0 mt-0.5">→</span>
-              <span class="text-ink/80"><strong>Live VOB during the call</strong> — Spravato pharmacy vs medical, TMS PA</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold flex-shrink-0 mt-0.5">→</span>
-              <span class="text-ink/80">Booked straight into your EHR calendar before they hang up</span>
-            </div>
-          </div>
-          <div class="mt-5 pt-5 border-t border-ink/5 text-xs text-ink/50">
-            <strong class="text-emerald-600">Revenue:</strong> $2K medication management, $10K+ TMS/Spravato per converted patient. The audit found $31K+/yr recoverable here alone.
-          </div>
-        </div>
-
-        <!-- Workflow 3: Outbound lead conversion -->
-        <div class="bg-white rounded-2xl border border-ink/10 p-7 flex flex-col">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-3xl">🚀</span>
-            <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">Outbound</span>
-          </div>
-          <h3 class="text-xl font-bold leading-tight mt-2">Web-form lead → outbound call in 60 seconds</h3>
-          <p class="mt-3 text-sm text-ink/60 leading-relaxed">A lead fills out your contact form or a Psychology Today inquiry. AI calls them <strong>within a minute</strong>, books the consult before they shop competitors. Plus no-show recovery and recall campaigns — all outbound.</p>
-          <div class="mt-5 space-y-2 text-sm border-t border-ink/5 pt-5">
-            <div class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold flex-shrink-0 mt-0.5">→</span>
-              <span class="text-ink/80">Auto-calls every form submission (Psychology Today, Healthgrades, your site)</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold flex-shrink-0 mt-0.5">→</span>
-              <span class="text-ink/80">No-show <strong>voice + SMS recovery</strong>; rescheduled to next open slot</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold flex-shrink-0 mt-0.5">→</span>
-              <span class="text-ink/80">Spravato / TMS recall campaigns: drop-offs called for refresher rounds</span>
-            </div>
-          </div>
-          <div class="mt-5 pt-5 border-t border-ink/5 text-xs text-ink/50">
-            <strong class="text-blue-600">Revenue:</strong> Lead-to-booking response time is the #1 driver of conversion. Most practices take 24+ hours; we take 60 seconds.
-          </div>
-        </div>
-
-        <!-- Workflow 4: PA callbacks -->
-        <div class="bg-white rounded-2xl border border-ink/10 p-7 flex flex-col">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-3xl">⚡</span>
-            <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full">Time-sensitive</span>
-          </div>
-          <h3 class="text-xl font-bold leading-tight mt-2">PA peer-review window → caught live</h3>
-          <p class="mt-3 text-sm text-ink/60 leading-relaxed">Optum or Anthem rings to open a 24-hour peer-to-peer window. AI <strong>answers live</strong>, captures the auth details, pages your clinician inside the window — even Friday afternoon.</p>
-          <div class="mt-5 space-y-2 text-sm border-t border-ink/5 pt-5">
-            <div class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold flex-shrink-0 mt-0.5">→</span>
-              <span class="text-ink/80">AI answers payer callbacks 24/7 — Optum, Anthem, UHC, BCBS</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold flex-shrink-0 mt-0.5">→</span>
-              <span class="text-ink/80">Captures reference number, matches against open PAs in your billing system</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold flex-shrink-0 mt-0.5">→</span>
-              <span class="text-ink/80"><strong>Pages your clinician inside the window</strong> — synchronous handoff, not a Slack DM</span>
-            </div>
-          </div>
-          <div class="mt-5 pt-5 border-t border-ink/5 text-xs text-ink/50">
-            <strong class="text-amber-600">Revenue:</strong> One missed Optum window = full TMS authorization gone. ~$10K of treatment unbilled per missed call.
-          </div>
-        </div>
-
-      </div>
-
-      <div class="mt-12 text-center">
-        <a href="/case-study" class="inline-flex items-center text-brand font-semibold hover:underline">
-          See the methodology + all 5 workflows in the full case study →
-        </a>
-      </div>
-
-    </div>
-  </section>
-
   <!-- ─── PROOF: Audit + ROI Calculator (merged) ─── -->
-  <section id="case-study" class="py-24 bg-white border-y border-ink/5">
+  <section id="case-study" class="py-24 bg-ink-soft/[0.03] border-y border-ink/5">
   <div class="max-w-6xl mx-auto px-6">
       <div class="text-center max-w-3xl mx-auto mb-12">
         <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Built on real practice data.</h2>
         <p class="mt-4 text-lg text-ink/60">We audited 9 months of inbound calls at a real psychiatric practice. Here's what we found.</p>
       </div>
 
-      <!-- Hero stat — single defensible number -->
+      <!-- Hero stat — annualized from 9-month audit -->
       <div class="bg-gradient-to-br from-brand to-brand-dark rounded-3xl p-8 md:p-12 text-white mb-10">
         <div class="text-center">
-          <div class="text-xs uppercase tracking-widest font-bold text-white/70">Audit finding · 9 months</div>
+          <div class="text-xs uppercase tracking-widest font-bold text-white/70">Annualized · From real 9-month audit</div>
           <div class="mt-4 text-6xl md:text-8xl font-black tracking-tight">$31,000+</div>
           <div class="mt-3 text-white/85 text-lg">in new-patient revenue lost per year, conservatively</div>
-          <div class="mt-2 text-xs text-white/55">Floor estimate. Verified by reading every voicemail and matching against the EHR.</div>
+          <div class="mt-2 text-xs text-white/55">Floor estimate. Verified caller-by-caller against the EHR over Aug 2025 – Apr 2026, then projected to 12 months.</div>
         </div>
 
         <div class="mt-10 pt-10 border-t border-white/15">
-          <div class="text-xs uppercase tracking-widest font-bold text-white/60 text-center mb-6">What the audit found</div>
+          <div class="text-xs uppercase tracking-widest font-bold text-white/60 text-center mb-6">12-month projection</div>
           <div class="grid md:grid-cols-3 gap-4 text-center">
             <div class="bg-white/10 rounded-2xl p-5">
-              <div class="text-3xl font-black">4,720</div>
-              <div class="mt-2 text-xs text-white/70">inbound calls in 9 months</div>
+              <div class="text-3xl font-black">~6,300</div>
+              <div class="mt-2 text-xs text-white/70">inbound calls / year</div>
             </div>
             <div class="bg-white/10 rounded-2xl p-5">
               <div class="text-3xl font-black">63%</div>
-              <div class="mt-2 text-xs text-white/70">went unanswered</div>
+              <div class="mt-2 text-xs text-white/70">go unanswered</div>
             </div>
             <div class="bg-white/10 rounded-2xl p-5">
-              <div class="text-3xl font-black">30</div>
-              <div class="mt-2 text-xs text-white/70">new patients lost (cross-checked vs EHR)</div>
+              <div class="text-3xl font-black">~40</div>
+              <div class="mt-2 text-xs text-white/70">new patients lost / year (cross-checked vs EHR)</div>
             </div>
           </div>
         </div>
@@ -638,7 +526,7 @@
   </section>
 
   <!-- ─── COMPARE ─── -->
-  <section id="compare" class="py-24 bg-ink-soft/[0.03]">
+  <section id="compare" class="py-24 bg-white">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center max-w-3xl mx-auto mb-14">
         <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">How We Compare</h2>
@@ -722,7 +610,7 @@
   </section>
 
   <!-- ─── BUILD YOUR PLAN ─── -->
-  <section id="pricing" class="py-24 bg-white">
+  <section id="pricing" class="py-24 bg-ink-soft/[0.03]">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center max-w-3xl mx-auto mb-12">
         <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Build your plan</h2>
@@ -877,7 +765,7 @@
   </section>
 
   <!-- ─── FAQ ─── -->
-  <section class="py-24 bg-ink-soft/[0.03]">
+  <section class="py-24 bg-white">
     <div class="max-w-3xl mx-auto px-6">
       <h2 class="text-center text-4xl md:text-5xl font-extrabold tracking-tight mb-12">Frequently Asked Questions</h2>
 
@@ -960,10 +848,10 @@
         <div class="space-y-3 text-sm">
           <div><a href="#features" class="hover:text-white">Features</a></div>
           <div><a href="#case-study" class="hover:text-white">Case Study</a></div>
-          <div><a href="#integrations" class="hover:text-white">Integrations</a></div>
-          <div><a href="#compare" class="hover:text-white">How We Compare</a></div>
           <div><a href="#calculator" class="hover:text-white">ROI Calculator</a></div>
+          <div><a href="#compare" class="hover:text-white">How We Compare</a></div>
           <div><a href="#pricing" class="hover:text-white">Pricing</a></div>
+          <div><a href="/case-study" class="hover:text-white">Full audit write-up</a></div>
         </div>
       </div>
       <div>
