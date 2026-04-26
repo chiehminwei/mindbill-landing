@@ -7,23 +7,31 @@
   <meta name="description" content="We audited 9 months of inbound calls at a real psychiatric practice. Found $31,000+ in directly recoverable new-patient revenue. Here's the math." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','serif'] },
+      fontFamily: {
+        sans: ['"Inter Tight"','system-ui','sans-serif'],
+        serif: ['"Instrument Serif"','Georgia','serif'],
+        mono: ['"JetBrains Mono"','ui-monospace','monospace'],
+      },
       colors: {
-        ink:   { DEFAULT: '#0A1430', soft: '#0E1B40', muted: '#5C6478' },
-        brand: { DEFAULT: '#3357FF', dark: '#2342DD', soft: '#EEF2FF' },
-        acc:   { DEFAULT: '#10B981', soft: '#ECFDF5' },
-        warn:  { DEFAULT: '#F97316' },
+        ink:   { DEFAULT: '#0E1B1F', soft: '#1A2A2F', muted: '#6B7378' },
+        paper: { DEFAULT: '#F4F1EA', soft: '#EDE8DD', line: '#D7D1C2' },
+        brand: { DEFAULT: '#0E5C5E', dark: '#083E40', soft: '#E0EBEB', glow: '#7FD3D1' },
+        teal:  { DEFAULT: '#0E5C5E', dark: '#083E40', soft: '#E0EBEB', glow: '#7FD3D1' },
+        acc:   { DEFAULT: '#0E5C5E', soft: '#E0EBEB' },
+        warn:  { DEFAULT: '#B8772A', soft: '#F5EAD8' },
+        ochre: { DEFAULT: '#B8772A', soft: '#F5EAD8' },
       }
     }}}
   </script>
   <style>
-    body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #0A1430; }
-    .serif-h { font-family: 'Fraunces', serif; font-weight: 800; letter-spacing: -0.02em; }
-    .serif-it { font-family: 'Fraunces', serif; font-style: italic; font-weight: 600; }
+    body { font-family: 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #0E1B1F; }
+    .serif-h { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -0.015em; }
+    .serif-it { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; }
+    .mono-tag { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #6B7378; }
   </style>
 </head>
 <body class="bg-white">
@@ -39,8 +47,8 @@
   <header class="sticky top-0 z-30 backdrop-blur bg-white/85 border-b border-ink/5">
     <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
       <a href="/" class="flex items-center gap-2">
-        <span class="w-8 h-8 rounded-lg bg-brand text-white grid place-items-center font-bold">M</span>
-        <span class="font-bold text-lg tracking-tight">MindBill</span>
+        <span class="w-9 h-9 inline-flex items-center justify-center text-ink"><svg width="34" height="34" viewBox="0 0 100 100" style="display:block"><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="square"><path d="M18 78 Q 18 22 50 22"/><path d="M82 78 Q 82 22 50 22"/><line x1="50" y1="40" x2="50" y2="78"/></g><circle cx="50" cy="22" r="4.5" fill="#0E5C5E"/></svg></span>
+        <span class="font-bold text-lg tracking-tight">Mind<span class="text-teal">Bill</span></span>
       </a>
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-ink/70">
         <a href="/#features" class="hover:text-ink">Features</a>
@@ -352,8 +360,8 @@
     <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-10">
       <div>
         <div class="flex items-center gap-2 mb-4">
-          <span class="w-8 h-8 rounded-lg bg-brand text-white grid place-items-center font-bold">M</span>
-          <span class="text-white font-bold text-lg">MindBill</span>
+          <span class="w-9 h-9 inline-flex items-center justify-center text-paper"><svg width="34" height="34" viewBox="0 0 100 100" style="display:block"><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="square"><path d="M18 78 Q 18 22 50 22"/><path d="M82 78 Q 82 22 50 22"/><line x1="50" y1="40" x2="50" y2="78"/></g><circle cx="50" cy="22" r="4.5" fill="#7FD3D1"/></svg></span>
+          <span class="text-white font-bold text-lg">Mind<span class="text-teal-glow">Bill</span></span>
         </div>
         <p class="text-sm leading-relaxed">AI-powered revenue cycle for psychiatric, TMS, and Spravato practices.</p>
       </div>

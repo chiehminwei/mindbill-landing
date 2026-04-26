@@ -7,29 +7,33 @@
   <meta name="description" content="AI for psychiatric, TMS, and Spravato practices. Inbound calls, prior auths, denials, AR — handled across AdvancedMD, Tebra, or any EHR. Layer on top of your team. Pay only for what you turn on." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            serif: ['Spectral', 'Georgia', 'serif'],
+            sans: ['"Inter Tight"', 'system-ui', 'sans-serif'],
+            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
           },
           colors: {
-            ink:   { DEFAULT: '#0A1430', soft: '#0E1B40', muted: '#5C6478' },
-            brand: { DEFAULT: '#3357FF', dark: '#2342DD', soft: '#EEF2FF' },
-            acc:   { DEFAULT: '#10B981', soft: '#ECFDF5' },
-            warn:  { DEFAULT: '#F97316' },
-            cream: { DEFAULT: '#FAF7F2' },
+            ink:   { DEFAULT: '#0E1B1F', soft: '#1A2A2F', muted: '#6B7378' },
+            paper: { DEFAULT: '#F4F1EA', soft: '#EDE8DD', line: '#D7D1C2' },
+            brand: { DEFAULT: '#0E5C5E', dark: '#083E40', soft: '#E0EBEB', glow: '#7FD3D1' },
+            teal:  { DEFAULT: '#0E5C5E', dark: '#083E40', soft: '#E0EBEB', glow: '#7FD3D1' },
+            acc:   { DEFAULT: '#0E5C5E', soft: '#E0EBEB' },
+            warn:  { DEFAULT: '#B8772A', soft: '#F5EAD8' },
+            ochre: { DEFAULT: '#B8772A', soft: '#F5EAD8' },
+            cream: { DEFAULT: '#F4F1EA' },
           }
         }
       }
     }
   </script>
   <style>
-    body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #0A1430; }
+    body { font-family: 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #0E1B1F; }
 
     /* Stripe-style gradient mesh */
     .mesh-bg {
@@ -49,8 +53,9 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    .serif-h { font-family: 'Spectral', Georgia, serif; font-weight: 600; letter-spacing: -0.02em; }
-    .serif-it { font-family: 'Spectral', Georgia, serif; font-style: italic; font-weight: 500; }
+    .serif-h { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -0.015em; }
+    .serif-it { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; }
+    .mono-tag { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #6B7378; }
 
     details summary { cursor: pointer; list-style: none; }
     details summary::-webkit-details-marker { display: none; }
@@ -94,8 +99,8 @@
   <header class="sticky top-0 z-30 backdrop-blur bg-white/85 border-b border-ink/5">
     <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
       <a href="#" class="flex items-center gap-2">
-        <span class="w-8 h-8 rounded-lg bg-brand text-white grid place-items-center font-bold">M</span>
-        <span class="font-bold text-lg tracking-tight">MindBill</span>
+        <span class="w-9 h-9 inline-flex items-center justify-center text-ink"><svg width="34" height="34" viewBox="0 0 100 100" style="display:block"><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="square"><path d="M18 78 Q 18 22 50 22"/><path d="M82 78 Q 82 22 50 22"/><line x1="50" y1="40" x2="50" y2="78"/></g><circle cx="50" cy="22" r="4.5" fill="#0E5C5E"/></svg></span>
+        <span class="font-bold text-lg tracking-tight">Mind<span class="text-teal">Bill</span></span>
       </a>
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-ink/70">
         <a href="#features" class="hover:text-ink">Features</a>
@@ -606,7 +611,7 @@
             <tr class="text-sm">
               <th class="text-left py-4 pr-4 font-semibold text-ink/60"></th>
               <th class="text-center py-4 px-4 bg-brand-soft rounded-t-2xl">
-                <div class="font-bold text-lg text-brand">MindBill</div>
+                <div class="font-bold text-lg text-ink">Mind<span class="text-teal">Bill</span></div>
               </th>
               <th class="text-center py-4 px-4 font-semibold text-ink/60">Generic AI<br/>Receptionists</th>
               <th class="text-center py-4 px-4 font-semibold text-ink/60">Traditional<br/>Billing Co.</th>
@@ -887,8 +892,8 @@
         <div class="md:col-span-2">
           <div class="sticky top-24 pricing-pill rounded-2xl p-7">
             <div class="flex items-center gap-2 mb-1">
-              <span class="w-7 h-7 rounded-lg bg-brand text-white grid place-items-center font-bold text-xs">M</span>
-              <span class="font-bold">MindBill</span>
+              <span class="w-7 h-7 inline-flex items-center justify-center text-ink"><svg width="26" height="26" viewBox="0 0 100 100" style="display:block"><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="square"><path d="M18 78 Q 18 22 50 22"/><path d="M82 78 Q 82 22 50 22"/><line x1="50" y1="40" x2="50" y2="78"/></g><circle cx="50" cy="22" r="4.5" fill="#0E5C5E"/></svg></span>
+              <span class="font-bold">Mind<span class="text-teal">Bill</span></span>
             </div>
             <div class="mt-4">
               <div class="text-5xl font-black"><span id="priceMain">$2,000</span></div>
@@ -979,8 +984,8 @@
     <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-10">
       <div>
         <div class="flex items-center gap-2 mb-4">
-          <span class="w-8 h-8 rounded-lg bg-brand text-white grid place-items-center font-bold">M</span>
-          <span class="text-white font-bold text-lg">MindBill</span>
+          <span class="w-9 h-9 inline-flex items-center justify-center text-paper"><svg width="34" height="34" viewBox="0 0 100 100" style="display:block"><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="square"><path d="M18 78 Q 18 22 50 22"/><path d="M82 78 Q 82 22 50 22"/><line x1="50" y1="40" x2="50" y2="78"/></g><circle cx="50" cy="22" r="4.5" fill="#7FD3D1"/></svg></span>
+          <span class="text-white font-bold text-lg">Mind<span class="text-teal-glow">Bill</span></span>
         </div>
         <p class="text-sm leading-relaxed">AI-powered revenue cycle for psychiatric, TMS, and Spravato practices.</p>
         <div class="mt-6">
