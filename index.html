@@ -371,83 +371,37 @@
     </div>
   </section>
 
-  <!-- ─── PROOF: Audit + ROI Calculator (merged) ─── -->
+  <!-- ─── PROOF: ROI Calculator (lead) + audit social-proof strip ─── -->
   <section id="case-study" class="py-24 bg-ink-soft/[0.03] border-y border-ink/5">
-  <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Built on real practice data.</h2>
-        <p class="mt-4 text-lg text-ink/60">We audited 9 months of inbound calls at a real psychiatric practice. Here's what we found.</p>
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand bg-brand-soft px-3 py-1 rounded-full mb-4">
+          Run the math on your practice
+        </span>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">How much would MindBill make you?</h2>
+        <p class="mt-4 text-lg text-ink/60">Sliders preloaded with <strong class="text-ink">real numbers from a 9-month audit</strong> at a psychiatric practice. Drag them to your practice.</p>
       </div>
 
-      <!-- Hero stat — annualized from 9-month audit -->
-      <div class="bg-gradient-to-br from-brand to-brand-dark rounded-3xl p-8 md:p-12 text-white mb-10">
-        <div class="text-center">
-          <div class="text-xs uppercase tracking-widest font-bold text-white/70">Annualized · From real 9-month audit</div>
-          <div class="mt-4 text-6xl md:text-8xl font-black tracking-tight">$31,000+</div>
-          <div class="mt-3 text-white/85 text-lg">in new-patient revenue lost per year, conservatively</div>
-          <div class="mt-2 text-xs text-white/55">Floor estimate. Verified caller-by-caller against the EHR over Aug 2025 – Apr 2026, then projected to 12 months.</div>
-        </div>
-
-        <div class="mt-10 pt-10 border-t border-white/15">
-          <div class="text-xs uppercase tracking-widest font-bold text-white/60 text-center mb-6">12-month projection</div>
-          <div class="grid md:grid-cols-3 gap-4 text-center">
-            <div class="bg-white/10 rounded-2xl p-5">
-              <div class="text-3xl font-black">~6,300</div>
-              <div class="mt-2 text-xs text-white/70">inbound calls / year</div>
-            </div>
-            <div class="bg-white/10 rounded-2xl p-5">
-              <div class="text-3xl font-black">63%</div>
-              <div class="mt-2 text-xs text-white/70">go unanswered</div>
-            </div>
-            <div class="bg-white/10 rounded-2xl p-5">
-              <div class="text-3xl font-black">~40</div>
-              <div class="mt-2 text-xs text-white/70">new patients lost / year (cross-checked vs EHR)</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Patient voice -->
-      <div class="grid md:grid-cols-3 gap-4 mb-10">
-        <div class="bg-white rounded-2xl border border-ink/10 p-6">
-          <div class="text-xs uppercase tracking-wider text-acc font-bold mb-3">High-revenue lost lead</div>
-          <p class="italic text-ink/80 leading-relaxed">"We're ready to try Spravato and possibly TMS as well."</p>
-          <div class="mt-3 text-xs text-ink/50">Returning prospect, ready-to-buy. Never re-engaged.</div>
-        </div>
-        <div class="bg-white rounded-2xl border border-ink/10 p-6">
-          <div class="text-xs uppercase tracking-wider text-warn font-bold mb-3">Future 1-star review</div>
-          <p class="italic text-ink/80 leading-relaxed">"I've called you guys several times… I have clinical depression, anxiety, and PTSD. I need a new doctor."</p>
-          <div class="mt-3 text-xs text-ink/50">Multiple ignored attempts. Ready to write a public review.</div>
-        </div>
-        <div class="bg-white rounded-2xl border border-ink/10 p-6">
-          <div class="text-xs uppercase tracking-wider text-brand font-bold mb-3">Provider referral</div>
-          <p class="italic text-ink/80 leading-relaxed">"My psychiatrist asked me to find a different psychiatrist…"</p>
-          <div class="mt-3 text-xs text-ink/50">Highest-converting lead class. Called 3×. Never matched.</div>
-        </div>
-      </div>
-
-      <!-- ROI Calculator embedded -->
-      <div id="calculator" class="border-t border-ink/10 pt-16 mt-4">
-        <div class="text-center max-w-3xl mx-auto mb-10">
-          <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand bg-brand-soft px-3 py-1 rounded-full mb-4">
-            Run the math on your practice
-          </span>
-          <h3 class="text-3xl md:text-4xl font-extrabold tracking-tight">Your numbers, our model.</h3>
-          <p class="mt-3 text-lg text-ink/60">Defaults preloaded from the audit. Drag the sliders to see what MindBill could do for your practice.</p>
-        </div>
-
-      <div class="flex flex-wrap justify-center gap-2 mb-8">
+      <!-- Preset buttons -->
+      <div id="calculator" class="flex flex-wrap justify-center gap-2 mb-8">
         <button class="preset px-4 py-2 rounded-full border border-ink/15 font-semibold text-sm hover:border-ink/30 transition" data-preset="conservative">Conservative</button>
         <button class="preset px-4 py-2 rounded-full border-2 border-brand text-brand font-semibold text-sm bg-brand-soft active" data-preset="midpoint">Midpoint (case study)</button>
         <button class="preset px-4 py-2 rounded-full border border-ink/15 font-semibold text-sm hover:border-ink/30 transition" data-preset="aggressive">Aggressive</button>
       </div>
 
+      <!-- Inputs + output -->
       <div class="grid md:grid-cols-2 gap-6 items-start">
+
         <!-- inputs -->
         <div class="bg-white rounded-2xl border border-ink/10 p-6 space-y-5">
           <div>
             <div class="flex items-baseline justify-between"><label class="text-sm font-semibold">Monthly inbound calls</label><span class="font-bold"><span id="callsPerMo-val">525</span></span></div>
             <input type="range" id="callsPerMo" min="50" max="2000" step="10" value="525" class="w-full mt-2" />
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between"><label class="text-sm font-semibold">Avg call duration <span class="text-ink/40 font-normal">(min)</span></label><span class="font-bold"><span id="avgCallMin-val">3.5</span></span></div>
+            <input type="range" id="avgCallMin" min="1" max="10" step="0.5" value="3.5" class="w-full mt-2" />
           </div>
           <div>
             <div class="flex items-baseline justify-between"><label class="text-sm font-semibold">Current miss rate</label><span class="font-bold"><span id="missRate-val">50</span>%</span></div>
@@ -486,13 +440,14 @@
           <div>
             <div class="text-xs uppercase tracking-wider text-white/50 font-semibold">Estimated annual upside with MindBill</div>
             <div class="text-5xl font-black mt-2 text-acc">+$<span id="totalUpside">0</span></div>
-            <div class="text-xs text-white/60 mt-1">Recovered missed-call revenue + biller-fee savings</div>
+            <div class="text-xs text-white/60 mt-1">Recovered missed-call revenue + biller-fee savings, net of MindBill cost</div>
           </div>
 
           <div class="border-t border-white/10 pt-5 space-y-2 text-sm">
             <div class="flex justify-between"><span class="text-white/60">Recovered new-patient revenue</span><span class="font-semibold">+$<span id="recoveredRev">0</span>/yr</span></div>
             <div class="flex justify-between"><span class="text-white/60">Billing fee savings (vs current biller)</span><span class="font-semibold">+$<span id="billerSavings">0</span>/yr</span></div>
-            <div class="flex justify-between"><span class="text-white/60">MindBill annual cost (2% of collections)</span><span class="font-semibold text-warn">-$<span id="rcmCost">0</span>/yr</span></div>
+            <div class="flex justify-between"><span class="text-white/60">MindBill RCM (2% of collections)</span><span class="font-semibold text-warn">-$<span id="rcmCost">0</span>/yr</span></div>
+            <div class="flex justify-between"><span class="text-white/60">MindBill Voice <span class="text-white/35 font-normal">(base + <span id="overageMin">0</span> min overage)</span></span><span class="font-semibold text-warn">-$<span id="voiceCost">0</span>/yr</span></div>
           </div>
 
           <div class="border-t border-white/10 pt-5 grid grid-cols-2 gap-3 text-xs">
@@ -507,10 +462,26 @@
           </div>
         </div>
       </div>
+
+      <!-- Social-proof strip: audit headline + 1 quote + link -->
+      <div class="mt-12 bg-white rounded-2xl border border-ink/10 p-6 md:p-8 grid md:grid-cols-3 gap-6 items-center">
+        <div class="md:col-span-1">
+          <div class="text-xs uppercase tracking-widest font-bold text-brand mb-2">From the audit</div>
+          <div class="text-4xl font-black tracking-tight text-ink">$31,000+</div>
+          <div class="text-sm text-ink/60 mt-1">in new-patient revenue lost / year, conservatively. ~6,300 calls / 63% miss rate / ~40 patients lost.</div>
+        </div>
+        <div class="md:col-span-1 border-l border-ink/10 pl-6">
+          <div class="text-xs uppercase tracking-widest font-bold text-acc mb-2">A returning lead, never re-engaged</div>
+          <p class="italic text-ink/85 leading-relaxed">"We're ready to try Spravato and possibly TMS as well."</p>
+          <div class="text-xs text-ink/50 mt-2">From the 30 voicemails verified caller-by-caller against the EHR.</div>
+        </div>
+        <div class="md:col-span-1 md:text-right">
+          <a href="/case-study" class="inline-flex items-center text-brand font-semibold hover:underline">Read the full audit →</a>
+        </div>
       </div>
 
-      <!-- CTA: book a meeting (replaces "send 9 months of call logs") -->
-      <div class="mt-16 bg-ink rounded-2xl p-8 md:p-10 text-white">
+      <!-- CTA: book a meeting -->
+      <div class="mt-10 bg-ink rounded-2xl p-8 md:p-10 text-white">
         <div class="grid md:grid-cols-3 gap-6 items-center">
           <div class="md:col-span-2">
             <div class="text-xs font-bold uppercase tracking-wider text-brand-soft/80 mb-2">Want this on your practice?</div>
@@ -522,6 +493,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -895,9 +867,15 @@
     })();
 
     // ============== ROI Calculator ==============
-    const calcInputs = ["callsPerMo","missRate","conversion","highLTV","medLTV","collections","billerPct"];
+    // Voice plan: $999/mo Inbound 24/7 base + $0.20/min overage above 1,500 free min/mo.
+    const VOICE_BASE_MO = 999;
+    const VOICE_FREE_MIN = 1500;
+    const VOICE_OVERAGE_RATE = 0.20;
+
+    const calcInputs = ["callsPerMo","avgCallMin","missRate","conversion","highLTV","medLTV","collections","billerPct"];
     function recalcROI() {
       const callsPerMo = +$('callsPerMo').value;
+      const avgCallMin = +$('avgCallMin').value;
       const missRate = +$('missRate').value / 100;
       const voicemailRate = +$('voicemailRate').value / 100;
       const newPtVMRate = +$('newPtVMRate').value / 100;
@@ -909,6 +887,7 @@
       const billerPct = +$('billerPct').value / 100;
 
       $('callsPerMo-val').textContent = fmt(callsPerMo);
+      $('avgCallMin-val').textContent = avgCallMin.toFixed(1);
       $('missRate-val').textContent = +$('missRate').value;
       $('conversion-val').textContent = +$('conversion').value;
       $('highLTV-val').textContent = fmt(highLTV);
@@ -933,15 +912,27 @@
 
       const billerSavings = Math.max(0, (billerPct - 0.02)) * collections * 12;
       const rcmCost = collections * 12 * 0.02;
-      const totalUpside = recoveredRev + billerSavings;
+
+      // Voice cost: base + overage
+      const minutesPerMo = callsPerMo * avgCallMin;
+      const overageMin = Math.max(0, minutesPerMo - VOICE_FREE_MIN);
+      const voiceMoCost = VOICE_BASE_MO + (overageMin * VOICE_OVERAGE_RATE);
+      const voiceYrCost = voiceMoCost * 12;
+      const overageMinYr = overageMin * 12;
+
+      const totalCost = rcmCost + voiceYrCost;
+      const totalUpside = recoveredRev + billerSavings - totalCost;
 
       $('recoveredRev').textContent = fmt(recoveredRev);
       $('billerSavings').textContent = fmt(billerSavings);
       $('rcmCost').textContent = fmt(rcmCost);
-      $('totalUpside').textContent = fmt(totalUpside);
+      $('voiceCost').textContent = fmt(voiceYrCost);
+      $('overageMin').textContent = fmt(overageMinYr);
+      $('totalUpside').textContent = fmt(Math.max(0, totalUpside));
 
-      const roiMult = rcmCost > 0 ? totalUpside / rcmCost : 0;
-      const payback = totalUpside > 0 ? (rcmCost / totalUpside * 12) : Infinity;
+      const grossUpside = recoveredRev + billerSavings;
+      const roiMult = totalCost > 0 ? grossUpside / totalCost : 0;
+      const payback = grossUpside > 0 ? (totalCost / grossUpside * 12) : Infinity;
       $('roiMultiple').textContent = roiMult.toFixed(1) + '×';
       $('payback').textContent = isFinite(payback) ? payback.toFixed(1) + ' mo' : '— mo';
     }
@@ -949,9 +940,9 @@
     calcInputs.forEach(id => $(id).addEventListener('input', recalcROI));
 
     const presets = {
-      conservative: { conversion: 15, highLTV: 7000, medLTV: 1500, missRate: 49 },
-      midpoint:     { conversion: 25, highLTV: 10000, medLTV: 2000, missRate: 50 },
-      aggressive:   { conversion: 40, highLTV: 14000, medLTV: 3000, missRate: 63 },
+      conservative: { conversion: 15, highLTV: 7000,  medLTV: 1500, missRate: 49, avgCallMin: 3 },
+      midpoint:     { conversion: 25, highLTV: 10000, medLTV: 2000, missRate: 50, avgCallMin: 3.5 },
+      aggressive:   { conversion: 40, highLTV: 14000, medLTV: 3000, missRate: 63, avgCallMin: 4 },
     };
     document.querySelectorAll('.preset').forEach(btn => {
       btn.addEventListener('click', () => {
