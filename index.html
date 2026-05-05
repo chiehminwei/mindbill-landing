@@ -107,6 +107,7 @@
       </a>
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-ink/70">
         <a href="#features" class="hover:text-ink">Features</a>
+        <a href="#demos" class="hover:text-ink">Demos</a>
         <a href="#case-study" class="hover:text-ink">ROI</a>
         <a href="#compare" class="hover:text-ink">Compare</a>
         <a href="#pricing" class="hover:text-ink">Pricing</a>
@@ -358,6 +359,68 @@
       <div class="text-center mt-14">
         <a href="https://calendly.com/jimmy-incidentfox/15-min-quick-chat-incidentfox" target="_blank" rel="noopener" class="inline-flex items-center bg-brand text-white font-semibold px-8 py-3.5 rounded-full hover:bg-brand-dark transition shadow-lg shadow-brand/20">Book a Demo →</a>
       </div>
+    </div>
+  </section>
+
+  <!-- ─── DEMO VIDEOS ─── -->
+  <section id="demos" class="py-24 bg-ink-soft/[0.03] border-y border-ink/5">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand bg-brand-soft px-3 py-1 rounded-full mb-4">See it in action</span>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Three short demos.</h2>
+        <p class="mt-4 text-lg text-ink/60">A real call in each surface — booking, insurance verification, and claim status — recorded against live payer systems.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl border border-ink/10 overflow-hidden">
+          <button class="yt-facade group block w-full aspect-video relative bg-ink" data-id="t4J3BfRJUuc" aria-label="Play: 24/7 booking demo">
+            <img src="https://i.ytimg.com/vi/t4J3BfRJUuc/hqdefault.jpg" alt="24/7 booking demo" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition" loading="lazy" />
+            <span class="absolute inset-0 grid place-items-center">
+              <span class="w-16 h-16 rounded-full bg-white/95 grid place-items-center shadow-xl group-hover:scale-110 transition">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#0E5C5E"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </span>
+          </button>
+          <div class="p-5">
+            <div class="text-xs font-bold uppercase tracking-wider text-brand mb-1">Inbound · 24/7</div>
+            <h3 class="font-bold">Booking demo</h3>
+            <p class="mt-1 text-sm text-ink/60">New-patient call → triaged, scheduled, and written into the EHR.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink/10 overflow-hidden">
+          <button class="yt-facade group block w-full aspect-video relative bg-ink" data-id="tkVMCU1w5EQ" aria-label="Play: VOB demo">
+            <img src="https://i.ytimg.com/vi/tkVMCU1w5EQ/hqdefault.jpg" alt="VOB demo" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition" loading="lazy" />
+            <span class="absolute inset-0 grid place-items-center">
+              <span class="w-16 h-16 rounded-full bg-white/95 grid place-items-center shadow-xl group-hover:scale-110 transition">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#0E5C5E"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </span>
+          </button>
+          <div class="p-5">
+            <div class="text-xs font-bold uppercase tracking-wider text-brand mb-1">RCM · Verification of Benefits</div>
+            <h3 class="font-bold">Live insurance check</h3>
+            <p class="mt-1 text-sm text-ink/60">AI calls the payer, confirms eligibility + co-pay + deductible while the patient is on the line.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink/10 overflow-hidden">
+          <button class="yt-facade group block w-full aspect-video relative bg-ink" data-id="u4NtqKF_MuM" aria-label="Play: claim status demo">
+            <img src="https://i.ytimg.com/vi/u4NtqKF_MuM/hqdefault.jpg" alt="Claim status demo" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition" loading="lazy" />
+            <span class="absolute inset-0 grid place-items-center">
+              <span class="w-16 h-16 rounded-full bg-white/95 grid place-items-center shadow-xl group-hover:scale-110 transition">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#0E5C5E"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </span>
+          </button>
+          <div class="p-5">
+            <div class="text-xs font-bold uppercase tracking-wider text-brand mb-1">RCM · Claims</div>
+            <h3 class="font-bold">Claim status demo</h3>
+            <p class="mt-1 text-sm text-ink/60">AI works the payer phone tree, pulls claim status, and writes the result back to your billing system.</p>
+          </div>
+        </div>
+      </div>
+      <p class="text-center text-xs text-ink/45 mt-8">Patient + payer details de-identified. HIPAA + BAA on every install.</p>
     </div>
   </section>
 
@@ -1040,6 +1103,23 @@
 
     $('pricingCollections').addEventListener('input', recalcPricing);
     recalcPricing();
+
+    // ============== YouTube facade (click-to-play) ==============
+    document.querySelectorAll('.yt-facade').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.id;
+        const wrap = document.createElement('div');
+        wrap.className = 'relative w-full aspect-video bg-ink';
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+        iframe.title = btn.getAttribute('aria-label') || 'Demo video';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        iframe.className = 'absolute inset-0 w-full h-full';
+        wrap.appendChild(iframe);
+        btn.replaceWith(wrap);
+      });
+    });
   </script>
 </body>
 </html>
