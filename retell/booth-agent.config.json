@@ -1,0 +1,15 @@
+{
+  "agent_id": "agent_7089bbd2af8cb7100326c8fe08",
+  "agent_name": "MindBill APA Booth \u2014 Patient Intake Demo",
+  "voice_id": "11labs-Cimo",
+  "language": "en-US",
+  "max_call_duration_ms": 300000,
+  "enable_backchannel": true,
+  "backchannel_frequency": 0.8,
+  "begin_message_agent": null,
+  "llm_id": "llm_8e65c0ac2a3b3db647931cb19883",
+  "llm_version": 2,
+  "model": "gpt-5.1",
+  "begin_message_llm": null,
+  "_note": "Canonical booth agent config. Prompt in booth-agent-prompt.md. Pulled from Retell after manual edits."
+}
