@@ -12,8 +12,6 @@
 //   RETELL_API_KEY, RETELL_FROM_NUMBER, RETELL_AGENT_ID(optional)
 
 const RETELL_ENDPOINT = 'https://api.retellai.com/v2/create-phone-call';
-const recent = new Map();
-const RATE_LIMIT_MS = 3 * 60 * 1000;
 
 function json(res, status, body) {
   res.status(status);
@@ -95,14 +93,6 @@ export default async function handler(req, res) {
   const phone = clean(body.phone, 20);
   const source = clean(body.source, 40) || 'apa_qr';
   if (!isE164US(phone)) return json(res, 400, { error: 'Enter a valid 10-digit US mobile number.' });
-
-  const now = Date.now();
-  const last = recent.get(phone);
-  if (last && now - last < RATE_LIMIT_MS) {
-    const wait = Math.ceil((RATE_LIMIT_MS - (now - last)) / 1000);
-    return json(res, 429, { error: `We just called that number. Try again in ${wait}s.` });
-  }
-  recent.set(phone, now);
 
   const create = await airtable('POST', '', {
     Phone: phone,
