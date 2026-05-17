@@ -3,7 +3,7 @@
   "agent_name": "MindBill APA Booth \u2014 Patient Intake Demo",
   "voice_id": "11labs-Cimo",
   "language": "en-US",
-  "max_call_duration_ms": 300000,
+  "max_call_duration_ms": 600000,
   "enable_backchannel": true,
   "backchannel_frequency": 0.8,
   "begin_message_agent": null,
@@ -12,5 +12,6 @@
   "model": "gpt-5.1",
   "begin_message_llm": "Hi, this is Maya calling from MindBill Psychiatric Group \u2014 I saw you just filled out an interest form for Spravato and TMS depression treatment. Is now a good time to chat for a few minutes?",
   "_note": "Canonical booth agent config. Prompt in booth-agent-prompt.md. Pulled from Retell after manual edits.",
-  "agent_persona": "Maya \u2014 AI front desk coordinator (real, not demo framing)"
+  "agent_persona": "Maya \u2014 AI front desk coordinator (real, not demo framing)",
+  "flow": "Phase 1 connect/validate -> 2 educate/answer -> 3 gauge -> 4 qualify(if scheduling) -> 5 insurance last -> 6 schedule"
 }
