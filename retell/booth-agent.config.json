@@ -1,8 +1,8 @@
 {
   "agent_id": "agent_7089bbd2af8cb7100326c8fe08",
   "agent_name": "MindBill APA Booth \u2014 Patient Intake Demo",
-  "voice_id": "11labs-Cimo",
-  "language": "multi (English + Hindi)",
+  "voice_id": "11labs-Myra",
+  "language": "en-US",
   "max_call_duration_ms": 600000,
   "enable_backchannel": true,
   "backchannel_frequency": 0.8,
@@ -14,5 +14,5 @@
   "_note": "Canonical booth agent config. Prompt in booth-agent-prompt.md. Pulled from Retell after manual edits.",
   "agent_persona": "Maya \u2014 AI front desk coordinator (real, not demo framing)",
   "flow": "General empathetic intake: connect -> hear whole story -> validate -> offer consultation w/ psychiatrist. No treatment-specific funnel.",
-  "notes": "v7: bilingual EN/HI, no price quoted, reassurance about non-med options + defuse ECT fear, general intake"
+  "notes": "REVERTED to v5 TMS intake (de-scripted, bidirectional). American English, Hindi removed."
 }
