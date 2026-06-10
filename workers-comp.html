@@ -72,7 +72,7 @@
   <!-- NAV -->
   <header class="sticky top-0 z-30 backdrop-blur bg-white/85 border-b border-ink/5">
     <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-2">
+      <a href="/workers-comp" class="flex items-center gap-2">
         <span class="w-9 h-9 inline-flex items-center justify-center text-ink"><svg width="34" height="34" viewBox="0 0 100 100" style="display:block"><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="square"><path d="M18 78 Q 18 22 50 22"/><path d="M82 78 Q 82 22 50 22"/><line x1="50" y1="40" x2="50" y2="78"/></g><circle cx="50" cy="22" r="4.5" fill="#0E5C5E"/></svg></span>
         <span class="font-bold text-lg tracking-tight">Mind<span class="text-teal">Bill</span></span>
         <span class="ml-2 hidden sm:inline text-[11px] font-semibold uppercase tracking-wider text-ink/45 border-l border-ink/15 pl-2">Workers' Comp</span>
@@ -114,12 +114,15 @@
         </div>
       </div>
 
-      <!-- hero product shot -->
+      <!-- hero explainer video -->
       <div class="mt-14 max-w-5xl mx-auto">
-        <div class="rounded-2xl overflow-hidden shadow-2xl shadow-ink/15 ring-1 ring-ink/10 bg-white">
-          <img src="/img/shot-tasks.png" alt="MindBill workers' comp billing dashboard" class="w-full block" loading="eager" />
+        <div class="rounded-2xl overflow-hidden shadow-2xl shadow-ink/15 ring-1 ring-ink/10 bg-ink">
+          <video class="w-full block aspect-video" autoplay muted loop playsinline controls preload="metadata" poster="/video/explainer-poster.jpg">
+            <source src="/video/mindbill-explainer.mp4" type="video/mp4" />
+            <img src="/img/shot-tasks.png" alt="MindBill workers' comp billing dashboard" class="w-full block" />
+          </video>
         </div>
-        <p class="text-center mt-4 text-sm text-ink/50">Every open bill task in one view — what needs a second review, a status call, or to be sent.</p>
+        <p class="text-center mt-4 text-sm text-ink/50">A 40-second tour — bill entry, electronic routing, second-review recovery, and real-time reporting. <span class="text-ink/40">Tap the video for sound.</span></p>
       </div>
 
       <!-- clearinghouse trust row -->
@@ -380,7 +383,7 @@
     </div>
     <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs text-white/40">
       <div>© 2026 MindBill · IncidentFox, Inc. All rights reserved.</div>
-      <div class="flex gap-6"><a href="/psychiatry" class="hover:text-white">MindBill for Psychiatry →</a></div>
+      <div class="flex gap-6"><a href="/" class="hover:text-white">MindBill for Psychiatry →</a></div>
     </div>
   </footer>
 
