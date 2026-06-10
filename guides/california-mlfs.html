@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The California Medical-Legal Fee Schedule (MLFS), explained | MindBill Guides</title>
+  <meta name="description" content="ML200–ML205, the MLPRR record-review code, and how modifiers 92–98 multiply (not add) under CCR §9795 to set what a California med-legal evaluation is worth." />
+  <link rel="canonical" href="https://mindbill.org/guides/california-mlfs" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
+  <meta name="theme-color" content="#0E5C5E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter Tight"', 'system-ui', 'sans-serif'],
+            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:   { DEFAULT: '#0E1B1F', soft: '#1A2A2F', muted: '#6B7378' },
+            paper: { DEFAULT: '#F4F1EA', soft: '#EDE8DD', line: '#D7D1C2' },
+            brand: { DEFAULT: '#0E5C5E', dark: '#083E40', soft: '#E0EBEB', glow: '#7FD3D1' },
+            teal:  { DEFAULT: '#0E5C5E', dark: '#083E40', soft: '#E0EBEB', glow: '#7FD3D1' },
+            acc:   { DEFAULT: '#0E5C5E', soft: '#E0EBEB' },
+            warn:  { DEFAULT: '#B8772A', soft: '#F5EAD8' },
+            ochre: { DEFAULT: '#B8772A', soft: '#F5EAD8' },
+            cream: { DEFAULT: '#F4F1EA' },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #0E1B1F; }
+    .mesh-bg {
+      background-color: #FBFBFD;
+      background-image:
+        radial-gradient(at 20% 0%, hsla(180, 70%, 88%, 0.45) 0px, transparent 50%),
+        radial-gradient(at 80% 0%, hsla(189, 100%, 92%, 0.4) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(38, 80%, 90%, 0.35) 0px, transparent 50%),
+        radial-gradient(at 80% 50%, hsla(180, 60%, 92%, 0.3) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(38, 90%, 92%, 0.25) 0px, transparent 50%),
+        radial-gradient(at 80% 100%, hsla(180, 70%, 90%, 0.4) 0px, transparent 50%);
+    }
+    .noise::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .serif-h { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -0.015em; }
+    .serif-it { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; }
+    .mono-tag { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #6B7378; }
+    html { scroll-behavior: smooth; }
+    .prose-mb h2 { font-family:'Inter Tight',system-ui,sans-serif; font-weight:800; font-size:1.6rem; line-height:1.2; margin-top:2.4rem; margin-bottom:0.85rem; letter-spacing:-0.01em; color:#0E1B1F; }
+    .prose-mb h3 { font-weight:700; font-size:1.15rem; margin-top:1.7rem; margin-bottom:0.5rem; color:#0E1B1F; }
+    .prose-mb p { color:#384449; line-height:1.75; margin-bottom:1.1rem; font-size:1.0625rem; }
+    .prose-mb ul, .prose-mb ol { color:#384449; line-height:1.7; margin:0 0 1.2rem 0; padding-left:1.25rem; }
+    .prose-mb li { margin-bottom:0.5rem; }
+    .prose-mb ul li { list-style:disc; }
+    .prose-mb ol li { list-style:decimal; }
+    .prose-mb strong { color:#0E1B1F; font-weight:600; }
+    .prose-mb code { font-family:'JetBrains Mono',ui-monospace,monospace; font-size:0.85em; background:#EDE8DD; padding:0.1em 0.4em; border-radius:0.3rem; color:#083E40; }
+    .prose-mb a { color:#0E5C5E; text-decoration:underline; text-underline-offset:2px; }
+    .prose-mb .callout { background:#E0EBEB; border-left:4px solid #0E5C5E; border-radius:0.6rem; padding:1.1rem 1.3rem; margin:1.6rem 0; }
+    .prose-mb .callout p { margin:0; color:#0E1B1F; font-size:1rem; }
+    .prose-mb table { width:100%; border-collapse:collapse; margin:1.4rem 0; font-size:0.95rem; }
+    .prose-mb th { text-align:left; background:#EDE8DD; padding:0.6rem 0.8rem; font-weight:700; color:#0E1B1F; border-bottom:2px solid #D7D1C2; }
+    .prose-mb td { padding:0.6rem 0.8rem; border-bottom:1px solid #E6E1D4; color:#384449; vertical-align:top; }
+  </style>
+</head><body class="bg-white">
+
+  <!-- Top banner -->
+  <div class="bg-brand text-white text-center text-sm py-2.5 px-4">
+    <span class="font-semibold">★ Backed by Y Combinator</span>
+    <span class="opacity-60 mx-2">·</span>
+    HIPAA-compliant, BAA included
+    <span class="opacity-60 mx-2">·</span>
+    Built for California workers'-comp &amp; med-legal billing
+  </div>
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-30 backdrop-blur bg-white/85 border-b border-ink/5">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/workers-comp" class="flex items-center gap-2">
+        <span class="w-9 h-9 inline-flex items-center justify-center text-ink"><svg width="34" height="34" viewBox="0 0 100 100" style="display:block"><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="square"><path d="M18 78 Q 18 22 50 22"/><path d="M82 78 Q 82 22 50 22"/><line x1="50" y1="40" x2="50" y2="78"/></g><circle cx="50" cy="22" r="4.5" fill="#0E5C5E"/></svg></span>
+        <span class="font-bold text-lg tracking-tight">Mind<span class="text-teal">Bill</span></span>
+        <span class="ml-2 hidden sm:inline text-[11px] font-semibold uppercase tracking-wider text-ink/45 border-l border-ink/15 pl-2">Guides</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-ink/70">
+        <a href="/workers-comp#features" class="hover:text-ink">Features</a>
+        <a href="/workers-comp#compare" class="hover:text-ink">Why switch</a>
+        <a href="/workers-comp#founder" class="hover:text-ink">Why us</a>
+        <a href="/guides" class="text-ink font-semibold">Guides</a>
+      </nav>
+      <a href="https://calendly.com/jimmy-incidentfox/15-min-quick-chat-incidentfox" target="_blank" rel="noopener" class="inline-flex items-center bg-brand text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-brand-dark transition">Book a Demo</a>
+    </div>
+  </header>
+  <!-- HERO -->
+  <section class="mesh-bg noise relative overflow-hidden border-b border-ink/5">
+    <div class="max-w-3xl mx-auto px-6 pt-12 pb-12 md:pt-16 md:pb-14 relative">
+      <a href="/guides" class="mono-tag hover:text-brand transition">← All guides</a>
+      <div class="mono-tag mt-5 mb-3 text-brand">Fee Schedule</div>
+      <h1 class="serif-h text-3xl md:text-5xl leading-[1.08] text-ink">The California Medical-Legal Fee Schedule, <span class='serif-it text-brand'>code by code</span></h1>
+      <p class="mt-5 text-base md:text-lg text-ink/60 leading-relaxed">Med-legal evaluations aren't billed by the hour or by CPT — they're billed under a dedicated schedule with its own codes and its own modifier math. Get the stack wrong and you leave money on every report.</p>
+    </div>
+  </section>
+  <article class="py-14 bg-white">
+    <div class="max-w-3xl mx-auto px-6 prose-mb">
+
+      <p>A medical-legal evaluation in California work-comp — a QME, AME, or IME report ordered to resolve a contested issue — is reimbursed under the <strong>Medical-Legal Fee Schedule (MLFS)</strong>, codified at <code>CCR §9795</code>. It is a world of its own: a small set of <code>ML</code> codes, a record-review code, and a modifier system that behaves unlike anything in ordinary CPT billing.</p>
+
+      <h2>The ML codes</h2>
+      <p>The current schedule collapsed the old library into a handful of flat-fee codes built around evaluation complexity:</p>
+      <table>
+        <thead><tr><th>Code</th><th>What it covers</th></tr></thead>
+        <tbody>
+          <tr><td><code>ML200</code></td><td>Missed appointment (a no-show evaluation that still incurs cost).</td></tr>
+          <tr><td><code>ML201</code></td><td>Follow-up evaluation by the same evaluator.</td></tr>
+          <tr><td><code>ML202</code></td><td>Comprehensive medical-legal evaluation — the workhorse code.</td></tr>
+          <tr><td><code>ML203</code></td><td>Comprehensive evaluation involving extraordinary circumstances.</td></tr>
+          <tr><td><code>ML204</code></td><td>Supplemental medical-legal evaluation.</td></tr>
+          <tr><td><code>ML205</code></td><td>Sub rosa / surveillance-record review.</td></tr>
+          <tr><td><code>MLPRR</code></td><td>Records review beyond the pages included in the base evaluation — billed per page over the threshold.</td></tr>
+        </tbody>
+      </table>
+
+      <h2>The modifier stack — where the money is</h2>
+      <p>This is the part that trips up generalist billers. MLFS modifiers <strong>92 through 98</strong> are not flat add-ons. They are <em>multipliers</em>, and when more than one applies they <strong>compound</strong> rather than add. The base ML code allowance is multiplied by each applicable modifier's factor in sequence.</p>
+      <ul>
+        <li><strong>Modifier 93</strong> — the evaluator is the primary treating physician.</li>
+        <li><strong>Modifier 94</strong> — the evaluator performed the evaluation as an AME or panel QME.</li>
+        <li><strong>Modifier 95</strong> — an interpreter was needed at the evaluation.</li>
+        <li><strong>Modifiers 96 / 97 / 98</strong> — apply to specific evaluation circumstances and timing.</li>
+      </ul>
+      <p>Because the factors multiply, the order and the combination matter to the penny. If your billing software adds modifier percentages instead of compounding them, every modified bill will be under-calculated — and you'll never know unless you check each EOR against an independent calculation.</p>
+
+      <div class="callout"><p><strong>Rule of thumb:</strong> for MLFS, modifiers 92–98 <em>multiply</em>, they do not add. Stacking modifier 94 and modifier 95 on an ML202 yields a compounded allowance, not the sum of two flat bumps. This single rule accounts for a large share of med-legal underpayments.</p></div>
+
+      <h2>MLPRR and the page-count attestation</h2>
+      <p>The base ML202 allowance includes review of a set number of pages. Records beyond that threshold are billed under <code>MLPRR</code> at a per-page rate. MLPRR is one of the most-rejected lines in all of med-legal billing — almost always because the bill is missing the <strong>LC §4062.3 sender declaration</strong>, the signed page-count attestation that documents how many pages were served and reviewed. Without it, the payer rejects the extra pages outright. Attach the declaration to every MLPRR bill and most of those rejections disappear.</p>
+
+      <h2>Why pricing live against §9795 matters</h2>
+      <p>The MLFS allowance for a given report is fully determined by the ML code and the modifier stack. That means it can be calculated before the bill ever goes out — and re-calculated the moment the EOR comes back. When the allowed amount on the EOR is less than the §9795 figure, you have a documented underpayment and a clean basis for a Second Review. The schedule is rigid by design; use that rigidity in your favor.</p>
+
+      <p class="mt-12 text-sm text-ink/45 border-t border-ink/10 pt-6">This guide is general information for California workers'-comp and med-legal billers, not legal advice. Statutes, fee schedules, and forms change — confirm against the current DWC regulations for your dates of service.</p>
+    </div>
+  </article>
+
+  <!-- CTA -->
+  <section class="py-20 bg-paper">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="serif-h text-4xl md:text-5xl text-ink">Stop doing this by hand.</h2>
+      <p class="mt-4 text-lg text-ink/60">MindBill prices every line against the fee schedule, catches underpayments automatically, and pre-fills the appeals. See it on your own bills in 15 minutes.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="https://calendly.com/jimmy-incidentfox/15-min-quick-chat-incidentfox" target="_blank" rel="noopener" class="inline-flex items-center bg-ink text-white font-semibold px-8 py-3 rounded-full hover:bg-brand transition shadow-xl shadow-ink/15">Book a 15-min demo</a>
+        <a href="/guides" class="inline-flex items-center gap-2 bg-white border-2 border-brand text-brand font-semibold px-6 py-2.5 rounded-full hover:bg-brand-soft transition">← Back to all guides</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink text-white/60 py-16">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-10">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="w-9 h-9 inline-flex items-center justify-center text-paper"><svg width="34" height="34" viewBox="0 0 100 100" style="display:block"><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="square"><path d="M18 78 Q 18 22 50 22"/><path d="M82 78 Q 82 22 50 22"/><line x1="50" y1="40" x2="50" y2="78"/></g><circle cx="50" cy="22" r="4.5" fill="#7FD3D1"/></svg></span>
+          <span class="text-white font-bold text-lg">Mind<span class="text-teal-glow">Bill</span></span>
+        </div>
+        <p class="text-sm leading-relaxed">California workers'-comp &amp; med-legal billing software — built for QME / AME / IME practices and billing companies.</p>
+        <div class="mt-6">
+          <div class="text-xs uppercase tracking-wider font-bold text-white/40">Backed by</div>
+          <div class="mt-2 flex items-center gap-2">
+            <span class="w-6 h-6 rounded bg-[#FF6600] text-white grid place-items-center text-xs font-bold">Y</span>
+            <span class="text-white/80 font-semibold">Y Combinator</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="text-white font-bold mb-4">Guides</div>
+        <div class="space-y-3 text-sm">
+          <div><a href="/guides/electronic-billing-clearinghouse-routing" class="hover:text-white">Electronic billing &amp; routing</a></div>
+          <div><a href="/guides/california-mlfs" class="hover:text-white">The MLFS fee schedule</a></div>
+          <div><a href="/guides/how-to-file-a-second-review" class="hover:text-white">Filing a Second Review</a></div>
+          <div><a href="/guides/reading-an-eor" class="hover:text-white">Reading an EOR</a></div>
+        </div>
+      </div>
+      <div>
+        <div class="text-white font-bold mb-4">Contact</div>
+        <div class="space-y-3 text-sm">
+          <div><a href="https://calendly.com/jimmy-incidentfox/15-min-quick-chat-incidentfox" target="_blank" rel="noopener" class="hover:text-white">Book a 15-min demo</a></div>
+          <div><a href="mailto:jimmy@mindbill.org" class="hover:text-white">jimmy@mindbill.org</a></div>
+          <div><a href="tel:+15707687496" class="hover:text-white">Founder: (570) 768-7496</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs text-white/40">
+      <div>© 2026 MindBill · IncidentFox, Inc. All rights reserved.</div>
+      <div class="flex gap-6"><a href="/guides" class="hover:text-white">All guides →</a></div>
+    </div>
+  </footer>
+
+</body>
+</html>
