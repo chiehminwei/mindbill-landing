@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EDI vs clearinghouse: what&#x27;s the difference? — MindBill Help Center</title>
+  <meta name="description" content="How ASC X12 5010 transactions flow through Carisk, Jopari, and Data Dimensions — and what Mindbill handles for you." />
+  <link rel="canonical" href="https://mindbill.org/help/ediff-vs-clearinghouse" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
+  <meta name="theme-color" content="#0E5C5E" />
+  <meta property="og:title" content="EDI vs clearinghouse: what&#x27;s the difference? — MindBill Help Center" />
+  <meta property="og:description" content="How ASC X12 5010 transactions flow through Carisk, Jopari, and Data Dimensions — and what Mindbill handles for you." />
+  <meta property="og:type" content="article" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter Tight"', 'system-ui', 'sans-serif'],
+            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:   { DEFAULT: '#0E1B1F', soft: '#1A2A2F', muted: '#6B7378' },
+            paper: { DEFAULT: '#F4F1EA', soft: '#EDE8DD', line: '#D7D1C2' },
+            brand: { DEFAULT: '#0E5C5E', dark: '#083E40', soft: '#E0EBEB', glow: '#7FD3D1' },
+            teal:  { DEFAULT: '#0E5C5E', dark: '#083E40', soft: '#E0EBEB', glow: '#7FD3D1' },
+            acc:   { DEFAULT: '#0E5C5E', soft: '#E0EBEB' },
+            warn:  { DEFAULT: '#B8772A', soft: '#F5EAD8' },
+            ochre: { DEFAULT: '#B8772A', soft: '#F5EAD8' },
+            cream: { DEFAULT: '#F4F1EA' },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #0E1B1F; }
+    .mesh-bg {
+      background-color: #FBFBFD;
+      background-image:
+        radial-gradient(at 20% 0%, hsla(180, 70%, 88%, 0.45) 0px, transparent 50%),
+        radial-gradient(at 80% 0%, hsla(189, 100%, 92%, 0.4) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(38, 80%, 90%, 0.35) 0px, transparent 50%),
+        radial-gradient(at 80% 50%, hsla(180, 60%, 92%, 0.3) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(38, 90%, 92%, 0.25) 0px, transparent 50%),
+        radial-gradient(at 80% 100%, hsla(180, 70%, 90%, 0.4) 0px, transparent 50%);
+    }
+    .noise::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .serif-h { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -0.015em; }
+    .serif-it { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; }
+    .mono-tag { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #6B7378; }
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- Top banner -->
+  <div class="bg-brand text-white text-center text-sm py-2.5 px-4">
+    <span class="font-semibold">★ Backed by Y Combinator</span>
+    <span class="opacity-60 mx-2">·</span>
+    HIPAA-compliant, BAA included
+    <span class="opacity-60 mx-2">·</span>
+    Built for California workers'-comp &amp; med-legal billing
+  </div>
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-30 backdrop-blur bg-white/85 border-b border-ink/5">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/workers-comp" class="flex items-center gap-2">
+        <span class="w-9 h-9 inline-flex items-center justify-center text-ink"><svg width="34" height="34" viewBox="0 0 100 100" style="display:block"><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="square"><path d="M18 78 Q 18 22 50 22"/><path d="M82 78 Q 82 22 50 22"/><line x1="50" y1="40" x2="50" y2="78"/></g><circle cx="50" cy="22" r="4.5" fill="#0E5C5E"/></svg></span>
+        <span class="font-bold text-lg tracking-tight">Mind<span class="text-teal">Bill</span></span>
+        <span class="ml-2 hidden sm:inline text-[11px] font-semibold uppercase tracking-wider text-ink/45 border-l border-ink/15 pl-2">Help Center</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-ink/70">
+        <a href="/workers-comp#features" class="hover:text-ink">Features</a>
+        <a href="/workers-comp#compare" class="hover:text-ink">Why switch</a>
+        <a href="/guides" class="hover:text-ink">Guides</a>
+        <a href="/help" class="text-ink font-semibold">Help</a>
+      </nav>
+      <a href="https://calendly.com/jimmy-incidentfox/15-min-quick-chat-incidentfox" target="_blank" rel="noopener" class="inline-flex items-center bg-brand text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-brand-dark transition">Book a Demo</a>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB + HERO -->
+  <section class="mesh-bg noise relative overflow-hidden border-b border-ink/5">
+    <div class="max-w-3xl mx-auto px-6 pt-10 pb-12 relative">
+      <nav class="flex items-center gap-2 text-sm text-ink/50 font-medium mb-6">
+        <a href="/help" class="inline-flex items-center gap-1 hover:text-ink">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>
+          Help Center
+        </a>
+        <span class="text-ink/25">/</span>
+        <span class="text-ink/40">EDI</span>
+      </nav>
+      <div class="flex items-center gap-3 flex-wrap mb-4"><span class="inline-flex items-center rounded-full bg-brand-soft text-brand text-xs font-semibold px-3 py-1">EDI</span><span class="inline-flex items-center gap-1 text-xs text-ink/50 font-medium"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5 min read</span><span class="text-xs text-ink/40">Updated 2026-05-28</span></div>
+      <h1 class="serif-h text-4xl md:text-5xl leading-[1.05] text-ink">EDI vs clearinghouse: what&#x27;s the difference?</h1>
+      <p class="mt-5 text-lg text-ink/65 leading-relaxed max-w-2xl">If you&#x27;re new to electronic billing, the terminology runs together — EDI, clearinghouse, 837, 835. They&#x27;re three different things, and knowing which is which explains why Mindbill is set up the way it is. The short version: EDI is the file format, a clearinghouse is the delivery network, and Mindbill is the billing system that creates the files and picks the network. Here&#x27;s each piece, and why multi-clearinghouse routing is the part that actually affects whether you get paid.</p>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="bg-white py-12">
+    <div class="max-w-3xl mx-auto px-6 space-y-5">
+      <div class="border border-ink/10 rounded-2xl p-6 md:p-7 bg-white shadow-sm shadow-ink/5"><h2 class="font-bold text-lg md:text-xl text-ink tracking-tight">EDI is the format (the language)</h2><p class="mt-2 text-[15px] text-ink/70 leading-relaxed">EDI — Electronic Data Interchange — is the standard format for billing data. California workers&#x27; comp uses ASC X12 5010, which defines a specific set of transactions: 837P (the professional claim — your bill), 999 (functional acknowledgment — received OK), 277CA (claim acknowledgment — payer accepted it), 277 (claim status — in process / paid / denied), and 835 (electronic remittance advice — the payment details and adjustment codes). EDI is JUST a format. A correctly-formed 837P says nothing about where the bill should go — it&#x27;s a sealed envelope with no address.</p></div><div class="border border-ink/10 rounded-2xl p-6 md:p-7 bg-white shadow-sm shadow-ink/5"><h2 class="font-bold text-lg md:text-xl text-ink tracking-tight">A clearinghouse is the delivery network (the postal service)</h2><p class="mt-2 text-[15px] text-ink/70 leading-relaxed">A clearinghouse is the middleman that takes your EDI files, knows which payer each one routes to, delivers it, and translates the payer&#x27;s inbound EDI (the acks and remittances) back to you. For California WC the major ones are Carisk Intelligent Clearinghouse (primary), Jopari Solutions (alternate), Data Dimensions (a hybrid mailroom + EDI service for paper-only payers), CorVel Direct (CorVel-administered claims only), and US DOL OWCP (federal employees only). The clearinghouse is what puts the address on the envelope and carries it.</p></div><div class="border border-ink/10 rounded-2xl p-6 md:p-7 bg-white shadow-sm shadow-ink/5"><h2 class="font-bold text-lg md:text-xl text-ink tracking-tight">Mindbill is the billing system (the author)</h2><p class="mt-2 text-[15px] text-ink/70 leading-relaxed">Mindbill is NOT a clearinghouse — it&#x27;s the billing system that generates the X12 5010 EDI and hands it off to the right clearinghouse. It writes the 837P from your bill, picks the clearinghouse per payer automatically, transmits it, and parses every inbound ack and ERA back onto the bill. The practical upshot: on Mindbill you never think about EDI segments or clearinghouse routing. You enter a bill and click Send; the format-generation and network-selection happen underneath.</p></div><div class="border border-ink/10 rounded-2xl p-6 md:p-7 bg-white shadow-sm shadow-ink/5"><h2 class="font-bold text-lg md:text-xl text-ink tracking-tight">Why multi-clearinghouse routing matters</h2><p class="mt-2 text-[15px] text-ink/70 leading-relaxed">No single clearinghouse reaches every California WC payer. Carisk covers roughly 85%, Jopari roughly 75% with heavy overlap, and Data Dimensions handles paper-only payers like some self-insured employers. A vendor wired to one clearinghouse — which most legacy systems are — silently misses 5–15% of payers entirely: those bills either fail or fall back to manual paper. Mindbill auto-routes per payer across all of them using its 1,341-entry payer directory, which is the difference between &#x27;most of my bills go out electronically&#x27; and &#x27;all of them do.&#x27;</p></div><div class="border border-ink/10 rounded-2xl p-6 md:p-7 bg-white shadow-sm shadow-ink/5"><h2 class="font-bold text-lg md:text-xl text-ink tracking-tight">Putting it together: one bill&#x27;s journey</h2><p class="mt-2 text-[15px] text-ink/70 leading-relaxed">Here&#x27;s the whole chain in one bill: you enter the bill in Mindbill (the author) → Mindbill generates the 837P (the EDI format) and selects Carisk or Jopari for that payer (the clearinghouse) → the clearinghouse delivers it and returns a 999, then a 277CA, then a 277, then an 835 → Mindbill parses each back onto the bill and posts the payment. You touched the bill once; the format, the routing, and the round-trip of acknowledgments were all handled for you.</p></div>
+
+      <div class="mt-2 flex items-center justify-between gap-3 flex-wrap pt-6 border-t border-ink/10">
+        <a href="/help" class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand hover:text-brand-dark">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>
+          Back to Help Center
+        </a>
+        <a href="https://calendly.com/jimmy-incidentfox/15-min-quick-chat-incidentfox" target="_blank" rel="noopener" class="inline-flex items-center bg-ink text-white text-sm font-semibold px-6 py-2.5 rounded-full hover:bg-brand transition">Book a demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-paper">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="serif-h text-4xl md:text-5xl text-ink">See it on your own bills.</h2>
+      <p class="mt-4 text-lg text-ink/60">A 15-minute demo on your workflow — bill entry, second review, and reporting. No slides.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="https://calendly.com/jimmy-incidentfox/15-min-quick-chat-incidentfox" target="_blank" rel="noopener" class="inline-flex items-center bg-ink text-white font-semibold px-8 py-3 rounded-full hover:bg-brand transition shadow-xl shadow-ink/15">Book a 15-min demo</a>
+        <a href="/help" class="inline-flex items-center gap-2 bg-white border-2 border-brand text-brand font-semibold px-6 py-2.5 rounded-full hover:bg-brand-soft transition">Browse all help articles</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink text-white/60 py-16">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-10">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="w-9 h-9 inline-flex items-center justify-center text-paper"><svg width="34" height="34" viewBox="0 0 100 100" style="display:block"><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="square"><path d="M18 78 Q 18 22 50 22"/><path d="M82 78 Q 82 22 50 22"/><line x1="50" y1="40" x2="50" y2="78"/></g><circle cx="50" cy="22" r="4.5" fill="#7FD3D1"/></svg></span>
+          <span class="text-white font-bold text-lg">Mind<span class="text-teal-glow">Bill</span></span>
+        </div>
+        <p class="text-sm leading-relaxed">California workers'-comp &amp; med-legal billing software — built for QME / AME / IME practices and billing companies.</p>
+        <div class="mt-6">
+          <div class="text-xs uppercase tracking-wider font-bold text-white/40">Backed by</div>
+          <div class="mt-2 flex items-center gap-2">
+            <span class="w-6 h-6 rounded bg-[#FF6600] text-white grid place-items-center text-xs font-bold">Y</span>
+            <span class="text-white/80 font-semibold">Y Combinator</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="text-white font-bold mb-4">Help Center</div>
+        <div class="space-y-3 text-sm">
+          <div><a href="/help" class="hover:text-white">All help articles</a></div>
+          <div><a href="/workers-comp#features" class="hover:text-white">Features</a></div>
+          <div><a href="/guides" class="hover:text-white">Guides</a></div>
+        </div>
+      </div>
+      <div>
+        <div class="text-white font-bold mb-4">Contact</div>
+        <div class="space-y-3 text-sm">
+          <div><a href="https://calendly.com/jimmy-incidentfox/15-min-quick-chat-incidentfox" target="_blank" rel="noopener" class="hover:text-white">Book a 15-min demo</a></div>
+          <div><a href="mailto:jimmy@mindbill.org" class="hover:text-white">jimmy@mindbill.org</a></div>
+          <div><a href="tel:+15707687496" class="hover:text-white">Founder: (570) 768-7496</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs text-white/40">
+      <div>© 2026 MindBill · IncidentFox, Inc. All rights reserved.</div>
+      <div class="flex gap-6"><a href="/workers-comp" class="hover:text-white">MindBill for Workers' Comp →</a></div>
+    </div>
+  </footer>
+
+</body>
+</html>
