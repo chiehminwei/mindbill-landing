@@ -1,0 +1,124 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0E1B1F;--teal:#0E5C5E;--glow:#7FD3D1;--cream:#F4F1EA;--gold:#C08A2D;--line:#26383b;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter Tight',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .scene{width:1920px;height:1080px;position:relative;overflow:hidden;display:none;
+    flex-direction:column;justify-content:center;padding:120px 140px}
+  .scene.show{display:flex}
+  .dark{background:var(--ink);color:#fff}
+  .light{background:var(--cream);color:var(--ink)}
+  .serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-.01em}
+  .mono{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.18em;font-size:22px}
+  .teal{color:var(--teal)} .glow{color:var(--glow)}
+  .logo{position:absolute;top:64px;left:140px;display:flex;align-items:center;gap:14px;font-weight:800;font-size:34px;letter-spacing:-.01em}
+  .mark svg{display:block}
+  .shot{border-radius:16px;overflow:hidden;box-shadow:0 40px 90px -40px rgba(0,0,0,.6);border:1px solid rgba(0,0,0,.08)}
+  .shot img{display:block;width:100%}
+  .pill{display:inline-flex;align-items:center;gap:14px;background:rgba(255,255,255,.06);border:1px solid var(--line);
+    border-radius:999px;padding:18px 30px;font-size:30px;font-weight:600}
+  .node{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:18px;padding:26px 30px;font-weight:700;font-size:30px;text-align:center}
+  .arrow{color:var(--glow);font-size:40px;font-weight:700}
+</style></head><body>
+
+<!-- helper logo markup repeated per scene -->
+
+<!-- S1 HOOK -->
+<section class="scene dark" data-n="1" style="align-items:center;text-align:center">
+  <div class="logo"><span class="mark"><svg width="40" height="40" viewBox="0 0 100 100"><g fill="none" stroke="#7FD3D1" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#C08A2D"/></svg></span>mindbill</div>
+  <div class="serif" style="font-size:108px;line-height:1.05;max-width:24ch">Workers' comp billing shouldn't be <span class="glow" style="font-style:italic">this hard.</span></div>
+</section>
+
+<!-- S2 PROBLEM -->
+<section class="scene dark" data-n="2">
+  <div class="logo"><span class="mark"><svg width="40" height="40" viewBox="0 0 100 100"><g fill="none" stroke="#7FD3D1" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#C08A2D"/></svg></span>mindbill</div>
+  <div class="mono glow" style="margin-bottom:34px">The old way</div>
+  <div style="display:flex;flex-direction:column;gap:34px">
+    <div style="display:flex;align-items:center;gap:30px;font-size:62px;font-weight:700"><span style="color:#E0795A;font-size:54px">✕</span> Bills sit for weeks.</div>
+    <div style="display:flex;align-items:center;gap:30px;font-size:62px;font-weight:700"><span style="color:#E0795A;font-size:54px">✕</span> Underpayments slip through.</div>
+    <div style="display:flex;align-items:center;gap:30px;font-size:62px;font-weight:700"><span style="color:#E0795A;font-size:54px">✕</span> Your team drowns in paperwork.</div>
+  </div>
+</section>
+
+<!-- S3 SOLUTION -->
+<section class="scene light" data-n="3" style="justify-content:flex-start;padding-top:150px">
+  <div class="logo" style="color:var(--ink)"><span class="mark"><svg width="40" height="40" viewBox="0 0 100 100"><g fill="none" stroke="#0E1B1F" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#0E5C5E"/></svg></span>mindbill</div>
+  <div class="serif" style="font-size:78px;line-height:1.06;max-width:24ch">The modern billing platform for California <span class="teal">workers' comp &amp; med-legal.</span></div>
+  <div class="shot" style="margin-top:54px;width:1180px;align-self:center"><img src="../img/shot-tasks.png"></div>
+</section>
+
+<!-- S4 E-BILLING -->
+<section class="scene dark" data-n="4" style="align-items:center;text-align:center">
+  <div class="logo"><span class="mark"><svg width="40" height="40" viewBox="0 0 100 100"><g fill="none" stroke="#7FD3D1" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#C08A2D"/></svg></span>mindbill</div>
+  <div class="serif" style="font-size:96px;line-height:1.04">Get paid in as little as <span class="glow">9 days.</span></div>
+  <div style="display:flex;align-items:center;gap:28px;margin-top:64px">
+    <div class="node">Your&nbsp;bill</div><span class="arrow">→</span>
+    <div class="node glow" style="border-color:var(--glow)">Clean&nbsp;837P</div><span class="arrow">→</span>
+    <div class="node" style="max-width:520px;line-height:1.3;font-size:26px">Carisk · Jopari ·<br>Data Dimensions · CorVel</div><span class="arrow">→</span>
+    <div class="node" style="background:var(--teal);border-color:var(--teal)">Paid</div>
+  </div>
+  <div style="margin-top:46px;font-size:26px;color:#9fb4b2;max-width:60ch">Electronic billing to every California clearinghouse — fax &amp; mail fallback for the rest.</div>
+</section>
+
+<!-- S5 RECOVERY -->
+<section class="scene light" data-n="5" style="justify-content:flex-start;padding-top:130px">
+  <div class="logo" style="color:var(--ink)"><span class="mark"><svg width="40" height="40" viewBox="0 0 100 100"><g fill="none" stroke="#0E1B1F" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#0E5C5E"/></svg></span>mindbill</div>
+  <div class="serif" style="font-size:72px;line-height:1.05;max-width:30ch">Underpayments caught &amp; appealed — <span class="teal">automatically.</span></div>
+  <div class="shot" style="margin-top:44px;width:1300px;align-self:center"><img src="../img/shot-secondreview.png"></div>
+</section>
+
+<!-- S6 REPORTING -->
+<section class="scene light" data-n="6" style="justify-content:flex-start;padding-top:130px">
+  <div class="logo" style="color:var(--ink)"><span class="mark"><svg width="40" height="40" viewBox="0 0 100 100"><g fill="none" stroke="#0E1B1F" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#0E5C5E"/></svg></span>mindbill</div>
+  <div class="serif" style="font-size:74px;line-height:1.05">Every bill. Every dollar. <span class="teal">Real&nbsp;time.</span></div>
+  <div class="shot" style="margin-top:44px;width:1280px;align-self:center"><img src="../img/shot-reports.png"></div>
+</section>
+
+<!-- S7 FOUNDER -->
+<section class="scene dark" data-n="7">
+  <div class="logo"><span class="mark"><svg width="40" height="40" viewBox="0 0 100 100"><g fill="none" stroke="#7FD3D1" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#C08A2D"/></svg></span>mindbill</div>
+  <div style="display:flex;align-items:center;gap:70px">
+    <img src="jimmy.jpeg" style="width:300px;height:300px;border-radius:50%;object-fit:cover;border:6px solid var(--glow);flex:none">
+    <div>
+      <div class="serif" style="font-size:64px;line-height:1.1;max-width:20ch">A founder who's all-in on your practice.</div>
+      <div style="margin-top:30px;display:flex;flex-direction:column;gap:16px;font-size:32px;color:#c9d2cf">
+        <div><span class="glow">●</span>&nbsp; Ships custom features in days</div>
+        <div><span class="glow">●</span>&nbsp; Onboards you on-site, hands-on</div>
+        <div><span class="glow">●</span>&nbsp; Direct founder support, 24/7</div>
+      </div>
+      <div style="margin-top:36px;display:flex;align-items:center;gap:40px;opacity:.92">
+        <img src="logo-roblox.svg" style="height:34px"><img src="logo-meta.svg" style="height:28px"><img src="logo-ycombinator.svg" style="height:36px"><span style="font-weight:700;font-size:26px">Backed by Y&nbsp;Combinator</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S8 CTA -->
+<section class="scene dark" data-n="8" style="align-items:center;text-align:center">
+  <div class="logo" style="position:static;font-size:64px;margin-bottom:40px"><span class="mark"><svg width="72" height="72" viewBox="0 0 100 100"><g fill="none" stroke="#7FD3D1" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#C08A2D"/></svg></span>mindbill</div>
+  <div class="serif" style="font-size:84px;line-height:1.05;max-width:22ch">Workers' comp billing,<br><span class="glow" style="font-style:italic">finally done right.</span></div>
+  <div style="margin-top:50px;font-size:40px;font-weight:700;color:#fff;border:2px solid var(--glow);border-radius:999px;padding:20px 48px">mindbill.org/workers-comp</div>
+</section>
+
+<!-- S9 OPENER (data) -->
+<section class="scene dark" data-n="9" style="align-items:center;text-align:center">
+  <div class="logo"><span class="mark"><svg width="40" height="40" viewBox="0 0 100 100"><g fill="none" stroke="#7FD3D1" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#C08A2D"/></svg></span>mindbill</div>
+  <div class="mono glow" style="margin-bottom:20px">California workers' comp</div>
+  <div class="serif" style="font-size:70px;line-height:1.05">Electronic bills, paid in</div>
+  <div class="serif glow" style="font-size:210px;line-height:1;margin:6px 0 14px">9 days.</div>
+  <div style="font-size:40px;color:#9fb4b2">Paper bills take weeks.</div>
+</section>
+
+<!-- S10 INTRO -->
+<section class="scene light" data-n="10" style="align-items:center;text-align:center">
+  <div class="logo" style="color:var(--ink)"><span class="mark"><svg width="40" height="40" viewBox="0 0 100 100"><g fill="none" stroke="#0E1B1F" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#0E5C5E"/></svg></span>mindbill</div>
+  <div class="serif" style="font-size:90px;line-height:1.07;max-width:22ch;margin-top:24px">The modern platform that gets every bill out clean — <span class="teal">and paid fast.</span></div>
+</section>
+
+<script>
+  var n=new URLSearchParams(location.search).get('only');
+  var sc=document.querySelectorAll('.scene');
+  sc.forEach(function(s){ if(!n || s.dataset.n===n) s.classList.add('show'); });
+</script>
+</body></html>

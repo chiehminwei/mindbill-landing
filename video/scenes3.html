@@ -1,0 +1,147 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0E1B1F;--teal:#0E5C5E;--glow:#7FD3D1;--cream:#F4F1EA;--gold:#C08A2D;--line:#26383b;--soft:#E0EBEB;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter Tight',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .scene{width:1920px;height:1080px;position:relative;overflow:hidden;display:none}
+  .scene.show{display:block}
+  .dark{background:linear-gradient(rgba(14,27,31,.52),rgba(14,27,31,.46)),url('ai-bg-dark.png');background-size:cover;background-position:center;color:#fff}
+  .light{background:radial-gradient(at 85% 8%,rgba(127,211,209,.20),transparent 48%),radial-gradient(at 6% 96%,rgba(192,138,45,.12),transparent 46%),#F4F1EA;color:var(--ink)}
+  .serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-.01em}
+  .mono{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.2em;font-size:22px}
+  .teal{color:var(--teal)} .glow{color:var(--glow)}
+  /* chrome */
+  .hdr{position:absolute;top:54px;left:90px;display:flex;align-items:center;gap:13px;font-weight:800;font-size:32px;letter-spacing:-.01em;z-index:5}
+  .dark .hdr{color:#fff} .light .hdr{color:var(--ink)}
+  .foot{position:absolute;bottom:48px;right:90px;font-size:20px;letter-spacing:.04em;opacity:.5}
+  .foot.l{left:90px;right:auto}
+  .pad{position:absolute;inset:0;padding:150px 130px 120px;display:flex;flex-direction:column;justify-content:center}
+  .center{align-items:center;text-align:center}
+  /* icon chip */
+  .ico{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center}
+  .node{display:flex;flex-direction:column;align-items:center;gap:14px}
+  .nodebox{width:200px;height:150px;border-radius:20px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+  .arrow{color:var(--glow);font-size:46px}
+  /* browser window */
+  .win{position:absolute;left:260px;top:164px;width:1400px;border-radius:18px;overflow:hidden;border:1px solid rgba(14,27,31,.12);box-shadow:0 50px 100px -40px rgba(14,27,31,.5)}
+  .titlebar{height:52px;background:#fff;border-bottom:1px solid #ECECEC;display:flex;align-items:center;padding:0 22px;gap:9px}
+  .dot{width:13px;height:13px;border-radius:50%}
+  .winlabel{margin-left:14px;font-size:18px;color:#7a8482;font-weight:600}
+  .content{width:1400px;height:618px;background:#fff}
+  .cap{position:absolute;left:0;right:0;bottom:118px;text-align:center;font-size:46px;font-weight:700}
+  .barwrap{display:flex;align-items:center;gap:26px;font-size:30px;font-weight:600}
+  .bar{height:26px;border-radius:13px}
+</style></head><body>
+
+<!-- 1 OPENER (data comparison) -->
+<section class="scene dark" data-n="1">
+  <div class="hdr"><svg width="38" height="38" viewBox="0 0 100 100"><g fill="none" stroke="#7FD3D1" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#C08A2D"/></svg>mindbill</div>
+  <div class="pad">
+    <div class="mono glow">California workers' comp</div>
+    <div class="serif" style="font-size:120px;line-height:1.02;margin:18px 0 60px">Get paid in <span class="glow">9 days.</span></div>
+    <div style="display:flex;flex-direction:column;gap:30px;max-width:1180px">
+      <div class="barwrap"><div style="width:340px;color:#cdd6d4">Electronic · MindBill</div><div class="bar" style="width:230px;background:linear-gradient(90deg,#0E5C5E,#7FD3D1)"></div><div class="glow">~9 days</div></div>
+      <div class="barwrap"><div style="width:340px;color:#8aa09e">Paper bills</div><div class="bar" style="width:880px;background:#33464a"></div><div style="color:#8aa09e">weeks</div></div>
+    </div>
+  </div>
+  <div class="foot">mindbill.org</div>
+</section>
+
+<!-- 2 INTRO (tagline + journey) -->
+<section class="scene light" data-n="2" style="background:linear-gradient(rgba(244,241,234,.62),rgba(244,241,234,.58)),url('ai-bg-light.png');background-size:cover;background-position:center">
+  <div class="hdr"><svg width="38" height="38" viewBox="0 0 100 100"><g fill="none" stroke="#0E1B1F" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#0E5C5E"/></svg>mindbill</div>
+  <div class="pad center">
+    <div class="serif" style="font-size:84px;line-height:1.06;max-width:24ch">The modern platform that gets every bill out clean — <span class="teal">and paid fast.</span></div>
+    <div style="display:flex;gap:30px;margin-top:64px">
+      <div class="node"><div class="nodebox" style="background:#fff;border-color:#D8D2C4;width:230px"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#0E5C5E" stroke-width="1.7"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div><div style="font-weight:700;font-size:26px">Create</div></div>
+      <div class="node"><div class="nodebox" style="background:#fff;border-color:#D8D2C4;width:230px"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#0E5C5E" stroke-width="1.7"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8.5 10.5l7-3M8.5 13.5l7 3"/></svg></div><div style="font-weight:700;font-size:26px">Submit</div></div>
+      <div class="node"><div class="nodebox" style="background:#fff;border-color:#D8D2C4;width:230px"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#0E5C5E" stroke-width="1.7"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div><div style="font-weight:700;font-size:26px">Recover</div></div>
+      <div class="node"><div class="nodebox" style="background:#fff;border-color:#D8D2C4;width:230px"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#0E5C5E" stroke-width="1.7"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><div style="font-weight:700;font-size:26px">Report</div></div>
+    </div>
+  </div>
+  <div class="foot">mindbill.org</div>
+</section>
+
+<!-- 3 GIF: bill entry -->
+<section class="scene light" data-n="3">
+  <div class="hdr"><svg width="38" height="38" viewBox="0 0 100 100"><g fill="none" stroke="#0E1B1F" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#0E5C5E"/></svg>mindbill</div>
+  <div class="win"><div class="titlebar"><span class="dot" style="background:#FF5F57"></span><span class="dot" style="background:#FEBC2E"></span><span class="dot" style="background:#28C840"></span><span class="winlabel">MindBill — New bill</span></div><div class="content"></div></div>
+  <div class="cap">Build a compliant bill in seconds</div>
+  <div class="foot">mindbill.org</div>
+</section>
+
+<!-- 4 ROUTING (flow) -->
+<section class="scene dark" data-n="4">
+  <div class="hdr"><svg width="38" height="38" viewBox="0 0 100 100"><g fill="none" stroke="#7FD3D1" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#C08A2D"/></svg>mindbill</div>
+  <div class="pad center">
+    <div class="serif" style="font-size:74px;margin-bottom:64px">Submitted electronically, <span class="glow">end to end.</span></div>
+    <div style="display:flex;align-items:center;gap:30px">
+      <div class="node"><div class="nodebox"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#7FD3D1" stroke-width="1.6"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div><div style="font-weight:700;font-size:24px">Clean 837P</div></div>
+      <span class="arrow">→</span>
+      <div class="node"><div class="nodebox"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#7FD3D1" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div><div style="font-weight:700;font-size:24px">Scrubbed</div></div>
+      <span class="arrow">→</span>
+      <div class="node"><div class="nodebox" style="width:430px"><div style="font-weight:700;font-size:24px;line-height:1.35;color:#dfe7e5">Carisk · Jopari<br>Data Dimensions · CorVel</div></div><div style="font-weight:700;font-size:24px;color:#9fb4b2">Clearinghouses</div></div>
+      <span class="arrow">→</span>
+      <div class="node"><div class="nodebox" style="background:rgba(14,92,94,.5);border-color:#0E5C5E"><svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#7FD3D1" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><div style="font-weight:700;font-size:24px;color:var(--glow)">Paid</div></div>
+    </div>
+  </div>
+  <div class="foot">mindbill.org</div>
+</section>
+
+<!-- 5 GIF: recovery -->
+<section class="scene light" data-n="5">
+  <div class="hdr"><svg width="38" height="38" viewBox="0 0 100 100"><g fill="none" stroke="#0E1B1F" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#0E5C5E"/></svg>mindbill</div>
+  <div class="win"><div class="titlebar"><span class="dot" style="background:#FF5F57"></span><span class="dot" style="background:#FEBC2E"></span><span class="dot" style="background:#28C840"></span><span class="winlabel">MindBill — Second Review</span></div><div class="content"></div></div>
+  <div class="cap">Underpayments caught &amp; appealed — automatically</div>
+  <div class="foot">mindbill.org</div>
+</section>
+
+<!-- 6 GIF: fax -->
+<section class="scene light" data-n="6">
+  <div class="hdr"><svg width="38" height="38" viewBox="0 0 100 100"><g fill="none" stroke="#0E1B1F" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#0E5C5E"/></svg>mindbill</div>
+  <div class="win"><div class="titlebar"><span class="dot" style="background:#FF5F57"></span><span class="dot" style="background:#FEBC2E"></span><span class="dot" style="background:#28C840"></span><span class="winlabel">MindBill — Inbound fax match</span></div><div class="content"></div></div>
+  <div class="cap">Payer faxes matched to the right bill</div>
+  <div class="foot">mindbill.org</div>
+</section>
+
+<!-- 7 GIF: reporting -->
+<section class="scene light" data-n="7">
+  <div class="hdr"><svg width="38" height="38" viewBox="0 0 100 100"><g fill="none" stroke="#0E1B1F" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#0E5C5E"/></svg>mindbill</div>
+  <div class="win"><div class="titlebar"><span class="dot" style="background:#FF5F57"></span><span class="dot" style="background:#FEBC2E"></span><span class="dot" style="background:#28C840"></span><span class="winlabel">MindBill — Reporting</span></div><div class="content"></div></div>
+  <div class="cap">Every bill, every dollar — in real time</div>
+  <div class="foot">mindbill.org</div>
+</section>
+
+<!-- 8 FOUNDER -->
+<section class="scene dark" data-n="8">
+  <div class="hdr"><svg width="38" height="38" viewBox="0 0 100 100"><g fill="none" stroke="#7FD3D1" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#C08A2D"/></svg>mindbill</div>
+  <div class="pad" style="flex-direction:row;align-items:center;gap:80px">
+    <img src="jimmy.jpeg" style="width:320px;height:320px;border-radius:50%;object-fit:cover;border:6px solid var(--glow);flex:none">
+    <div>
+      <div class="serif" style="font-size:68px;line-height:1.08;max-width:18ch">A founder who's all-in on your practice.</div>
+      <div style="margin-top:30px;display:flex;flex-direction:column;gap:16px;font-size:32px;color:#c9d2cf">
+        <div><span class="glow">●</span>&nbsp; Ships custom features in days</div>
+        <div><span class="glow">●</span>&nbsp; Onboards you on-site, hands-on</div>
+        <div><span class="glow">●</span>&nbsp; Direct founder support, 24/7</div>
+      </div>
+      <div style="margin-top:38px;display:flex;align-items:center;gap:42px;opacity:.92"><img src="logo-roblox.svg" style="height:36px"><img src="logo-meta.svg" style="height:28px"><img src="logo-ycombinator.svg" style="height:38px"><span style="font-weight:700;font-size:26px">Backed by Y&nbsp;Combinator</span></div>
+    </div>
+  </div>
+  <div class="foot">mindbill.org</div>
+</section>
+
+<!-- 9 CTA -->
+<section class="scene dark" data-n="9">
+  <div class="pad center">
+    <div style="display:flex;align-items:center;gap:18px;font-weight:800;font-size:64px;margin-bottom:36px"><svg width="72" height="72" viewBox="0 0 100 100"><g fill="none" stroke="#7FD3D1" stroke-width="11" stroke-linecap="square"><path d="M18 80 Q18 24 50 24"/><path d="M82 80 Q82 24 50 24"/><line x1="50" y1="42" x2="50" y2="80"/></g><circle cx="50" cy="24" r="7" fill="#C08A2D"/></svg>mindbill</div>
+    <div class="serif" style="font-size:86px;line-height:1.05;max-width:22ch">Workers' comp billing,<br><span class="glow">finally done right.</span></div>
+    <div style="margin-top:52px;font-size:40px;font-weight:700;border:2px solid var(--glow);border-radius:999px;padding:20px 50px">mindbill.org</div>
+  </div>
+</section>
+
+<script>
+  var n=new URLSearchParams(location.search).get('only');
+  document.querySelectorAll('.scene').forEach(function(s){ if(!n||s.dataset.n===n) s.classList.add('show'); });
+</script>
+</body></html>
