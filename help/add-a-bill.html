@@ -60,6 +60,23 @@
     .mono-tag { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #6B7378; }
     html { scroll-behavior: smooth; }
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "How to add a bill",
+  "description": "How to add a compliant California workers'-comp bill in MindBill: pick a patient and injury, apply a med-legal template, and build service lines that price live against the Medical-Legal Fee Schedule with a live CCI/MUE scrub.",
+  "thumbnailUrl": "https://mindbill-tutorials-103002841599.s3.us-west-2.amazonaws.com/add-a-bill-poster.jpg",
+  "uploadDate": "2026-06-15",
+  "contentUrl": "https://mindbill-tutorials-103002841599.s3.us-west-2.amazonaws.com/add-a-bill.mp4",
+  "duration": "PT1M6S",
+  "embedUrl": "https://mindbill.org/help/add-a-bill"
+}
+  </script>
+  <meta property="og:image" content="https://mindbill-tutorials-103002841599.s3.us-west-2.amazonaws.com/add-a-bill-poster.jpg" />
+  <meta property="og:video" content="https://mindbill-tutorials-103002841599.s3.us-west-2.amazonaws.com/add-a-bill.mp4" />
+  <meta property="og:video:type" content="video/mp4" />
+  <meta property="og:video:secure_url" content="https://mindbill-tutorials-103002841599.s3.us-west-2.amazonaws.com/add-a-bill.mp4" />
 </head>
 <body class="bg-white">
 
@@ -111,6 +128,25 @@
   <!-- STEPS -->
   <section class="bg-white py-12">
     <div class="max-w-3xl mx-auto px-6 space-y-5">
+      <figure class="border border-ink/10 rounded-2xl p-3 md:p-3.5 bg-white shadow-sm shadow-ink/5">
+        <div class="rounded-xl overflow-hidden bg-ink/95 shadow-sm">
+          <video controls preload="metadata" playsinline poster="https://mindbill-tutorials-103002841599.s3.us-west-2.amazonaws.com/add-a-bill-poster.jpg" class="w-full block aspect-video bg-black">
+            <source src="https://mindbill-tutorials-103002841599.s3.us-west-2.amazonaws.com/add-a-bill.mp4" type="video/mp4" />
+            Your browser doesn&#x27;t support embedded video. <a href="https://mindbill-tutorials-103002841599.s3.us-west-2.amazonaws.com/add-a-bill.mp4" class="underline">Download the video</a>.
+          </video>
+        </div>
+        <figcaption class="mt-3 px-1.5 flex items-center justify-between gap-3 flex-wrap">
+          <span class="inline-flex items-center gap-2 text-sm font-semibold text-ink">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Watch: How to add a bill
+          </span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-medium text-ink/50">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            1:06 · narrated walkthrough
+          </span>
+        </figcaption>
+      </figure>
+
       <div class="border border-ink/10 rounded-2xl p-6 md:p-7 bg-white shadow-sm shadow-ink/5"><h2 class="font-bold text-lg md:text-xl text-ink tracking-tight">The full lifecycle at a glance</h2><p class="mt-2 text-[15px] text-ink/70 leading-relaxed">Add Bill is a guided four-step flow: choose patient → choose injury → enter bill details → review the created bill. Each step carries forward the data from the one before it, so demographics, claim facts, and diagnosis codes populate automatically rather than being re-keyed. This animation shows the whole flow end-to-end; the steps below break down each screen in turn.</p><div class="mt-4 rounded-xl border border-ink/10 overflow-hidden bg-paper-soft/40 shadow-sm"><img src="/help-img/addbill-lifecycle.gif" alt="The full lifecycle at a glance" loading="lazy" class="w-full block" /></div></div><div class="border border-ink/10 rounded-2xl p-6 md:p-7 bg-white shadow-sm shadow-ink/5"><h2 class="font-bold text-lg md:text-xl text-ink tracking-tight">Step 1 — Choose the patient</h2><p class="mt-2 text-[15px] text-ink/70 leading-relaxed">From Add Bill (/bills/new), the Choose patient directory lists every injured worker with name, patient ID, and date of birth. Search by name or ID and click the worker&#x27;s card to select them. Mindbill scrubs demographics automatically, so you never re-key an address or DOB. Don&#x27;t see the patient? Click New Patient to add them inline without leaving the flow.</p><div class="mt-4 rounded-xl border border-ink/10 overflow-hidden bg-paper-soft/40 shadow-sm"><img src="/help-img/addpatient-step1.png" alt="Step 1 — Choose the patient" loading="lazy" class="w-full block" /></div></div><div class="border border-ink/10 rounded-2xl p-6 md:p-7 bg-white shadow-sm shadow-ink/5"><h2 class="font-bold text-lg md:text-xl text-ink tracking-tight">Step 2 — Choose the injury</h2><p class="mt-2 text-[15px] text-ink/70 leading-relaxed">Every bill is filed under one injury — one date of injury, one claim number, one claims administrator. Each injury card shows the description, employer, DOI, and claim number (e.g. Low Back · Bob&#x27;s Tires · DOI 2026-01-01 · WC145-414877). Pick the relevant injury for this patient, or click New Injury if this is a fresh claim. The ICD-10 diagnosis codes attached to the injury flow automatically onto the bill.</p><div class="mt-4 rounded-xl border border-ink/10 overflow-hidden bg-paper-soft/40 shadow-sm"><img src="/help-img/addinjury-step1.png" alt="Step 2 — Choose the injury" loading="lazy" class="w-full block" /></div></div><div class="border border-ink/10 rounded-2xl p-6 md:p-7 bg-white shadow-sm shadow-ink/5"><h2 class="font-bold text-lg md:text-xl text-ink tracking-tight">Step 3 — Enter bill details</h2><p class="mt-2 text-[15px] text-ink/70 leading-relaxed">The bill entry form opens with the rendering provider and a one-click template row. Apply a template — QME Comprehensive (ML201 + MLPRR), AME Comprehensive (ML201 + 94 + MLPRR), Psych QME (ML201 + 95 + 96 + MLPRR), Deposition Testimony (ML204), or Missed QME (ML200) — to pre-fill the right ML codes and modifiers in one click. Each procedure line prices live against the California Medical-Legal Fee Schedule in the Allowed column (ML201 = $2,015.00). The Mindbill Scrub note at the bottom confirms the bill will be checked for missing demographics, claim number, modifier consistency, and CCI/MUE edits before send. Click Create Bill when the line items are right.</p><div class="mt-4 rounded-xl border border-ink/10 overflow-hidden bg-paper-soft/40 shadow-sm"><img src="/help-img/addbill-step3.png" alt="Step 3 — Enter bill details" loading="lazy" class="w-full block" /></div></div><div class="border border-ink/10 rounded-2xl p-6 md:p-7 bg-white shadow-sm shadow-ink/5"><h2 class="font-bold text-lg md:text-xl text-ink tracking-tight">Step 4 — Review the created bill</h2><p class="mt-2 text-[15px] text-ink/70 leading-relaxed">Create Bill opens the bill detail page. Across the top is the payment cycle (Incomplete → Sent → Accepted → Processed → Closed) with the current status badged. Below it sit the bill, patient, and injury panels, the diagnosis and procedure codes, the totals against the fee schedule, and the configurable Box 19 phrase library. The bill starts in Incomplete — the next step is to clear the Mindbill Scrub and send it. From here you can also Edit, print the CMS-1500, view the EDI, copy, or delete the bill.</p><div class="mt-4 rounded-xl border border-ink/10 overflow-hidden bg-paper-soft/40 shadow-sm"><img src="/help-img/addbill-step4.png" alt="Step 4 — Review the created bill" loading="lazy" class="w-full block" /></div></div>
 
       <div class="mt-2 flex items-center justify-between gap-3 flex-wrap pt-6 border-t border-ink/10">

@@ -60,6 +60,23 @@
     .mono-tag { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #6B7378; }
     html { scroll-behavior: smooth; }
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Using the claims-administrator directory",
+  "description": "How to use MindBill's claims-administrator directory: search 927 California WC payers by name, alias, or payer ID; read a payer's profile; or add and verify a custom claims administrator.",
+  "thumbnailUrl": "https://mindbill-tutorials-103002841599.s3.us-west-2.amazonaws.com/claims-administrator-poster.jpg",
+  "uploadDate": "2026-06-15",
+  "contentUrl": "https://mindbill-tutorials-103002841599.s3.us-west-2.amazonaws.com/claims-administrator.mp4",
+  "duration": "PT1M27S",
+  "embedUrl": "https://mindbill.org/help/payer-directory"
+}
+  </script>
+  <meta property="og:image" content="https://mindbill-tutorials-103002841599.s3.us-west-2.amazonaws.com/claims-administrator-poster.jpg" />
+  <meta property="og:video" content="https://mindbill-tutorials-103002841599.s3.us-west-2.amazonaws.com/claims-administrator.mp4" />
+  <meta property="og:video:type" content="video/mp4" />
+  <meta property="og:video:secure_url" content="https://mindbill-tutorials-103002841599.s3.us-west-2.amazonaws.com/claims-administrator.mp4" />
 </head>
 <body class="bg-white">
 
@@ -111,6 +128,25 @@
   <!-- STEPS -->
   <section class="bg-white py-12">
     <div class="max-w-3xl mx-auto px-6 space-y-5">
+      <figure class="border border-ink/10 rounded-2xl p-3 md:p-3.5 bg-white shadow-sm shadow-ink/5">
+        <div class="rounded-xl overflow-hidden bg-ink/95 shadow-sm">
+          <video controls preload="metadata" playsinline poster="https://mindbill-tutorials-103002841599.s3.us-west-2.amazonaws.com/claims-administrator-poster.jpg" class="w-full block aspect-video bg-black">
+            <source src="https://mindbill-tutorials-103002841599.s3.us-west-2.amazonaws.com/claims-administrator.mp4" type="video/mp4" />
+            Your browser doesn&#x27;t support embedded video. <a href="https://mindbill-tutorials-103002841599.s3.us-west-2.amazonaws.com/claims-administrator.mp4" class="underline">Download the video</a>.
+          </video>
+        </div>
+        <figcaption class="mt-3 px-1.5 flex items-center justify-between gap-3 flex-wrap">
+          <span class="inline-flex items-center gap-2 text-sm font-semibold text-ink">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Watch: Using the claims-administrator directory
+          </span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-medium text-ink/50">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            1:27 · narrated walkthrough
+          </span>
+        </figcaption>
+      </figure>
+
       <div class="border border-ink/10 rounded-2xl p-6 md:p-7 bg-white shadow-sm shadow-ink/5"><h2 class="font-bold text-lg md:text-xl text-ink tracking-tight">Step 1 — Read the directory and its scorecards</h2><p class="mt-2 text-[15px] text-ink/70 leading-relaxed">Open the payer directory (/integrations/payer-list). The header tallies the whole network — total payers (1,341), the share that accept e-bill (94%), average days-to-pay (14.7), average e-bill percentage, and total bills tracked over 365 days. The table lists each claims administrator with its also-known-as names, category, payer ID, e-bill %, med-legal days-to-pay, and an EDI grade (A–F). The directory is refreshed monthly from the Carisk, Jopari, and Data Dimensions companion guides plus state DWC filings.</p><div class="mt-4 rounded-xl border border-ink/10 overflow-hidden bg-paper-soft/40 shadow-sm"><img src="/help-img/payer-directory-step1.png" alt="Step 1 — Read the directory and its scorecards" loading="lazy" class="w-full block" /></div></div><div class="border border-ink/10 rounded-2xl p-6 md:p-7 bg-white shadow-sm shadow-ink/5"><h2 class="font-bold text-lg md:text-xl text-ink tracking-tight">Step 2 — Search by name, AKA, or payer ID</h2><p class="mt-2 text-[15px] text-ink/70 leading-relaxed">Type any part of a legal name, an also-known-as alias, or a payer ID into the search box and the list filters instantly — searching &#x27;Sedgwick&#x27; surfaces Sedgwick CMS (payer ID SDGCM, 96% e-bill, 8.4-day med-legal turnaround, grade B). Matching on AKA and payer ID matters because the same carrier appears under different names across EOR letterheads; the directory resolves them to one routable entry so you never misroute a bill on a name variant.</p><div class="mt-4 rounded-xl border border-ink/10 overflow-hidden bg-paper-soft/40 shadow-sm"><img src="/help-img/payer-directory-step2.png" alt="Step 2 — Search by name, AKA, or payer ID" loading="lazy" class="w-full block" /></div></div><div class="border border-ink/10 rounded-2xl p-6 md:p-7 bg-white shadow-sm shadow-ink/5"><h2 class="font-bold text-lg md:text-xl text-ink tracking-tight">Step 3 — Filter by category</h2><p class="mt-2 text-[15px] text-ink/70 leading-relaxed">The category dropdown narrows the directory to a payer type — National Insurer, National TPA, Regional Insurer, Regional TPA, State Fund, Network / MPN, Self-Insured, or Government. This is how you find the right entry for a self-insured employer or a public entity (e.g. County of Los Angeles, 0% e-bill, 42-day turnaround, grade F) that bills differently from a national carrier. Pair a category filter with the EDI grade to see which payers in a class are worth chasing electronically versus by paper.</p><div class="mt-4 rounded-xl border border-ink/10 overflow-hidden bg-paper-soft/40 shadow-sm"><img src="/help-img/payer-directory-step3.png" alt="Step 3 — Filter by category" loading="lazy" class="w-full block" /></div></div><div class="border border-ink/10 rounded-2xl p-6 md:p-7 bg-white shadow-sm shadow-ink/5"><h2 class="font-bold text-lg md:text-xl text-ink tracking-tight">Step 4 — Why coverage and grade matter</h2><p class="mt-2 text-[15px] text-ink/70 leading-relaxed">No single clearinghouse reaches every California WC payer, so Mindbill routes per payer across Carisk (primary), Jopari, and Data Dimensions — which is how the directory covers 1,341 entries where a one-clearinghouse vendor misses 5–15%. The EDI grade and days-to-pay aren&#x27;t cosmetic: they feed the cash forecast and flag the slow, low-grade payers (the grade-F, 0%-e-bill public entities) that drive your aged A/R and audit-complaint queue. Pick a graded, routable payer on the injury and the whole downstream pipeline behaves.</p><div class="mt-4 rounded-xl border border-ink/10 overflow-hidden bg-paper-soft/40 shadow-sm"><img src="/help-img/flow-payer-directory-annotated.png" alt="Step 4 — Why coverage and grade matter" loading="lazy" class="w-full block" /></div></div>
 
       <div class="mt-2 flex items-center justify-between gap-3 flex-wrap pt-6 border-t border-ink/10">
