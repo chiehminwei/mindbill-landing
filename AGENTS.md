@@ -20,6 +20,63 @@ actual app lives in the separate `mindbill` repo, deployed at app.mindbill.org.
   - `api/leads.js` — `GET /api/leads?token=…` → CSV/JSON export of leads
     (token-gated by `LEADS_ADMIN_TOKEN`).
 
+## Analytics / tracking
+
+**Every new public page MUST carry the Google Tag Manager snippets.** There is no
+build step, no shared layout, and no templating — nothing is inherited, so a page
+that omits them is simply invisible to analytics and to every ad platform. This is
+the single easiest thing to forget when adding a page.
+
+Container: **`GTM-NNJWFXB7`** (GTM account *MindBill* / container *mindbill.org*).
+
+1. Immediately after `<meta charset="utf-8" />` in `<head>`:
+
+```html
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NNJWFXB7');</script>
+  <!-- End Google Tag Manager -->
+```
+
+2. Immediately after the opening `<body>` tag:
+
+```html
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNJWFXB7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+```
+
+Keep `<meta charset>` first — the spec wants it inside the first 1024 bytes. GTM
+says "as high in the `<head>` as possible"; directly after charset satisfies both.
+Leave the snippet inline (do not move it to an external `.js`): it is inline by
+design so it starts loading with no extra round-trip.
+
+**Do not add tracking tags to page HTML.** Pixels, conversion tags and triggers
+(Google Ads, Meta, LinkedIn) are configured in the GTM container, not in this
+repo. The two snippets above are the only tracking code that belongs in a page —
+anything else hardcoded will double-fire once the same tag exists in GTM.
+
+**Conversions happen off-domain today.** The demo CTAs link straight out to
+Calendly, so a booking cannot be attributed as-is. The fix is a `/thank-you` page
+on `mindbill.org` that Calendly redirects to, with `invitee_uuid` as the dedup
+key, and the conversion tags firing on that page from GTM. Until that exists,
+treat conversion numbers in the ad platforms as unreliable.
+
+Exempt: `video/scenes*.html` — unlinked video-production mockups, not public pages.
+
+Verify a new page after deploy (2 = both snippets present):
+
+```bash
+curl -s https://mindbill.org/<new-page> | grep -c GTM-NNJWFXB7
+```
+
+A snippet in the HTML does not prove it ran — in the browser console,
+`typeof window.google_tag_manager` must be `'object'`.
+
 ## Pages (root *.html)
 
 - `workers-comp.html` — **the homepage** (`/` rewrites here). WC/med-legal pitch;
@@ -75,6 +132,9 @@ To exercise `/api/*` you need the env vars below (see `.env.example`).
   Repo is ~1.1G largely because of `video/` + `print/`.
 - Editing `index.html` and `psychiatry.html`? They're identical copies — keep
   them in sync (or dedupe).
+- **New page? It needs the two GTM snippets** (see *Analytics / tracking*).
+  Nothing is inherited here — 52 pages each carry their own copy, and a page
+  without them tracks nothing at all.
 - Tailwind is the CDN runtime build (not compiled). Arbitrary/JIT classes work
   in-browser; there is no purge/output CSS step to run.
 - `cleanUrls` means links are extensionless (`/workers-comp`, `/help`,
