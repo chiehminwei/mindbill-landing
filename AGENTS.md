@@ -60,11 +60,21 @@ design so it starts loading with no extra round-trip.
 repo. The two snippets above are the only tracking code that belongs in a page —
 anything else hardcoded will double-fire once the same tag exists in GTM.
 
-**Conversions happen off-domain today.** The demo CTAs link straight out to
-Calendly, so a booking cannot be attributed as-is. The fix is a `/thank-you` page
-on `mindbill.org` that Calendly redirects to, with `invitee_uuid` as the dedup
-key, and the conversion tags firing on that page from GTM. Until that exists,
-treat conversion numbers in the ad platforms as unreliable.
+**Conversions fire on `/thank-you`.** The demo CTAs link straight out to
+Calendly, so a booking cannot be attributed on-site. `thank-you.html` is the
+landing point Calendly redirects to after a booking; conversion tags fire there
+on a Page View trigger matching `/thank-you`, deduped on `invitee_uuid`.
+
+Two things must stay true or the page silently stops working:
+
+- **Calendly's Confirmation Page must redirect to `https://mindbill.org/thank-you`
+  with "Pass event details" ticked.** Without that tick there is no
+  `invitee_uuid`, so the dedup key is empty and a refresh double-counts.
+- **The page must stay `noindex`.** If Google indexes it, organic visitors land
+  there and fire fake conversions, which poisons Smart Bidding.
+
+The page degrades cleanly with no query string (no name, no slot, no reschedule
+links) — so a direct visit looks intentional rather than broken.
 
 Exempt: `video/scenes*.html` — unlinked video-production mockups, not public pages.
 
@@ -85,6 +95,11 @@ A snippet in the HTML does not prove it ran — in the browser console,
   (the older homepage, now served at `/psychiatry`).
 - `case-study.html` — 9-month audit case study of a real psychiatric practice.
 - `apa.html` — APA 2026 conference / booth landing page.
+- `thank-you.html` — post-booking confirmation page (`/thank-you`). `noindex`.
+  Calendly redirects here after a booking; it reads `invitee_uuid` /
+  `invitee_full_name` / `event_start_time` off the query string and strips the
+  PII ones from the URL before tags read them. This is where conversion tags
+  fire — see *Analytics / tracking*.
 
 ## Directories
 
