@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NNJWFXB7');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Strip invitee PII from the URL before any tag reads it.
+       Calendly's "Pass event details" appends invitee_full_name / invitee_email.
+       gtm.js is async, so this synchronous block runs first and the tags that
+       fire afterwards only ever see invitee_uuid (the dedup key we do want). -->
+  <script>(function(){
+    try {
+      var q = new URLSearchParams(location.search);
+      window.__booking = {
+        uuid:  q.get('invitee_uuid') || '',
+        name:  q.get('invitee_full_name') || '',
+        start: q.get('event_start_time') || ''
+      };
+      var keep = new URLSearchParams();
+      if (window.__booking.uuid) keep.set('invitee_uuid', window.__booking.uuid);
+      var clean = location.pathname + (keep.toString() ? '?' + keep : '');
+      history.replaceState(null, '', clean);
+    } catch (e) { window.__booking = { uuid:'', name:'', start:'' }; }
+  })();</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>You're booked — MindBill</title>
+  <meta name="description" content="Your 15-minute MindBill demo is confirmed. Here's what to expect on the call." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
+  <meta name="theme-color" content="#0E5C5E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter Tight"', 'system-ui', 'sans-serif'],
+            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:   { DEFAULT: '#0E1B1F', soft: '#1A2A2F', muted: '#6B7378' },
+            paper: { DEFAULT: '#F4F1EA', soft: '#EDE8DD', line: '#D7D1C2' },
+            brand: { DEFAULT: '#0E5C5E', dark: '#083E40', soft: '#E0EBEB', glow: '#7FD3D1' },
+            teal:  { DEFAULT: '#0E5C5E', dark: '#083E40', soft: '#E0EBEB', glow: '#7FD3D1' },
+            acc:   { DEFAULT: '#0E5C5E', soft: '#E0EBEB' },
+            warn:  { DEFAULT: '#B8772A', soft: '#F5EAD8' },
+            ochre: { DEFAULT: '#B8772A', soft: '#F5EAD8' },
+            cream: { DEFAULT: '#F4F1EA' },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #0E1B1F; }
+    .mesh-bg {
+      background-color: #FBFBFD;
+      background-image:
+        radial-gradient(at 20% 0%, hsla(180, 70%, 88%, 0.45) 0px, transparent 50%),
+        radial-gradient(at 80% 0%, hsla(189, 100%, 92%, 0.4) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(38, 80%, 90%, 0.35) 0px, transparent 50%),
+        radial-gradient(at 80% 50%, hsla(180, 60%, 92%, 0.3) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(38, 90%, 92%, 0.25) 0px, transparent 50%),
+        radial-gradient(at 80% 100%, hsla(180, 70%, 90%, 0.4) 0px, transparent 50%);
+    }
+    .serif-h { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -0.015em; }
+    .serif-it { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; }
+    .mono-tag { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #6B7378; }
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="bg-white">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNJWFXB7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <!-- NAV -->
+  <header class="border-b border-ink/5">
+    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/workers-comp" class="flex items-center gap-2">
+        <span class="w-9 h-9 inline-flex items-center justify-center text-ink"><svg width="34" height="34" viewBox="0 0 100 100" style="display:block"><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="square"><path d="M18 78 Q 18 22 50 22"/><path d="M82 78 Q 82 22 50 22"/><line x1="50" y1="40" x2="50" y2="78"/></g><circle cx="50" cy="22" r="4.5" fill="#0E5C5E"/></svg></span>
+        <span class="font-bold text-lg tracking-tight">Mind<span class="text-teal">Bill</span></span>
+      </a>
+      <nav class="flex items-center gap-6 text-sm font-medium text-ink/70">
+        <a href="/guides" class="hover:text-ink">Guides</a>
+        <a href="/help" class="hover:text-ink">Help</a>
+        <a href="/tutorials" class="hidden sm:inline hover:text-ink">Tutorials</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="mesh-bg border-b border-ink/5">
+    <div class="max-w-5xl mx-auto px-6 py-16 md:py-20">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="w-10 h-10 rounded-full bg-brand text-white grid place-items-center shrink-0">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <span class="mono-tag">Booking confirmed</span>
+      </div>
+
+      <h1 class="serif-h text-4xl md:text-6xl leading-[1.05] mb-5">
+        You're booked<span id="ty-name"></span>.
+      </h1>
+
+      <p class="text-lg md:text-xl text-ink/70 max-w-2xl leading-relaxed">
+        A calendar invite is on its way to your inbox, with the video link attached.
+        Fifteen minutes, straight to the point — here's exactly what happens on the call.
+      </p>
+
+      <div id="ty-when" class="hidden mt-8 inline-flex items-center gap-3 bg-white border border-paper-line rounded-2xl px-5 py-4">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0E5C5E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>
+          <span class="mono-tag block mb-0.5">Your slot</span>
+          <span id="ty-when-text" class="font-semibold"></span>
+          <span id="ty-when-tz" class="text-ink/50 text-sm"></span>
+        </span>
+      </div>
+
+      <div id="ty-manage" class="hidden mt-5 text-sm text-ink/60">
+        Need to move it?
+        <a id="ty-reschedule" href="#" target="_blank" rel="noopener" class="text-brand font-semibold underline underline-offset-2 hover:text-brand-dark">Reschedule</a>
+        <span class="mx-1.5 text-ink/25">·</span>
+        <a id="ty-cancel" href="#" target="_blank" rel="noopener" class="text-ink/60 underline underline-offset-2 hover:text-ink">Cancel</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT TO EXPECT -->
+  <section class="max-w-5xl mx-auto px-6 py-16 md:py-20">
+    <span class="mono-tag">What to expect</span>
+    <h2 class="serif-h text-3xl md:text-4xl mt-3 mb-3">Fifteen minutes, three parts.</h2>
+    <p class="text-ink/60 max-w-2xl mb-10">
+      No slide deck, no discovery call before the real call. You're talking to the
+      person who writes the software.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="bg-paper rounded-2xl p-6 border border-paper-line">
+        <div class="mono-tag mb-3">Minutes 0–3</div>
+        <h3 class="font-bold text-lg mb-2">Your shop</h3>
+        <p class="text-sm text-ink/70 leading-relaxed">
+          What you bill on today, your case mix (QME / AME / IME, liens, treatment),
+          and where the money is actually getting stuck.
+        </p>
+      </div>
+      <div class="bg-paper rounded-2xl p-6 border border-paper-line">
+        <div class="mono-tag mb-3">Minutes 3–11</div>
+        <h3 class="font-bold text-lg mb-2">MindBill, on your cases</h3>
+        <p class="text-sm text-ink/70 leading-relaxed">
+          A live walkthrough against a scenario that looks like yours — building a
+          clean bill, pricing it against the fee schedule, catching an underpayment,
+          and firing a second review.
+        </p>
+      </div>
+      <div class="bg-paper rounded-2xl p-6 border border-paper-line">
+        <div class="mono-tag mb-3">Minutes 11–15</div>
+        <h3 class="font-bold text-lg mb-2">Honest fit</h3>
+        <p class="text-sm text-ink/70 leading-relaxed">
+          Whether this is right for you, what switching actually involves, and
+          pricing. If it's not a fit, you'll hear that too.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOST + PREP -->
+  <section class="bg-paper-soft border-y border-paper-line">
+    <div class="max-w-5xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-2 gap-12">
+      <div>
+        <span class="mono-tag">Who you're meeting</span>
+        <h2 class="serif-h text-3xl mt-3 mb-4">Jimmy Wei, founder</h2>
+        <p class="text-ink/70 leading-relaxed mb-4">
+          Not a sales rep — the founder and engineer who designs and writes MindBill.
+          Ex-Roblox, ex-Meta AI, M.S. Cornell. Backed by Y Combinator.
+        </p>
+        <p class="text-ink/70 leading-relaxed">
+          That means anything you ask on the call gets a real answer, and anything
+          you need built gets scoped by the person who'd build it.
+        </p>
+        <div class="mt-6 text-sm space-y-2">
+          <div><a href="mailto:jimmy@mindbill.org" class="text-brand font-semibold hover:text-brand-dark">jimmy@mindbill.org</a></div>
+          <div><a href="tel:+15707687496" class="text-ink/60 hover:text-ink">(570) 768-7496</a></div>
+        </div>
+      </div>
+
+      <div>
+        <span class="mono-tag">Optional prep</span>
+        <h2 class="serif-h text-3xl mt-3 mb-4">Have these handy</h2>
+        <p class="text-ink/70 leading-relaxed mb-5">
+          Entirely optional — the call works fine without them. They just make the
+          fifteen minutes a lot sharper.
+        </p>
+        <ul class="space-y-3 text-ink/80">
+          <li class="flex gap-3">
+            <span class="text-brand mt-1 shrink-0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span>A recent <strong>EOR</strong> — ideally one you think underpaid you</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-brand mt-1 shrink-0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span>A <strong>denied or stuck bill</strong> you never got to the bottom of</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-brand mt-1 shrink-0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span>Roughly <strong>how many bills</strong> you send a month</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-brand mt-1 shrink-0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span>The <strong>one thing</strong> about billing that wastes the most of your week</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHILE YOU WAIT -->
+  <section class="max-w-5xl mx-auto px-6 py-16 md:py-20">
+    <span class="mono-tag">While you wait</span>
+    <h2 class="serif-h text-3xl md:text-4xl mt-3 mb-10">Worth a read before we talk.</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <a href="/case-study" class="group bg-white border border-paper-line rounded-2xl p-6 hover:border-brand/40 hover:shadow-sm transition">
+        <div class="mono-tag mb-3">Case study</div>
+        <h3 class="font-bold mb-2 group-hover:text-brand transition">A 9-month audit</h3>
+        <p class="text-sm text-ink/60 leading-relaxed">What we found going through a real practice's books, line by line.</p>
+      </a>
+      <a href="/guides/reading-an-eor" class="group bg-white border border-paper-line rounded-2xl p-6 hover:border-brand/40 hover:shadow-sm transition">
+        <div class="mono-tag mb-3">Guide</div>
+        <h3 class="font-bold mb-2 group-hover:text-brand transition">Reading an EOR</h3>
+        <p class="text-sm text-ink/60 leading-relaxed">How to tell an underpayment from a correct one.</p>
+      </a>
+      <a href="/guides/how-to-file-a-second-review" class="group bg-white border border-paper-line rounded-2xl p-6 hover:border-brand/40 hover:shadow-sm transition">
+        <div class="mono-tag mb-3">Guide</div>
+        <h3 class="font-bold mb-2 group-hover:text-brand transition">Filing a second review</h3>
+        <p class="text-sm text-ink/60 leading-relaxed">The deadlines and the form, without the guesswork.</p>
+      </a>
+      <a href="/guides/california-mlfs" class="group bg-white border border-paper-line rounded-2xl p-6 hover:border-brand/40 hover:shadow-sm transition">
+        <div class="mono-tag mb-3">Guide</div>
+        <h3 class="font-bold mb-2 group-hover:text-brand transition">The California MLFS</h3>
+        <p class="text-sm text-ink/60 leading-relaxed">How med-legal fees are actually calculated.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink text-white/60 py-14">
+    <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div class="flex items-center gap-2">
+        <span class="w-9 h-9 inline-flex items-center justify-center text-paper"><svg width="34" height="34" viewBox="0 0 100 100" style="display:block"><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="square"><path d="M18 78 Q 18 22 50 22"/><path d="M82 78 Q 82 22 50 22"/><line x1="50" y1="40" x2="50" y2="78"/></g><circle cx="50" cy="22" r="4.5" fill="#7FD3D1"/></svg></span>
+        <span class="text-white font-bold text-lg">Mind<span class="text-teal-glow">Bill</span></span>
+      </div>
+      <div class="text-xs text-white/40">© 2026 MindBill · IncidentFox, Inc. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+  (function(){
+    var b = window.__booking || { uuid:'', name:'', start:'' };
+
+    // First name only — keep it warm without shouting their full legal name.
+    if (b.name) {
+      var first = b.name.trim().split(/\s+/)[0];
+      if (first) document.getElementById('ty-name').textContent = ', ' + first;
+    }
+
+    if (b.start) {
+      var d = new Date(b.start);
+      if (!isNaN(d.getTime())) {
+        var el = document.getElementById('ty-when');
+        document.getElementById('ty-when-text').textContent =
+          d.toLocaleString(undefined, { weekday:'long', month:'long', day:'numeric', hour:'numeric', minute:'2-digit' });
+        try {
+          document.getElementById('ty-when-tz').textContent =
+            '(' + Intl.DateTimeFormat().resolvedOptions().timeZone + ')';
+        } catch (e) {}
+        el.classList.remove('hidden');
+      }
+    }
+
+    if (b.uuid) {
+      document.getElementById('ty-reschedule').href = 'https://calendly.com/reschedule/' + encodeURIComponent(b.uuid);
+      document.getElementById('ty-cancel').href     = 'https://calendly.com/cancellations/' + encodeURIComponent(b.uuid);
+      document.getElementById('ty-manage').classList.remove('hidden');
+    }
+  })();
+  </script>
+</body>
+</html>
