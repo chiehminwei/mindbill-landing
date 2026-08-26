@@ -4,7 +4,7 @@ Marketing/landing site for **MindBill** (IncidentFox, Inc.), the CA workers-comp
 med-legal billing product. This repo is **only the public marketing site** — the
 actual app lives in the separate `mindbill` repo, deployed at app.mindbill.org.
 
-- **Live:** https://mindbill.org  (`/` rewrites to `/workers-comp` — see vercel.json)
+- **Live:** https://mindbill.org  (workers-comp homepage; legacy `/workers-comp` redirects to `/`)
 - **GitHub:** `chiehminwei/mindbill-landing`  (origin)
 
 ## Stack / build
@@ -89,10 +89,9 @@ A snippet in the HTML does not prove it ran — in the browser console,
 
 ## Pages (root *.html)
 
-- `workers-comp.html` — **the homepage** (`/` rewrites here). WC/med-legal pitch;
-  embeds `/video/mindbill-explainer.mp4`. Anchors: `#features #compare #founder`.
-- `index.html` / `psychiatry.html` — **identical** psychiatry/TMS/Spravato pitch
-  (the older homepage, now served at `/psychiatry`).
+- `index.html` — **the homepage**. WC/med-legal pitch. Anchors:
+  `#features #compare #founder`.
+- `psychiatry.html` — psychiatry/TMS/Spravato pitch at `/psychiatry`.
 - `case-study.html` — 9-month audit case study of a real psychiatric practice.
 - `apa.html` — APA 2026 conference / booth landing page.
 - `thank-you.html` — post-booking confirmation page (`/thank-you`). `noindex`.
@@ -132,7 +131,7 @@ To exercise `/api/*` you need the env vars below (see `.env.example`).
 - **Vercel**, auto-deploys on push to `main` (GitHub integration). Project is
   linked in `.vercel/project.json` (`mindbill-landing`).
 - `vercel.json`: `cleanUrls: true`, `trailingSlash: false`, security headers,
-  and the `/` → `/workers-comp` rewrite.
+  and a legacy `/workers-comp` → `/` redirect.
 
 ## Env vars (Vercel → Settings → Environment Variables; mirror in local `.env`)
 
@@ -145,8 +144,8 @@ To exercise `/api/*` you need the env vars below (see `.env.example`).
 - **Git LFS required** for `video/` (`.mp4/.wav/.mov` per `.gitattributes`).
   Clone/pull without LFS and videos are pointer stubs — run `git lfs pull`.
   Repo is ~1.1G largely because of `video/` + `print/`.
-- Editing `index.html` and `psychiatry.html`? They're identical copies — keep
-  them in sync (or dedupe).
+- `index.html` and `psychiatry.html` are intentionally different products. Do
+  not copy one over the other.
 - **New page? It needs the two GTM snippets** (see *Analytics / tracking*).
   Nothing is inherited here — 52 pages each carry their own copy, and a page
   without them tracks nothing at all.

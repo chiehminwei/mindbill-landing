@@ -16,10 +16,11 @@
       ]
     }
   ],
-  "rewrites": [
+  "redirects": [
     {
-      "source": "/",
-      "destination": "/workers-comp"
+      "source": "/workers-comp",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }
