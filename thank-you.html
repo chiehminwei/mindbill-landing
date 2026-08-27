@@ -87,38 +87,46 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+  <!-- Workers' comp top banner -->
+  <div class="bg-brand text-white text-center text-sm py-2.5 px-4">
+    HIPAA-compliant, BAA included
+    <span class="opacity-60 mx-2">·</span>
+    Built for California workers'-comp &amp; med-legal billing
+  </div>
+
   <!-- NAV -->
-  <header class="border-b border-ink/5">
-    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="/workers-comp" class="flex items-center gap-2">
+  <header class="sticky top-0 z-30 backdrop-blur bg-white/85 border-b border-ink/5">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
         <span class="w-9 h-9 inline-flex items-center justify-center text-ink"><svg width="34" height="34" viewBox="0 0 100 100" style="display:block"><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="square"><path d="M18 78 Q 18 22 50 22"/><path d="M82 78 Q 82 22 50 22"/><line x1="50" y1="40" x2="50" y2="78"/></g><circle cx="50" cy="22" r="4.5" fill="#0E5C5E"/></svg></span>
         <span class="font-bold text-lg tracking-tight">Mind<span class="text-teal">Bill</span></span>
+        <span class="ml-2 hidden sm:inline text-[11px] font-semibold uppercase tracking-wider text-ink/45 border-l border-ink/15 pl-2">Workers' Comp</span>
       </a>
-      <nav class="flex items-center gap-6 text-sm font-medium text-ink/70">
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-ink/70">
+        <a href="/#features" class="hover:text-ink">Features</a>
+        <a href="/#compare" class="hover:text-ink">Why switch</a>
+        <a href="/#founder" class="hover:text-ink">Why us</a>
         <a href="/guides" class="hover:text-ink">Guides</a>
         <a href="/help" class="hover:text-ink">Help</a>
-        <a href="/tutorials" class="hidden sm:inline hover:text-ink">Tutorials</a>
       </nav>
+      <a href="mailto:jimmy@mindbill.org" class="inline-flex items-center bg-brand text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-brand-dark transition">Email Jimmy</a>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="mesh-bg border-b border-ink/5">
-    <div class="max-w-5xl mx-auto px-6 py-16 md:py-20">
-      <div class="flex items-center gap-3 mb-6">
-        <span class="w-10 h-10 rounded-full bg-brand text-white grid place-items-center shrink-0">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </span>
-        <span class="mono-tag">Booking confirmed</span>
-      </div>
-
+    <div class="max-w-5xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-[minmax(0,1fr)_auto] md:items-center gap-12 md:gap-16">
+      <div>
       <h1 class="serif-h text-4xl md:text-6xl leading-[1.05] mb-5">
-        You're booked<span id="ty-name"></span>.
+        You're booked<span id="ty-name"></span>.<span
+          class="inline-flex align-middle items-center justify-center w-9 h-9 md:w-12 md:h-12 ml-3 md:ml-4 -translate-y-1 rounded-full bg-brand text-white"
+          role="img" aria-label="Booking confirmed">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="md:w-6 md:h-6"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
       </h1>
 
       <p class="text-lg md:text-xl text-ink/70 max-w-2xl leading-relaxed">
         A calendar invite is on its way to your inbox, with the video link attached.
-        Fifteen minutes, straight to the point — here's exactly what happens on the call.
       </p>
 
       <div id="ty-when" class="hidden mt-8 inline-flex items-center gap-3 bg-white border border-paper-line rounded-2xl px-5 py-4">
@@ -136,16 +144,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="mx-1.5 text-ink/25">·</span>
         <a id="ty-cancel" href="#" target="_blank" rel="noopener" class="text-ink/60 underline underline-offset-2 hover:text-ink">Cancel</a>
       </div>
+      </div>
+
+      <!-- Who's on the call — the page's one portrait -->
+      <figure class="md:w-64 md:shrink-0">
+        <img src="/img/jimmy-wei.jpg" width="450" height="450" decoding="async"
+             alt="Jimmy Wei, founder of MindBill"
+             class="w-32 h-32 md:w-64 md:h-64 rounded-2xl object-cover border border-white shadow-lg shadow-ink/10" />
+        <figcaption class="mt-4">
+          <div class="text-ink/60">You'll be meeting</div>
+          <div class="font-semibold text-ink text-lg leading-tight mt-0.5">Jimmy Wei</div>
+          <div class="text-ink/60">Founder &amp; engineer</div>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
   <!-- WHAT TO EXPECT -->
   <section class="max-w-5xl mx-auto px-6 py-16 md:py-20">
-    <span class="mono-tag">What to expect</span>
-    <h2 class="serif-h text-3xl md:text-4xl mt-3 mb-3">Fifteen minutes, three parts.</h2>
+    <h2 class="serif-h text-3xl md:text-4xl mb-3">Fifteen minutes, three parts.</h2>
     <p class="text-ink/60 max-w-2xl mb-10">
-      No slide deck, no discovery call before the real call. You're talking to the
-      person who writes the software.
+      Here's what to expect: a quick look at how MindBill handles cases like yours,
+      plus time for your questions.
     </p>
 
     <div class="grid md:grid-cols-3 gap-5">
@@ -181,8 +201,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="bg-paper-soft border-y border-paper-line">
     <div class="max-w-5xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-2 gap-12">
       <div>
-        <span class="mono-tag">Who you're meeting</span>
-        <h2 class="serif-h text-3xl mt-3 mb-4">Jimmy Wei, founder</h2>
+        <h2 class="serif-h text-3xl mb-4">You're talking to the founder</h2>
+
         <p class="text-ink/70 leading-relaxed mb-4">
           Not a sales rep — the founder and engineer who designs and writes MindBill.
           Ex-Roblox, ex-Meta AI, M.S. Cornell. Backed by Y Combinator.
@@ -198,8 +218,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div>
-        <span class="mono-tag">Optional prep</span>
-        <h2 class="serif-h text-3xl mt-3 mb-4">Have these handy</h2>
+        <h2 class="serif-h text-3xl mb-4">Have these handy</h2>
         <p class="text-ink/70 leading-relaxed mb-5">
           Entirely optional — the call works fine without them. They just make the
           fifteen minutes a lot sharper.
@@ -228,8 +247,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- WHILE YOU WAIT -->
   <section class="max-w-5xl mx-auto px-6 py-16 md:py-20">
-    <span class="mono-tag">While you wait</span>
-    <h2 class="serif-h text-3xl md:text-4xl mt-3 mb-10">Worth a read before we talk.</h2>
+    <h2 class="serif-h text-3xl md:text-4xl mb-10">Worth a read before we talk.</h2>
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
       <a href="/case-study" class="group bg-white border border-paper-line rounded-2xl p-6 hover:border-brand/40 hover:shadow-sm transition">
         <div class="mono-tag mb-3">Case study</div>
