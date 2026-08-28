@@ -115,7 +115,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- HERO -->
   <section class="mesh-bg border-b border-ink/5">
-    <div class="max-w-5xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-[minmax(0,1fr)_auto] md:items-center gap-12 md:gap-16">
+    <div class="max-w-5xl mx-auto px-6 py-12 md:py-20 grid md:grid-cols-[minmax(0,1fr)_auto] md:items-center gap-8 md:gap-16">
       <div>
       <h1 class="serif-h text-4xl md:text-6xl leading-[1.05] mb-5">
         You're booked<span id="ty-name"></span>.<span
@@ -147,11 +147,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <!-- Who's on the call — the page's one portrait -->
-      <figure class="md:w-64 md:shrink-0">
+      <figure class="flex items-center gap-4 md:block md:w-64 md:shrink-0">
         <img src="/img/jimmy-wei.jpg" width="450" height="450" decoding="async"
              alt="Jimmy Wei, founder of MindBill"
-             class="w-32 h-32 md:w-64 md:h-64 rounded-2xl object-cover border border-white shadow-lg shadow-ink/10" />
-        <figcaption class="mt-4">
+             class="w-20 h-20 md:w-64 md:h-64 rounded-2xl object-cover border border-white shadow-lg shadow-ink/10" />
+        <figcaption class="md:mt-4">
           <div class="text-ink/60">You'll be meeting</div>
           <div class="font-semibold text-ink text-lg leading-tight mt-0.5">Jimmy Wei</div>
           <div class="text-ink/60">Founder &amp; engineer</div>
@@ -162,38 +162,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- WHAT TO EXPECT -->
   <section class="max-w-5xl mx-auto px-6 py-16 md:py-20">
-    <h2 class="serif-h text-3xl md:text-4xl mb-3">Fifteen minutes, three parts.</h2>
-    <p class="text-ink/60 max-w-2xl mb-10">
-      Here's what to expect: a quick look at how MindBill handles cases like yours,
-      plus time for your questions.
-    </p>
+    <div class="grid md:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] gap-10 md:gap-16">
+      <div>
+        <h2 class="serif-h text-3xl md:text-4xl mb-3">Fifteen minutes. No deck.</h2>
+        <p class="text-ink/60 max-w-md leading-relaxed">
+          We'll spend most of the call inside MindBill, working through the kind of
+          bill you handle every day.
+        </p>
+      </div>
 
-    <div class="grid md:grid-cols-3 gap-5">
-      <div class="bg-paper rounded-2xl p-6 border border-paper-line">
-        <div class="mono-tag mb-3">Minutes 0–3</div>
-        <h3 class="font-bold text-lg mb-2">Your shop</h3>
-        <p class="text-sm text-ink/70 leading-relaxed">
-          What you bill on today, your case mix (QME / AME / IME, liens, treatment),
-          and where the money is actually getting stuck.
-        </p>
-      </div>
-      <div class="bg-paper rounded-2xl p-6 border border-paper-line">
-        <div class="mono-tag mb-3">Minutes 3–11</div>
-        <h3 class="font-bold text-lg mb-2">MindBill, on your cases</h3>
-        <p class="text-sm text-ink/70 leading-relaxed">
-          A live walkthrough against a scenario that looks like yours — building a
-          clean bill, pricing it against the fee schedule, catching an underpayment,
-          and firing a second review.
-        </p>
-      </div>
-      <div class="bg-paper rounded-2xl p-6 border border-paper-line">
-        <div class="mono-tag mb-3">Minutes 11–15</div>
-        <h3 class="font-bold text-lg mb-2">Honest fit</h3>
-        <p class="text-sm text-ink/70 leading-relaxed">
-          Whether this is right for you, what switching actually involves, and
-          pricing. If it's not a fit, you'll hear that too.
-        </p>
-      </div>
+      <ol class="border-t border-ink/15">
+        <li class="grid grid-cols-[4.5rem_minmax(0,1fr)] gap-4 py-6 border-b border-ink/15">
+          <div class="text-sm font-semibold text-brand">0–3 min</div>
+          <div>
+            <h3 class="font-bold text-lg mb-1.5">Show me how you bill today</h3>
+            <p class="text-ink/65 leading-relaxed">
+              Tell me what you handle — med-legal, treatment, liens — and the one
+              place the work keeps slowing down.
+            </p>
+          </div>
+        </li>
+        <li class="grid grid-cols-[4.5rem_minmax(0,1fr)] gap-4 py-6 border-b border-ink/15">
+          <div class="text-sm font-semibold text-brand">3–11 min</div>
+          <div>
+            <h3 class="font-bold text-lg mb-1.5">We work through one bill</h3>
+            <p class="text-ink/65 leading-relaxed">
+              I'll show you how MindBill turns a report into a clean bill, routes it,
+              checks the EOR, and prepares the next step when a payer underpays.
+            </p>
+          </div>
+        </li>
+        <li class="grid grid-cols-[4.5rem_minmax(0,1fr)] gap-4 py-6 border-b border-ink/15">
+          <div class="text-sm font-semibold text-brand">11–15 min</div>
+          <div>
+            <h3 class="font-bold text-lg mb-1.5">Questions, price, and fit</h3>
+            <p class="text-ink/65 leading-relaxed">
+              We'll cover what moving over would take. If MindBill isn't the right
+              fit for your workflow, I'll tell you.
+            </p>
+          </div>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -201,15 +210,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="bg-paper-soft border-y border-paper-line">
     <div class="max-w-5xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-2 gap-12">
       <div>
-        <h2 class="serif-h text-3xl mb-4">You're talking to the founder</h2>
-
-        <p class="text-ink/70 leading-relaxed mb-4">
-          Not a sales rep — the founder and engineer who designs and writes MindBill.
-          Ex-Roblox, ex-Meta AI, M.S. Cornell. Backed by Y Combinator.
-        </p>
+        <h2 class="serif-h text-3xl mb-4">You'll talk with me</h2>
         <p class="text-ink/70 leading-relaxed">
-          That means anything you ask on the call gets a real answer, and anything
-          you need built gets scoped by the person who'd build it.
+          I built MindBill, and I still run the demos. Ask me about the product,
+          your workflow, or a billing edge case — you'll get an answer from the
+          person who writes the software.
         </p>
         <div class="mt-6 text-sm space-y-2">
           <div><a href="mailto:jimmy@mindbill.org" class="text-brand font-semibold hover:text-brand-dark">jimmy@mindbill.org</a></div>
@@ -218,57 +223,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div>
-        <h2 class="serif-h text-3xl mb-4">Have these handy</h2>
+        <h2 class="serif-h text-3xl mb-4">Nothing to prepare</h2>
         <p class="text-ink/70 leading-relaxed mb-5">
-          Entirely optional — the call works fine without them. They just make the
-          fifteen minutes a lot sharper.
+          If you want to make the demo concrete, bring one recent EOR or one bill
+          that's stuck. That's enough.
         </p>
-        <ul class="space-y-3 text-ink/80">
-          <li class="flex gap-3">
-            <span class="text-brand mt-1 shrink-0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-            <span>A recent <strong>EOR</strong> — ideally one you think underpaid you</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="text-brand mt-1 shrink-0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-            <span>A <strong>denied or stuck bill</strong> you never got to the bottom of</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="text-brand mt-1 shrink-0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-            <span>Roughly <strong>how many bills</strong> you send a month</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="text-brand mt-1 shrink-0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-            <span>The <strong>one thing</strong> about billing that wastes the most of your week</span>
-          </li>
-        </ul>
+        <p class="text-sm text-ink/55 leading-relaxed">
+          Please don't email patient information. We can use a redacted example or
+          talk through the case on the call.
+        </p>
       </div>
     </div>
   </section>
 
   <!-- WHILE YOU WAIT -->
   <section class="max-w-5xl mx-auto px-6 py-16 md:py-20">
-    <h2 class="serif-h text-3xl md:text-4xl mb-10">Worth a read before we talk.</h2>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      <a href="/case-study" class="group bg-white border border-paper-line rounded-2xl p-6 hover:border-brand/40 hover:shadow-sm transition">
-        <div class="mono-tag mb-3">Case study</div>
-        <h3 class="font-bold mb-2 group-hover:text-brand transition">A 9-month audit</h3>
-        <p class="text-sm text-ink/60 leading-relaxed">What we found going through a real practice's books, line by line.</p>
-      </a>
-      <a href="/guides/reading-an-eor" class="group bg-white border border-paper-line rounded-2xl p-6 hover:border-brand/40 hover:shadow-sm transition">
-        <div class="mono-tag mb-3">Guide</div>
-        <h3 class="font-bold mb-2 group-hover:text-brand transition">Reading an EOR</h3>
-        <p class="text-sm text-ink/60 leading-relaxed">How to tell an underpayment from a correct one.</p>
-      </a>
-      <a href="/guides/how-to-file-a-second-review" class="group bg-white border border-paper-line rounded-2xl p-6 hover:border-brand/40 hover:shadow-sm transition">
-        <div class="mono-tag mb-3">Guide</div>
-        <h3 class="font-bold mb-2 group-hover:text-brand transition">Filing a second review</h3>
-        <p class="text-sm text-ink/60 leading-relaxed">The deadlines and the form, without the guesswork.</p>
-      </a>
-      <a href="/guides/california-mlfs" class="group bg-white border border-paper-line rounded-2xl p-6 hover:border-brand/40 hover:shadow-sm transition">
-        <div class="mono-tag mb-3">Guide</div>
-        <h3 class="font-bold mb-2 group-hover:text-brand transition">The California MLFS</h3>
-        <p class="text-sm text-ink/60 leading-relaxed">How med-legal fees are actually calculated.</p>
-      </a>
+    <div class="grid md:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] gap-8 md:gap-16">
+      <h2 class="serif-h text-3xl md:text-4xl">If you want a head start</h2>
+      <div class="border-t border-ink/15">
+        <a href="/guides/reading-an-eor" class="group flex items-center justify-between gap-6 py-5 border-b border-ink/15">
+          <span>
+            <span class="font-bold group-hover:text-brand transition">How to read an EOR</span>
+            <span class="block text-sm text-ink/55 mt-1">Spot a real underpayment.</span>
+          </span>
+          <span aria-hidden="true" class="text-brand text-xl">→</span>
+        </a>
+        <a href="/guides/how-to-file-a-second-review" class="group flex items-center justify-between gap-6 py-5 border-b border-ink/15">
+          <span>
+            <span class="font-bold group-hover:text-brand transition">How to file a second review</span>
+            <span class="block text-sm text-ink/55 mt-1">The form and deadlines, without the guesswork.</span>
+          </span>
+          <span aria-hidden="true" class="text-brand text-xl">→</span>
+        </a>
+        <a href="/guides/california-mlfs" class="group flex items-center justify-between gap-6 py-5 border-b border-ink/15">
+          <span>
+            <span class="font-bold group-hover:text-brand transition">California's med-legal fee schedule</span>
+            <span class="block text-sm text-ink/55 mt-1">How the numbers are calculated.</span>
+          </span>
+          <span aria-hidden="true" class="text-brand text-xl">→</span>
+        </a>
+      </div>
     </div>
   </section>
 
