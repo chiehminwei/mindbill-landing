@@ -52,6 +52,24 @@
     }
     .screen-shadow { box-shadow: 0 30px 80px rgba(3, 31, 33, .22), 0 2px 7px rgba(3, 31, 33, .12); }
     .focus-ring:focus-visible { outline: 3px solid #D59A42; outline-offset: 3px; }
+    @media (max-width: 639px) {
+      #comparison .comparison-scroll { overflow: visible; }
+      #comparison .comparison-table { display: block; min-width: 0; }
+      #comparison .comparison-table thead,
+      #comparison .comparison-table tbody { display: block; }
+      #comparison .comparison-table thead tr,
+      #comparison .comparison-table tbody tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      #comparison .comparison-table thead th:first-child { display: none; }
+      #comparison .comparison-table thead th { width: auto; padding: 1rem; }
+      #comparison .comparison-table tbody th {
+        position: static;
+        grid-column: 1 / -1;
+        padding: 1rem 1rem .8rem;
+        border-right: 0;
+        border-bottom: 1px solid rgba(14, 27, 31, .1);
+      }
+      #comparison .comparison-table tbody td { padding: 1rem .65rem; }
+    }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition-duration: 0.01ms !important; }
@@ -176,71 +194,71 @@
       <div class="max-w-7xl mx-auto px-5 sm:px-6">
         <div class="max-w-3xl">
           <p class="font-mono text-[10px] sm:text-[11px] tracking-[.16em] uppercase text-deep/60 mb-4">Side-by-side comparison</p>
-          <h2 class="display text-4xl sm:text-6xl leading-[1.02]">The same destination.<br /><em class="text-[#0E5C5E]">A different first mile.</em></h2>
-          <p class="mt-5 text-lg text-ink/60 leading-relaxed">Both platforms can send California workers' comp bills electronically. The useful comparison is how the bill gets built, how your other software connects, and how much work remains after the payer responds.</p>
+          <h2 class="display text-4xl sm:text-6xl leading-[1.02]">The difference,<br /><em class="text-[#0E5C5E]">at a glance.</em></h2>
+          <p class="mt-5 text-lg text-ink/60 leading-relaxed">Both platforms send and track California workers' comp bills. MindBill also takes on the repetitive work before and after you send them.</p>
         </div>
 
         <div class="mt-10 bg-white border border-ink/15 rounded-2xl overflow-hidden shadow-sm">
-          <div class="overflow-x-auto" tabindex="0" aria-label="Scrollable MindBill and daisyBill comparison table">
-            <table class="w-full min-w-[760px] border-collapse text-left">
+          <div class="comparison-scroll overflow-x-auto" tabindex="0" aria-label="MindBill and daisyBill comparison table">
+            <table class="comparison-table w-full min-w-[680px] border-collapse text-left">
               <caption class="sr-only">Comparison of daisyBill and MindBill workers' compensation billing capabilities</caption>
               <thead class="bg-deep text-white text-sm">
                 <tr>
-                  <th scope="col" class="w-[24%] p-5 sm:p-6 font-semibold">What matters</th>
-                  <th scope="col" class="w-[38%] p-5 sm:p-6 font-semibold border-l border-white/15">daisyBill</th>
-                  <th scope="col" class="w-[38%] p-5 sm:p-6 font-semibold border-l border-deep/15 bg-mint text-deep">MindBill</th>
+                  <th scope="col" class="sticky left-0 z-20 w-[46%] p-5 sm:p-6 font-semibold bg-deep">What matters</th>
+                  <th scope="col" class="w-[27%] p-5 sm:p-6 font-semibold text-center border-l border-white/15">daisyBill</th>
+                  <th scope="col" class="w-[27%] p-5 sm:p-6 font-semibold text-center border-l border-deep/15 bg-mint text-deep">MindBill</th>
                 </tr>
               </thead>
-              <tbody class="text-sm sm:text-[15px] leading-relaxed">
+              <tbody class="text-sm sm:text-[15px] leading-snug">
                 <tr class="border-t border-ink/10">
-                  <th scope="row" class="p-5 sm:p-6 font-semibold align-top">Sending and tracking bills</th>
-                  <td class="p-5 sm:p-6 text-ink/60 align-top border-l border-ink/10">Sends workers' comp bills, tracks whether they were accepted, shows payer responses, and supports appeals.</td>
-                  <td class="p-5 sm:p-6 font-medium text-deep align-top border-l border-ink/10 bg-mint/20">Sends workers' comp bills, tracks whether they were accepted, shows payer responses, and supports appeals.</td>
+                  <th scope="row" class="sticky left-0 z-10 p-5 sm:p-6 font-semibold bg-white border-r border-ink/10">Send and track workers' comp bills</th>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10"><span class="sr-only">Yes.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-deep text-white" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="m5 10.5 3 3 7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="block mt-2 text-xs text-ink/50">Included</span></td>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10 bg-mint/20"><span class="sr-only">Yes.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-deep text-white" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="m5 10.5 3 3 7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="block mt-2 text-xs font-medium text-deep/65">Included</span></td>
                 </tr>
                 <tr class="border-t border-ink/10">
-                  <th scope="row" class="p-5 sm:p-6 font-semibold align-top">Bill creation</th>
-                  <td class="p-5 sm:p-6 text-ink/60 align-top border-l border-ink/10">Staff enter the bill details or bring them over from another system.</td>
-                  <td class="p-5 sm:p-6 font-medium text-deep align-top border-l border-ink/10 bg-mint/20">AI reads the report and prepares a bill for your staff to check.</td>
+                  <th scope="row" class="sticky left-0 z-10 p-5 sm:p-6 font-semibold bg-white border-r border-ink/10">Build a bill from the final report</th>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10"><span class="sr-only">No.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#F7ECE8] text-[#A44732]" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="m6 6 8 8m0-8-8 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><span class="block mt-2 text-xs text-ink/50">Staff enter or import details</span></td>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10 bg-mint/20"><span class="sr-only">Yes.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-deep text-white" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="m5 10.5 3 3 7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="block mt-2 text-xs font-medium text-deep/65">AI prepares it</span></td>
                 </tr>
                 <tr class="border-t border-ink/10">
-                  <th scope="row" class="p-5 sm:p-6 font-semibold align-top">Codes and charges</th>
-                  <td class="p-5 sm:p-6 text-ink/60 align-top border-l border-ink/10">Staff enter or upload the billing details, and the system checks required fields and billing rules.</td>
-                  <td class="p-5 sm:p-6 font-medium text-deep align-top border-l border-ink/10 bg-mint/20">AI suggests the billing codes, required modifiers, and page counts—and shows why.</td>
+                  <th scope="row" class="sticky left-0 z-10 p-5 sm:p-6 font-semibold bg-white border-r border-ink/10">Suggest codes, modifiers, and page counts from the report</th>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10"><span class="sr-only">No.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#F7ECE8] text-[#A44732]" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="m6 6 8 8m0-8-8 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><span class="block mt-2 text-xs text-ink/50">Rules checked after entry</span></td>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10 bg-mint/20"><span class="sr-only">Yes.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-deep text-white" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="m5 10.5 3 3 7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="block mt-2 text-xs font-medium text-deep/65">AI suggests and explains</span></td>
                 </tr>
                 <tr class="border-t border-ink/10">
-                  <th scope="row" class="p-5 sm:p-6 font-semibold align-top">Final check before sending</th>
-                  <td class="p-5 sm:p-6 text-ink/60 align-top border-l border-ink/10">Staff check the bill before sending it.</td>
-                  <td class="p-5 sm:p-6 font-medium text-deep align-top border-l border-ink/10 bg-mint/20">Staff check the AI-prepared bill and see where each detail came from before sending it.</td>
+                  <th scope="row" class="sticky left-0 z-10 p-5 sm:p-6 font-semibold bg-white border-r border-ink/10">Show where each bill detail came from</th>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10"><span class="sr-only">No.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#F7ECE8] text-[#A44732]" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="m6 6 8 8m0-8-8 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><span class="block mt-2 text-xs text-ink/50">Not included</span></td>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10 bg-mint/20"><span class="sr-only">Yes.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-deep text-white" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="m5 10.5 3 3 7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="block mt-2 text-xs font-medium text-deep/65">Source shown for review</span></td>
                 </tr>
                 <tr class="border-t border-ink/10">
-                  <th scope="row" class="p-5 sm:p-6 font-semibold align-top">Underpayment follow-up</th>
-                  <td class="p-5 sm:p-6 text-ink/60 align-top border-l border-ink/10">Staff can prepare second-review and appeal requests.</td>
-                  <td class="p-5 sm:p-6 font-medium text-deep align-top border-l border-ink/10 bg-mint/20">MindBill reads the payer's payment explanation, flags possible underpayments, and prepares the second-review request for staff to check.</td>
+                  <th scope="row" class="sticky left-0 z-10 p-5 sm:p-6 font-semibold bg-white border-r border-ink/10">Automatically flag underpayments and prepare second review</th>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10"><span class="sr-only">No.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#F7ECE8] text-[#A44732]" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="m6 6 8 8m0-8-8 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><span class="block mt-2 text-xs text-ink/50">Staff prepare follow-up</span></td>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10 bg-mint/20"><span class="sr-only">Yes.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-deep text-white" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="m5 10.5 3 3 7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="block mt-2 text-xs font-medium text-deep/65">AI flags and prepares</span></td>
                 </tr>
                 <tr class="border-t border-ink/10">
-                  <th scope="row" class="p-5 sm:p-6 font-semibold align-top">Works with your other software</th>
-                  <td class="p-5 sm:p-6 text-ink/60 align-top border-l border-ink/10">Can receive billing information from other software or uploaded files.</td>
-                  <td class="p-5 sm:p-6 font-medium text-deep align-top border-l border-ink/10 bg-mint/20">Can connect with your existing practice software and keep billing updates in sync.</td>
+                  <th scope="row" class="sticky left-0 z-10 p-5 sm:p-6 font-semibold bg-white border-r border-ink/10">Connect with your current practice software</th>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10"><span class="sr-only">Yes.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-deep text-white" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="m5 10.5 3 3 7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="block mt-2 text-xs text-ink/50">Files or software connection</span></td>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10 bg-mint/20"><span class="sr-only">Yes.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-deep text-white" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="m5 10.5 3 3 7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="block mt-2 text-xs font-medium text-deep/65">Two-way connection</span></td>
                 </tr>
                 <tr class="border-t border-ink/10">
-                  <th scope="row" class="p-5 sm:p-6 font-semibold align-top">Help when you need it</th>
-                  <td class="p-5 sm:p-6 text-ink/60 align-top border-l border-ink/10">Live support Monday–Friday, 9 a.m.–6 p.m. Eastern.</td>
-                  <td class="p-5 sm:p-6 font-medium text-deep align-top border-l border-ink/10 bg-mint/20">Direct founder support, available 24/7.</td>
+                  <th scope="row" class="sticky left-0 z-10 p-5 sm:p-6 font-semibold bg-white border-r border-ink/10">Get direct support 24/7</th>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10"><span class="sr-only">No.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#F7ECE8] text-[#A44732]" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="m6 6 8 8m0-8-8 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><span class="block mt-2 text-xs text-ink/50">Weekdays, 9–6 ET</span></td>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10 bg-mint/20"><span class="sr-only">Yes.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-deep text-white" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="m5 10.5 3 3 7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="block mt-2 text-xs font-medium text-deep/65">Direct founder support</span></td>
                 </tr>
                 <tr class="border-t border-ink/10">
-                  <th scope="row" class="p-5 sm:p-6 font-semibold align-top">Switching from your current system</th>
-                  <td class="p-5 sm:p-6 text-ink/60 align-top border-l border-ink/10">Ask daisyBill about its current onboarding plan.</td>
-                  <td class="p-5 sm:p-6 font-medium text-deep align-top border-l border-ink/10 bg-mint/20">The MindBill team sets up your account and runs both systems side by side before you switch.</td>
+                  <th scope="row" class="sticky left-0 z-10 p-5 sm:p-6 font-semibold bg-white border-r border-ink/10">Run both systems side by side while switching</th>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10"><span class="sr-only">Not publicly stated.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-paper text-ink/45" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M6 10h8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><span class="block mt-2 text-xs text-ink/50">Ask about onboarding</span></td>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10 bg-mint/20"><span class="sr-only">Yes.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-deep text-white" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="m5 10.5 3 3 7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="block mt-2 text-xs font-medium text-deep/65">Included</span></td>
                 </tr>
                 <tr class="border-t border-ink/10">
-                  <th scope="row" class="p-5 sm:p-6 font-semibold align-top">What you pay for</th>
-                  <td class="p-5 sm:p-6 text-ink/60 align-top border-l border-ink/10">Contact daisyBill for current pricing and terms.</td>
-                  <td class="p-5 sm:p-6 font-medium text-deep align-top border-l border-ink/10 bg-mint/20">Pay for each submitted bill, with no extra fee for each user or provider.</td>
+                  <th scope="row" class="sticky left-0 z-10 p-5 sm:p-6 font-semibold bg-white border-r border-ink/10">No extra fees for each user or provider</th>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10"><span class="sr-only">Current pricing is not public.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-paper text-ink/45" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M6 10h8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><span class="block mt-2 text-xs text-ink/50">Ask for current pricing</span></td>
+                  <td class="p-4 sm:p-5 text-center border-l border-ink/10 bg-mint/20"><span class="sr-only">Yes.</span><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-deep text-white" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="m5 10.5 3 3 7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="block mt-2 text-xs font-medium text-deep/65">Included</span></td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p class="sm:hidden px-5 py-3 text-xs text-ink/45 border-t border-ink/10 bg-paper">Swipe the table to compare →</p>
+          <p class="sm:hidden px-5 py-3 text-xs text-ink/45 border-t border-ink/10 bg-paper">✓ Included &nbsp;·&nbsp; × Not included &nbsp;·&nbsp; – Ask the vendor</p>
         </div>
         <p class="mt-5 text-xs text-ink/45 max-w-5xl leading-relaxed">daisyBill information verified against its public <a class="underline hover:text-ink" href="https://www.daisybill.com/billing-software" target="_blank" rel="noopener">billing software</a>, <a class="underline hover:text-ink" href="https://www.daisybill.com/integration/api" target="_blank" rel="noopener">software connection</a>, and <a class="underline hover:text-ink" href="https://kb.daisybill.com/" target="_blank" rel="noopener">help center</a> pages on September 3, 2026. Product capabilities and pricing can change; verify current terms with each vendor. daisyBill is a trademark of its respective owner. MindBill is not affiliated with or endorsed by daisyBill.</p>
       </div>
