@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NNJWFXB7');</script>
+  <!-- End Google Tag Manager -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Workers' Comp Billing Software for Billing Companies | MindBill</title>
+  <meta name="description" content="Run every client's California workers' comp billing in one place — unlimited users, providers, and NPIs; pay per bill only. AI enters bills straight from reports, client-level reporting shows who got paid what, and an API when you want it." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
+  <meta name="theme-color" content="#0E5C5E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter Tight"', 'system-ui', 'sans-serif'],
+            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:   { DEFAULT: '#0E1B1F', soft: '#1A2A2F', muted: '#6B7378' },
+            paper: { DEFAULT: '#F4F1EA', soft: '#EDE8DD', line: '#D7D1C2' },
+            brand: { DEFAULT: '#0E5C5E', dark: '#083E40', soft: '#E0EBEB', glow: '#7FD3D1' },
+            teal:  { DEFAULT: '#0E5C5E', dark: '#083E40', soft: '#E0EBEB', glow: '#7FD3D1' },
+            acc:   { DEFAULT: '#0E5C5E', soft: '#E0EBEB' },
+            warn:  { DEFAULT: '#B8772A', soft: '#F5EAD8' },
+            ochre: { DEFAULT: '#B8772A', soft: '#F5EAD8' },
+            cream: { DEFAULT: '#F4F1EA' },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #0E1B1F; }
+    .mesh-bg {
+      background-color: #FBFBFD;
+      background-image:
+        radial-gradient(at 20% 0%, hsla(180, 70%, 88%, 0.45) 0px, transparent 50%),
+        radial-gradient(at 80% 0%, hsla(189, 100%, 92%, 0.4) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(38, 80%, 90%, 0.35) 0px, transparent 50%),
+        radial-gradient(at 80% 50%, hsla(180, 60%, 92%, 0.3) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(38, 90%, 92%, 0.25) 0px, transparent 50%),
+        radial-gradient(at 80% 100%, hsla(180, 70%, 90%, 0.4) 0px, transparent 50%);
+    }
+    .noise::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .serif-h { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -0.015em; }
+    .serif-it { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; }
+    .mono-tag { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #6B7378; }
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="bg-white">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNJWFXB7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <!-- Top banner -->
+  <div class="bg-brand text-white text-center text-sm py-2.5 px-4">
+    HIPAA-compliant, BAA included
+    <span class="opacity-60 mx-2">·</span>
+    California workers' comp billing — med-legal &amp; treatment
+  </div>
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-30 backdrop-blur bg-white/85 border-b border-ink/5">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <span class="w-9 h-9 inline-flex items-center justify-center text-ink"><svg width="34" height="34" viewBox="0 0 100 100" style="display:block"><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="square"><path d="M18 78 Q 18 22 50 22"/><path d="M82 78 Q 82 22 50 22"/><line x1="50" y1="40" x2="50" y2="78"/></g><circle cx="50" cy="22" r="4.5" fill="#0E5C5E"/></svg></span>
+        <span class="font-bold text-lg tracking-tight">Mind<span class="text-teal">Bill</span></span>
+        <span class="ml-2 hidden sm:inline text-[11px] font-semibold uppercase tracking-wider text-ink/45 border-l border-ink/15 pl-2">Workers' Comp</span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-5 text-sm font-medium text-ink/70">
+        <a href="/#who" class="hover:text-ink">Who we serve</a>
+        <a href="/#features" class="hover:text-ink">Features</a>
+        <a href="/#developers" class="hover:text-ink">Developers</a>
+        <a href="/vs-daisybill" class="hover:text-ink">vs. daisyBill</a>
+        <a href="/guides" class="hover:text-ink">Guides</a>
+        <a href="/help" class="hover:text-ink">Help</a>
+      </nav>
+      <a href="https://calendly.com/jimmy-incidentfox/15-min-quick-chat-incidentfox" target="_blank" rel="noopener" class="inline-flex items-center bg-brand text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-brand-dark transition">Book a Demo</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="mesh-bg noise relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 pt-16 pb-16 md:pt-24 md:pb-20 relative">
+      <div class="text-center max-w-3xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-ink/10 bg-white/60 backdrop-blur text-xs font-semibold text-ink/70 mb-6">
+          <span class="w-2 h-2 rounded-full bg-brand"></span>
+          For billing companies · third-party billers
+        </div>
+        <h1 class="serif-h text-4xl md:text-6xl lg:text-[64px] leading-[1.04] text-ink">
+          Every client.<br><span class="serif-it text-brand">One platform.</span>
+        </h1>
+        <p class="mt-6 text-base md:text-lg text-ink/60 max-w-xl mx-auto leading-relaxed">
+          Med-legal and treatment, all your clients side by side. <strong class="text-ink">AI does the keying your team does today</strong> — each biller handles multiples of the volume — and you <strong class="text-ink">never pay per seat, per provider, or per NPI.</strong>
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center items-center gap-3">
+          <a href="https://calendly.com/jimmy-incidentfox/15-min-quick-chat-incidentfox" target="_blank" rel="noopener" class="inline-flex items-center bg-ink text-white font-semibold px-7 py-3 rounded-full hover:bg-brand transition shadow-xl shadow-ink/15">
+            Book a 15-min demo
+            <svg class="ml-2" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#ops" class="inline-flex items-center gap-2 bg-white border-2 border-brand text-brand font-semibold px-6 py-2.5 rounded-full hover:bg-brand-soft transition">What's built in</a>
+        </div>
+        <div class="mt-10 flex flex-wrap justify-center items-center gap-x-5 gap-y-2 text-[11px] uppercase tracking-widest text-ink/40 font-semibold">
+          <span>Multi-client</span><span class="text-ink/20">·</span><span>Unlimited NPIs</span><span class="text-ink/20">·</span><span>AI bill entry</span><span class="text-ink/20">·</span><span>Client reporting</span><span class="text-ink/20">·</span><span>Paid in days</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE STRIP -->
+  <section class="bg-ink text-white py-16">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8 text-center">
+      <div>
+        <div class="serif-h text-4xl text-teal-glow">Unlimited</div>
+        <p class="mt-2 text-sm text-white/60">clients, users, providers, and NPIs. Onboarding a new client costs you nothing but the bills you send.</p>
+      </div>
+      <div>
+        <div class="serif-h text-4xl text-teal-glow">~10 seconds</div>
+        <p class="mt-2 text-sm text-white/60">for AI to enter a bill from the report — your best biller reviews instead of keys.</p>
+      </div>
+      <div>
+        <div class="serif-h text-4xl text-teal-glow">Per bill</div>
+        <p class="mt-2 text-sm text-white/60">is the only fee. Your margin improves with every client you move over.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="ops" class="py-24 bg-paper">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <div class="mono-tag mb-3">Built for billers</div>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Run the book, not the keyboard.</h2>
+        <p class="mt-4 text-lg text-ink/60">Multi-client operations are the product, not an afterthought.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white ring-1 ring-ink/10 shadow-sm rounded-2xl p-7">
+          <h3 class="font-bold text-lg">Client-level books &amp; reporting</h3>
+          <p class="mt-2 text-sm text-ink/60 leading-relaxed">Who got paid what, when — per client, per provider, per claims administrator. AR aging and days-to-pay you can send to clients as-is.</p>
+        </div>
+        <div class="bg-white ring-1 ring-ink/10 shadow-sm rounded-2xl p-7">
+          <h3 class="font-bold text-lg">Per-biller productivity</h3>
+          <p class="mt-2 text-sm text-ink/60 leading-relaxed">See throughput and outcomes by team member — know exactly what AI entry did to your cost per bill.</p>
+        </div>
+        <div class="bg-white ring-1 ring-ink/10 shadow-sm rounded-2xl p-7">
+          <h3 class="font-bold text-lg">Roles per client &amp; team</h3>
+          <p class="mt-2 text-sm text-ink/60 leading-relaxed">Give each biller the clients they own. Full bill history and team notes keep handoffs clean.</p>
+        </div>
+        <div class="bg-white ring-1 ring-ink/10 shadow-sm rounded-2xl p-7">
+          <h3 class="font-bold text-lg">Second reviews at volume</h3>
+          <p class="mt-2 text-sm text-ink/60 leading-relaxed">Every EOR scrubbed against the fee schedule across every client — underpayments appealed with pre-filled SBR-1s, automatically.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="rounded-2xl overflow-hidden ring-1 ring-ink/10 shadow-xl shadow-ink/10 bg-white">
+          <img src="/img/intake-demo.png" alt="Drop a report — MindBill's AI fills the bill" class="w-full block" loading="lazy" />
+          <div class="px-5 py-3 text-sm text-ink/60 border-t border-ink/5"><strong class="text-ink">The keying, gone.</strong> Drop the report; AI enters the patient, codes, claim #, and payer in ~10 seconds. Your biller reviews.</div>
+        </div>
+        <div class="rounded-2xl overflow-hidden ring-1 ring-ink/10 shadow-xl shadow-ink/10 bg-white">
+          <img src="/img/shot-reports.png" alt="Payment analytics and reporting" class="w-full block" loading="lazy" />
+          <div class="px-5 py-3 text-sm text-ink/60 border-t border-ink/5"><strong class="text-ink">Client-ready reporting.</strong> Collections, AR, and days-to-pay by client, provider, and claims administrator.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-ink text-white py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <div class="mono-tag mb-3" style="color:#7FD3D1">For your stack</div>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Plug it into how you already work.</h2>
+        <p class="mt-4 text-lg text-white/60">Keep your intake, your client portals, your workflow — MindBill slots in underneath.</p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-4">
+        <div class="bg-white/5 rounded-2xl p-6 ring-1 ring-white/10">
+          <div class="text-teal-glow font-bold text-sm mb-2">1 · API &amp; webhooks</div>
+          <p class="text-sm text-white/70">Submit bill data and documents programmatically and follow one normalized lifecycle to payment.</p>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-6 ring-1 ring-white/10">
+          <div class="text-teal-glow font-bold text-sm mb-2">2 · Embeddable components</div>
+          <p class="text-sm text-white/70">Put the billing experience inside your own client portal with React or Angular components.</p>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-6 ring-1 ring-white/10">
+          <div class="text-teal-glow font-bold text-sm mb-2">3 · Bulk import</div>
+          <p class="text-sm text-white/70">Move a client's providers, payers, and open AR over in one pass — we do it with you, on-site.</p>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-6 ring-1 ring-white/10">
+          <div class="text-teal-glow font-bold text-sm mb-2">4 · Client-by-client rollout</div>
+          <p class="text-sm text-white/70">Migrate one client, run parallel, then roll the rest. Your operation never skips a day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <div class="mono-tag mb-3">FAQ</div>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Questions, answered.</h2>
+      </div>
+      <div class="space-y-6">
+        <div class="border-b border-ink/10 pb-6">
+          <h3 class="font-bold text-lg">How does pricing work for a billing company?</h3>
+          <p class="mt-2 text-ink/60">Per bill submitted, flat — no per-seat, per-client, per-provider, or per-NPI fees. Adding a client or a biller never costs you anything. Book a demo and we'll quote your volume.</p>
+        </div>
+        <div class="border-b border-ink/10 pb-6">
+          <h3 class="font-bold text-lg">Can we put MindBill inside our own client portal?</h3>
+          <p class="mt-2 text-ink/60">Yes — embeddable React and Angular components render the billing experience in your portal, backed by the same API. See the developer platform for docs and a sandbox.</p>
+        </div>
+        <div class="border-b border-ink/10 pb-6">
+          <h3 class="font-bold text-lg">Can you migrate us off daisyBill or another system?</h3>
+          <p class="mt-2 text-ink/60">Yes — on-site and hands-on: we migrate you in a single day, then stay on-site the first week, with a parallel run so nothing slips during the switch.</p>
+        </div>
+        <div class="border-b border-ink/10 pb-6">
+          <h3 class="font-bold text-lg">Do you support both med-legal and treatment clients?</h3>
+          <p class="mt-2 text-ink/60">Yes. Med-legal (QME / AME / IME on the MLFS) and treatment-side workers' comp billing, plus RFAs — every client on one platform.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg">Is it HIPAA-compliant?</h3>
+          <p class="mt-2 text-ink/60">Yes — MindBill is HIPAA-compliant and a Business Associate Agreement (BAA) is included.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-paper">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="serif-h text-4xl md:text-5xl text-ink">Bring your hardest client to the demo.</h2>
+      <p class="mt-4 text-lg text-ink/60">15 minutes on your real workflow — multi-client setup, AI entry, and client-level reporting. No slides.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="https://calendly.com/jimmy-incidentfox/15-min-quick-chat-incidentfox" target="_blank" rel="noopener" class="inline-flex items-center bg-ink text-white font-semibold px-8 py-3 rounded-full hover:bg-brand transition shadow-xl shadow-ink/15">Book a 15-min demo</a>
+        <a href="mailto:jimmy@mindbill.org" class="inline-flex items-center gap-2 bg-white border-2 border-brand text-brand font-semibold px-6 py-2.5 rounded-full hover:bg-brand-soft transition">jimmy@mindbill.org</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink text-white/60 py-16">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="w-9 h-9 inline-flex items-center justify-center text-paper"><svg width="34" height="34" viewBox="0 0 100 100" style="display:block"><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="square"><path d="M18 78 Q 18 22 50 22"/><path d="M82 78 Q 82 22 50 22"/><line x1="50" y1="40" x2="50" y2="78"/></g><circle cx="50" cy="22" r="4.5" fill="#7FD3D1"/></svg></span>
+          <span class="text-white font-bold text-lg">Mind<span class="text-teal-glow">Bill</span></span>
+        </div>
+        <p class="text-sm leading-relaxed">California workers' comp billing software — med-legal (QME / AME / IME) and treatment — for solo QMEs, med-legal groups, treating providers, and billing companies.</p>
+      </div>
+      <div>
+        <div class="text-white font-bold mb-4">Who we serve</div>
+        <div class="space-y-3 text-sm">
+          <div><a href="/solo-qme" class="hover:text-white">Solo QMEs</a></div>
+          <div><a href="/med-legal-groups" class="hover:text-white">Med-legal groups</a></div>
+          <div><a href="/treatment" class="hover:text-white">Treating providers</a></div>
+          <div><a href="/billing-companies" class="hover:text-white">Billing companies</a></div>
+        </div>
+      </div>
+      <div>
+        <div class="text-white font-bold mb-4">Product</div>
+        <div class="space-y-3 text-sm">
+          <div><a href="/#features" class="hover:text-white">Features</a></div>
+          <div><a href="/#developers" class="hover:text-white">Developers</a></div>
+          <div><a href="/vs-daisybill" class="hover:text-white">MindBill vs. daisyBill</a></div>
+          <div><a href="/#founder" class="hover:text-white">Why us</a></div>
+        </div>
+      </div>
+      <div>
+        <div class="text-white font-bold mb-4">Contact</div>
+        <div class="space-y-3 text-sm">
+          <div><a href="https://calendly.com/jimmy-incidentfox/15-min-quick-chat-incidentfox" target="_blank" rel="noopener" class="hover:text-white">Book a 15-min demo</a></div>
+          <div><a href="mailto:jimmy@mindbill.org" class="hover:text-white">jimmy@mindbill.org</a></div>
+          <div><a href="tel:+15707687496" class="hover:text-white">Founder: (570) 768-7496</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs text-white/40">
+      <div>© 2026 MindBill · IncidentFox, Inc. All rights reserved.</div>
+      <div class="flex gap-6"><a href="/psychiatry" class="hover:text-white">MindBill for Psychiatry →</a></div>
+    </div>
+  </footer>
+
+</body>
+</html>
