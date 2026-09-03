@@ -2,32 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <!-- Validate Calendly's redirect, capture campaign context, and remove PII
+       before GTM can read the URL. A direct /thank-you visit is not a booking
+       and deliberately does not load GTM or fire conversion tags. -->
+  <script>(function(){
+    var q = new URLSearchParams(location.search);
+    var clean = function(value){ return String(value || '').trim().slice(0, 254); };
+    var uuid = clean(q.get('invitee_uuid'));
+    var stored = {};
+    try { stored = JSON.parse(localStorage.getItem('mindbill_attribution_last_v1') || '{}') || {}; } catch (e) {}
+    var content = clean(q.get('utm_content')) || stored.utm_content || '';
+    var marker = content.match(/(?:^|__)lp_([a-z0-9-]+)/i);
+    var attribution = {
+      page_variant: stored.landing_variant || (marker ? marker[1] : 'unknown'),
+      traffic_source: clean(q.get('utm_source')) || stored.utm_source || 'unknown',
+      traffic_medium: clean(q.get('utm_medium')) || stored.utm_medium || 'unknown',
+      campaign_name: clean(q.get('utm_campaign')) || stored.utm_campaign || '',
+      campaign_term: clean(q.get('utm_term')) || stored.utm_term || '',
+      campaign_content: content
+    };
+
+    window.__booking = {
+      uuid: uuid,
+      name: clean(q.get('invitee_full_name')),
+      start: clean(q.get('event_start_time'))
+    };
+    window.__mindbillBookingValid = Boolean(uuid);
+
+    if (uuid) {
+      window.dataLayer = window.dataLayer || [];
+      var lastBooking = '';
+      try { lastBooking = localStorage.getItem('mindbill_last_booking_uuid') || ''; } catch (e) {}
+      if (lastBooking !== uuid) {
+        window.dataLayer.push({
+          event: 'demo_booking_confirmed',
+          booking_id: uuid,
+          page_variant: attribution.page_variant,
+          traffic_source: attribution.traffic_source,
+          traffic_medium: attribution.traffic_medium,
+          campaign_name: attribution.campaign_name,
+          campaign_term: attribution.campaign_term,
+          campaign_content: attribution.campaign_content
+        });
+        try { localStorage.setItem('mindbill_last_booking_uuid', uuid); } catch (e) {}
+      }
+    }
+
+    var keep = new URLSearchParams();
+    if (uuid) keep.set('invitee_uuid', uuid);
+    history.replaceState(null, '', location.pathname + (keep.toString() ? '?' + keep : ''));
+  })();</script>
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  <script>(function(w,d,s,l,i){if(!w.__mindbillBookingValid)return;w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-NNJWFXB7');</script>
   <!-- End Google Tag Manager -->
-
-  <!-- Strip invitee PII from the URL before any tag reads it.
-       Calendly's "Pass event details" appends invitee_full_name / invitee_email.
-       gtm.js is async, so this synchronous block runs first and the tags that
-       fire afterwards only ever see invitee_uuid (the dedup key we do want). -->
-  <script>(function(){
-    try {
-      var q = new URLSearchParams(location.search);
-      window.__booking = {
-        uuid:  q.get('invitee_uuid') || '',
-        name:  q.get('invitee_full_name') || '',
-        start: q.get('event_start_time') || ''
-      };
-      var keep = new URLSearchParams();
-      if (window.__booking.uuid) keep.set('invitee_uuid', window.__booking.uuid);
-      var clean = location.pathname + (keep.toString() ? '?' + keep : '');
-      history.replaceState(null, '', clean);
-    } catch (e) { window.__booking = { uuid:'', name:'', start:'' }; }
-  })();</script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>You're booked — MindBill</title>

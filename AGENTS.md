@@ -55,23 +55,27 @@ says "as high in the `<head>` as possible"; directly after charset satisfies bot
 Leave the snippet inline (do not move it to an external `.js`): it is inline by
 design so it starts loading with no extra round-trip.
 
-**Do not add tracking tags to page HTML.** Pixels, conversion tags and triggers
-(Google Ads, Meta, LinkedIn) are configured in the GTM container, not in this
-repo. The two snippets above are the only tracking code that belongs in a page —
-anything else hardcoded will double-fire once the same tag exists in GTM.
+**Do not add vendor tracking tags to page HTML.** Pixels, conversion tags and
+triggers (Google Ads, Meta, LinkedIn) are configured in the GTM container, not in
+this repo. `attribution.js` is the exception: it is first-party plumbing that
+preserves campaign context, decorates the single Calendly booking URL with UTMs,
+and pushes vendor-neutral funnel events into `dataLayer`. It does not load a
+pixel or send data by itself.
 
-**Conversions fire on `/thank-you`.** The demo CTAs link straight out to
-Calendly, so a booking cannot be attributed on-site. `thank-you.html` is the
-landing point Calendly redirects to after a booking; conversion tags fire there
-on a Page View trigger matching `/thank-you`, deduped on `invitee_uuid`.
+**Conversions fire on a valid Calendly redirect to `/thank-you`.** All demo CTAs
+use the same Calendly event; `attribution.js` adds the incoming campaign UTMs and
+landing-page variant to that URL. `thank-you.html` accepts the redirect, pushes
+`demo_booking_confirmed`, and loads GTM only when `invitee_uuid` is present. The
+Google Ads page-view conversion remains deduped on that UUID. Direct visits to
+`/thank-you` deliberately do not load GTM, so they cannot become fake bookings.
 
 Two things must stay true or the page silently stops working:
 
 - **Calendly's Confirmation Page must redirect to `https://mindbill.org/thank-you`
   with "Pass event details" ticked.** Without that tick there is no
   `invitee_uuid`, so the dedup key is empty and a refresh double-counts.
-- **The page must stay `noindex`.** If Google indexes it, organic visitors land
-  there and fire fake conversions, which poisons Smart Bidding.
+- **The page must stay `noindex`.** The UUID gate prevents false conversions,
+  and `noindex` keeps the confirmation page out of organic search entirely.
 
 The page degrades cleanly with no query string (no name, no slot, no reschedule
 links) — so a direct visit looks intentional rather than broken.
@@ -96,9 +100,10 @@ A snippet in the HTML does not prove it ran — in the browser console,
 - `apa.html` — APA 2026 conference / booth landing page.
 - `thank-you.html` — post-booking confirmation page (`/thank-you`). `noindex`.
   Calendly redirects here after a booking; it reads `invitee_uuid` /
-  `invitee_full_name` / `event_start_time` off the query string and strips the
-  PII ones from the URL before tags read them. This is where conversion tags
-  fire — see *Analytics / tracking*.
+  `invitee_full_name` / `event_start_time` and campaign UTMs, then strips the PII
+  and campaign parameters from the URL before tags read them. GTM is gated on a
+  real UUID and the page pushes `demo_booking_confirmed` — see *Analytics /
+  tracking*.
 
 ## Directories
 
